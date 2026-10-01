@@ -5,22 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>WonderLogic AI — CBSE Class 3 Computational Thinking & AI Platform</title>
   
-  <!-- Single-Story Schoolbook & Display Typography -->
+  <!-- Rounded Schoolbook & Display Typography: Baloo 2 (Headings) & Nunito (Body/UI) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      /* Projector & Screen Safe High-Contrast Tokens */
+      /* Brand Design Tokens */
       --bg-canvas: #F8FAFC;
       --surface-card: #FFFFFF;
       --text-main: #0F172A;
       --text-muted: #475569;
       --border-dark: #334155;
-      --border-subtle: #CBD5E1;
+      --border-subtle: #E2E8F0;
 
-      /* Pedagogical Mascot & Engine Accent Colors */
+      /* Pedagogical Accent Colors */
       --indigo-brand: #4F46E5;
       --indigo-soft: #EEF2FF;
       --step-green: #059669;
@@ -33,16 +33,17 @@
       --buzzy-red-soft: #FFF1F2;
       --amber-focus: #F59E0B;
 
-      /* Typography Tokens */
-      --font-body: 'Lexend', system-ui, -apple-system, sans-serif;
-      --font-display: 'Fredoka', cursive, sans-serif;
+      /* Font Tokens */
+      --font-body: 'Nunito', system-ui, -apple-system, sans-serif;
+      --font-display: 'Baloo 2', cursive, sans-serif;
+
       --max-width: 1240px;
     }
 
-    * { 
-      box-sizing: border-box; 
-      margin: 0; 
-      padding: 0; 
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     html, body {
@@ -50,36 +51,43 @@
       max-width: 100vw;
       overflow-x: hidden;
     }
-    html { scroll-behavior: smooth; }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       background-color: var(--bg-canvas);
       color: var(--text-main);
       font-family: var(--font-body);
-      line-height: 1.55;
+      line-height: 1.6;
       -webkit-font-smoothing: antialiased;
     }
-    a { text-decoration: none; color: inherit; }
 
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* UTILITIES & BUTTONS */
     .container {
       width: 100%;
       max-width: var(--max-width);
       margin: 0 auto;
       padding: 0 16px;
-      min-width: 0;
     }
 
     @media (min-width: 768px) {
       .container { padding: 0 24px; }
     }
 
-    /* BUTTON UTILITIES */
     .btn {
       font-family: var(--font-body);
-      font-weight: 600;
+      font-weight: 700;
       font-size: 0.95rem;
       border: 3px solid var(--border-dark);
       border-radius: 12px;
-      padding: 10px 18px;
+      padding: 10px 20px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -88,15 +96,33 @@
       transition: all 0.15s ease-in-out;
       box-shadow: 2px 3px 0 var(--border-dark);
       touch-action: manipulation;
-      white-space: nowrap;
     }
-    .btn:hover { transform: translate(-1px, -1px); box-shadow: 4px 5px 0 var(--border-dark); }
-    .btn:active { transform: translate(2px, 2px); box-shadow: 0 0 0 var(--border-dark); }
 
-    .btn-primary { background: var(--indigo-brand); color: #FFFFFF; }
-    .btn-secondary { background: var(--surface-card); color: var(--text-main); }
-    .btn-amber { background: var(--amber-focus); color: #78350F; }
-    .btn-teal { background: var(--locky-teal); color: #FFFFFF; }
+    .btn:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 5px 0 var(--border-dark);
+    }
+
+    .btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: 0 0 0 var(--border-dark);
+    }
+
+    .btn-primary {
+      background: var(--indigo-brand);
+      color: #FFFFFF;
+      border-color: var(--border-dark);
+    }
+
+    .btn-secondary {
+      background: var(--surface-card);
+      color: var(--text-main);
+    }
+
+    .btn-accent {
+      background: var(--amber-focus);
+      color: #78350F;
+    }
 
     .pill-badge {
       display: inline-flex;
@@ -106,897 +132,765 @@
       border: 2px solid var(--border-dark);
       padding: 4px 12px;
       border-radius: 999px;
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       font-weight: 700;
       color: var(--indigo-brand);
       margin-bottom: 14px;
     }
 
-    /* 1. UNIVERSAL RESPONSIVE NAVBAR */
+    /* 1. STICKY NAVIGATION BAR */
     .navbar {
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: rgba(255, 255, 255, 0.97);
+      background: rgba(255, 255, 255, 0.96);
       backdrop-filter: blur(8px);
       border-bottom: 3px solid var(--border-dark);
       width: 100%;
     }
+
     .nav-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      min-height: 64px;
+      min-height: 66px;
       padding: 8px 0;
       gap: 8px;
-      width: 100%;
     }
+
     .brand-wrap {
       display: flex;
       align-items: center;
       gap: 8px;
       flex-shrink: 0;
     }
+
     .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
       font-family: var(--font-display);
-      font-size: 1.35rem;
+      font-size: 1.45rem;
+      line-height: 1.1;
       color: var(--indigo-brand);
-      letter-spacing: -0.02em;
     }
-    .brand-badge {
+
+    .brand-logo span {
       background: #FEF08A;
       border: 2px solid var(--border-dark);
       padding: 2px 6px;
-      border-radius: 6px;
-      font-size: 0.72rem;
-      font-weight: 700;
+      border-radius: 8px;
+      font-size: 0.85rem;
       color: #713F12;
-      white-space: nowrap;
+      font-family: var(--font-body);
+      font-weight: 700;
     }
+
     .nav-links {
-      display: none;
-      gap: 20px;
+      display: flex;
+      gap: 24px;
       list-style: none;
-      font-weight: 600;
-      font-size: 0.9rem;
-    }
-    .nav-links a:hover { color: var(--indigo-brand); }
-    .nav-actions {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-      flex-shrink: 0;
-    }
-
-    @media (min-width: 960px) {
-      .nav-links { display: flex; }
-      .brand-logo { font-size: 1.5rem; }
-    }
-
-    @media (max-width: 480px) {
-      .brand-logo { font-size: 1.15rem; }
-      .brand-badge { font-size: 0.65rem; padding: 2px 4px; }
-      .nav-actions .btn {
-        padding: 6px 10px;
-        font-size: 0.8rem;
-        border-width: 2px;
-      }
-      .nav-actions .btn .btn-text-full { display: none; }
-      .nav-actions .btn .btn-text-short { display: inline; }
-    }
-    @media (min-width: 481px) {
-      .nav-actions .btn .btn-text-short { display: none; }
-    }
-
-    /* FLOATING QUICK ACCESS BUTTON */
-    .floating-ai-btn {
-      position: fixed;
-      right: 16px;
-      bottom: 16px;
-      z-index: 999;
-      background: var(--indigo-brand);
-      color: #FFFFFF;
-      border: 2px solid var(--border-dark);
-      border-radius: 999px;
-      padding: 10px 16px;
-      font-family: var(--font-display);
+      font-weight: 700;
       font-size: 0.95rem;
-      box-shadow: 3px 4px 0 var(--border-dark);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 6px;
     }
-    .floating-ai-btn:hover { transform: translate(-2px, -2px); }
+
+    .nav-links a:hover {
+      color: var(--indigo-brand);
+    }
+
+    .nav-cta {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
 
     /* 2. HERO SECTION */
     .hero {
-      padding: 36px 0 40px;
-      background: radial-gradient(circle at 10% 20%, #EEF2FF 0%, #F8FAFC 70%);
+      padding: 44px 0 44px;
+      background: radial-gradient(circle at 10% 20%, #EEF2FF 0%, #F8FAFC 60%);
       border-bottom: 3px solid var(--border-dark);
-      width: 100%;
     }
+
     .hero-grid {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 32px;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 36px;
       align-items: center;
-      min-width: 0;
-    }
-    @media (min-width: 900px) {
-      .hero { padding: 60px 0 52px; }
-      .hero-grid { grid-template-columns: 1.15fr 0.85fr; gap: 40px; }
     }
 
     .hero-content h1 {
       font-family: var(--font-display);
-      font-size: clamp(2rem, 6vw, 3.25rem);
-      line-height: 1.15;
+      font-size: clamp(2.1rem, 5vw, 3.35rem);
+      line-height: 1.12;
+      color: var(--text-main);
       margin-bottom: 16px;
-      word-break: break-word;
+      letter-spacing: -0.01em;
     }
+
     .hero-content h1 mark {
       background: #FEF08A;
-      padding: 0 6px;
-      border-radius: 6px;
+      color: var(--text-main);
+      padding: 0 8px;
+      border-radius: 8px;
     }
+
     .hero-content p {
-      font-size: clamp(1rem, 2.5vw, 1.15rem);
+      font-size: clamp(1rem, 2vw, 1.15rem);
       color: var(--text-muted);
       margin-bottom: 24px;
-      max-width: 580px;
+      max-width: 540px;
     }
+
     .hero-actions {
       display: flex;
       gap: 12px;
       flex-wrap: wrap;
-    }
-    @media (max-width: 480px) {
-      .hero-actions .btn, .hero-actions a {
-        width: 100%;
-        text-align: center;
-      }
+      margin-bottom: 22px;
     }
 
+    .hero-note {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* HERO INTERACTIVE SHOWCASE CARD */
     .hero-preview-card {
       background: var(--surface-card);
       border: 3px solid var(--border-dark);
-      border-radius: 16px;
-      padding: 16px;
+      border-radius: 20px;
+      padding: 20px;
       box-shadow: 4px 6px 0 var(--border-dark);
-      min-width: 0;
-      width: 100%;
+      position: relative;
     }
+
+    .hero-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px dashed var(--border-subtle);
+      padding-bottom: 10px;
+      margin-bottom: 14px;
+    }
+
+    .hero-card-tag {
+      font-weight: 700;
+      font-size: 0.78rem;
+      color: var(--step-green);
+      background: var(--step-green-soft);
+      padding: 3px 8px;
+      border-radius: 6px;
+      border: 1px solid var(--step-green);
+    }
+
     .mascot-roster {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      margin-bottom: 12px;
+      gap: 10px;
+      margin-bottom: 14px;
     }
+
     .mascot-mini-tile {
       background: #F8FAFC;
       border: 2px solid var(--border-dark);
-      border-radius: 10px;
-      padding: 8px 4px;
+      border-radius: 12px;
+      padding: 10px 6px;
       text-align: center;
       cursor: pointer;
       transition: all 0.15s ease;
     }
-    .mascot-mini-tile:hover { background: #FEF3C7; transform: translateY(-2px); }
-    .mascot-mini-tile .emoji { font-size: 1.5rem; display: block; margin-bottom: 2px; }
-    .mascot-mini-tile strong { font-size: 0.75rem; display: block; }
-    .mascot-mini-tile span { font-size: 0.65rem; color: var(--text-muted); }
+
+    .mascot-mini-tile:hover {
+      background: #FEF3C7;
+      transform: translateY(-2px);
+    }
+
+    .mascot-mini-tile .emoji {
+      font-size: 1.8rem;
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .mascot-mini-tile strong {
+      font-size: 0.82rem;
+      display: block;
+      color: var(--text-main);
+    }
+
+    .mascot-mini-tile span {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      display: block;
+    }
+
     .mascot-dialogue-box {
       background: #FFFBEB;
       border: 2px solid var(--boxy-ochre);
       border-radius: 10px;
-      padding: 10px 12px;
-      font-size: 0.85rem;
+      padding: 12px 14px;
+      font-size: 0.9rem;
       color: #92400E;
     }
 
-    /* 3. TRUST & COMPLIANCE BAR */
+    /* 3. TRUST & REGULATORY BADGES BAR */
     .trust-bar {
       background: #FFFFFF;
       border-bottom: 3px solid var(--border-dark);
       padding: 20px 0;
-      width: 100%;
     }
+
     .trust-grid {
       display: grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 16px;
-      min-width: 0;
+      align-items: center;
     }
-    @media (min-width: 540px) {
-      .trust-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (min-width: 900px) {
-      .trust-grid { grid-template-columns: repeat(4, 1fr); }
-    }
-    .trust-item { display: flex; align-items: center; gap: 10px; min-width: 0; }
-    .trust-item .icon {
-      font-size: 1.5rem;
-      background: #F1F5F9;
-      border: 2px solid var(--border-dark);
-      width: 40px;
-      height: 40px;
-      border-radius: 8px;
+
+    .trust-item {
       display: flex;
       align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-    .trust-item strong { display: block; font-size: 0.88rem; color: var(--text-main); }
-    .trust-item span { font-size: 0.75rem; color: var(--text-muted); }
-
-    /* 4. SYLLABUS INTEGRITY SECTION */
-    .thought-plan-section {
-      background: #FFFFFF;
-      padding: 48px 0;
-      border-bottom: 3px solid var(--border-dark);
-      width: 100%;
-    }
-    .thought-plan-banner {
-      background: #FFFBEB;
-      border: 3px solid var(--boxy-ochre);
-      border-radius: 16px;
-      padding: 20px;
-      box-shadow: 4px 6px 0 var(--border-dark);
-      margin-bottom: 36px;
-      width: 100%;
-      min-width: 0;
-    }
-    @media (min-width: 768px) {
-      .thought-plan-banner { padding: 32px; }
-    }
-    .thought-plan-banner h2 {
-      font-family: var(--font-display);
-      font-size: clamp(1.6rem, 4vw, 2.25rem);
-      color: #78350F;
-      margin-bottom: 12px;
-      line-height: 1.2;
-    }
-    .thought-plan-banner p {
-      font-size: 1rem;
-      color: #92400E;
-      margin-bottom: 16px;
-    }
-    .pillar-duo {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 14px;
-      margin-top: 18px;
-    }
-    @media (min-width: 680px) {
-      .pillar-duo { grid-template-columns: 1fr 1fr; }
-    }
-    .duo-card {
-      background: #FFFFFF;
-      border: 2px solid var(--border-dark);
-      border-radius: 12px;
-      padding: 16px;
-    }
-    .duo-card strong {
-      display: block;
-      font-size: 1rem;
-      margin-bottom: 6px;
-    }
-
-    /* TABLE OF CONTENTS PRESENTATION (SCREEN-SAFE CONTAINER) */
-    .toc-container {
-      background: var(--bg-canvas);
-      border: 3px solid var(--border-dark);
-      border-radius: 16px;
-      padding: 16px;
-      box-shadow: 4px 6px 0 var(--border-dark);
-      width: 100%;
-      min-width: 0;
-    }
-    @media (min-width: 768px) {
-      .toc-container { padding: 32px; }
-    }
-    .toc-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
       gap: 12px;
-      border-bottom: 2px dashed var(--border-subtle);
-      padding-bottom: 14px;
-      width: 100%;
     }
-    .toc-header h3 {
-      font-family: var(--font-display);
-      font-size: 1.5rem;
-      color: var(--text-main);
-    }
-    .toc-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
-      width: 100%;
-      min-width: 0;
-    }
-    @media (min-width: 600px) {
-      .toc-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (min-width: 990px) {
-      .toc-grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
-    }
-    
-    /* UNIVERSAL CARD FIT */
-    .toc-card {
-      background: var(--surface-card);
-      border: 2px solid var(--border-dark);
-      border-radius: 10px;
-      padding: 10px 12px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      box-shadow: 2px 3px 0 var(--border-dark);
-      width: 100%;
-      min-width: 0;
-      gap: 8px;
-    }
-    .toc-left { 
-      display: flex; 
-      align-items: center; 
-      gap: 10px; 
-      min-width: 0; 
-      flex: 1;
-    }
-    .toc-badge {
-      width: 28px;
-      height: 28px;
-      background: var(--indigo-soft);
-      border: 2px solid var(--indigo-brand);
-      color: var(--indigo-brand);
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 0.8rem;
-      flex-shrink: 0;
-    }
-    .toc-title {
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: var(--text-main);
-      word-break: break-word;
-      line-height: 1.3;
-    }
-    .toc-page {
-      font-family: monospace;
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: var(--text-muted);
+
+    .trust-item .icon {
+      font-size: 1.6rem;
       background: #F1F5F9;
-      border: 1px solid var(--border-subtle);
-      padding: 3px 6px;
-      border-radius: 4px;
-      flex-shrink: 0;
-      white-space: nowrap;
-    }
-
-    /* 5. DEFINITIONS: WHAT IS CT & AI + USES */
-    .definition-section {
-      background: #FFFFFF;
-      padding: 48px 0;
-      border-bottom: 3px solid var(--border-dark);
-      width: 100%;
-    }
-    .section-head {
-      text-align: center;
-      max-width: 760px;
-      margin: 0 auto 36px;
-      min-width: 0;
-    }
-    .section-head h2 {
-      font-family: var(--font-display);
-      font-size: clamp(1.8rem, 5vw, 2.5rem);
-      margin-bottom: 10px;
-    }
-    .section-head p { font-size: 1rem; color: var(--text-muted); }
-    .definition-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 20px;
-      margin-bottom: 32px;
-      min-width: 0;
-    }
-    @media (min-width: 768px) {
-      .definition-grid { grid-template-columns: repeat(2, 1fr); gap: 28px; }
-    }
-    .def-card {
-      background: var(--bg-canvas);
-      border: 3px solid var(--border-dark);
-      border-radius: 16px;
-      padding: 20px;
-      box-shadow: 4px 5px 0 var(--border-dark);
-      min-width: 0;
-    }
-    @media (min-width: 768px) {
-      .def-card { padding: 28px; }
-    }
-    .def-badge {
-      display: inline-block;
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      padding: 3px 10px;
-      border-radius: 6px;
       border: 2px solid var(--border-dark);
-      margin-bottom: 12px;
-    }
-    .def-card h3 { font-family: var(--font-display); font-size: 1.45rem; margin-bottom: 10px; }
-    .def-card .meaning { font-size: 0.95rem; margin-bottom: 14px; font-weight: 500; }
-    .use-box {
-      background: #FFFFFF;
-      border: 2px dashed var(--border-dark);
-      border-radius: 10px;
-      padding: 14px;
-    }
-    .use-box strong { display: block; color: var(--indigo-brand); font-size: 0.88rem; margin-bottom: 6px; }
-    .use-box ul { padding-left: 18px; font-size: 0.85rem; color: var(--text-muted); }
-
-    /* 6. THE 4 PILLARS */
-    .section { padding: 48px 0; width: 100%; }
-    .pillars-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 16px;
-      min-width: 0;
-    }
-    @media (min-width: 580px) {
-      .pillars-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (min-width: 960px) {
-      .pillars-grid { grid-template-columns: repeat(4, 1fr); }
-    }
-    .pillar-card {
-      background: var(--surface-card);
-      border: 3px solid var(--border-dark);
-      border-radius: 14px;
-      padding: 20px;
-      box-shadow: 3px 4px 0 var(--border-dark);
-      min-width: 0;
-    }
-    .pillar-card .icon-bubble {
       width: 44px;
       height: 44px;
       border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .trust-item strong {
+      display: block;
+      font-size: 0.92rem;
+      color: var(--text-main);
+    }
+
+    .trust-item span {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* 4. FOUR PILLARS SECTION */
+    .section {
+      padding: 60px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .section-title h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      line-height: 1.15;
+      color: var(--text-main);
+      margin-bottom: 10px;
+    }
+
+    .section-title p {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .pillar-card {
+      background: var(--surface-card);
+      border: 3px solid var(--border-dark);
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: 3px 4px 0 var(--border-dark);
+    }
+
+    .pillar-card .icon-bubble {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
       border: 2px solid var(--border-dark);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.4rem;
+      font-size: 1.5rem;
+      margin-bottom: 14px;
+    }
+
+    .pillar-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+
+    .pillar-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
       margin-bottom: 12px;
     }
-    .pillar-card h3 { font-family: var(--font-display); font-size: 1.2rem; margin-bottom: 6px; }
-    .pillar-card p { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 10px; }
+
     .pillar-card .example-tag {
       background: #F1F5F9;
       border: 1px solid var(--border-subtle);
       border-radius: 6px;
-      padding: 3px 6px;
-      font-size: 0.75rem;
-      font-weight: 600;
+      padding: 3px 8px;
+      font-size: 0.78rem;
+      font-weight: 700;
       color: var(--text-main);
       display: inline-block;
     }
 
-    /* 7. LIVE CHAPTER 1 CIPHER SANDBOX */
+    /* 5. LIVE CHAPTER 1 INTERACTIVE SANDBOX */
     .sandbox-section {
-      padding: 48px 0;
       background: #F1F5F9;
       border-top: 3px solid var(--border-dark);
       border-bottom: 3px solid var(--border-dark);
-      width: 100%;
+      padding: 60px 0;
     }
+
     .sandbox-card {
-      background: #FFFFFF;
+      background: var(--surface-card);
       border: 3px solid var(--border-dark);
-      border-radius: 16px;
-      padding: 16px;
+      border-radius: 20px;
+      padding: 26px;
       box-shadow: 4px 6px 0 var(--border-dark);
-      width: 100%;
-      min-width: 0;
+      max-width: 980px;
+      margin: 0 auto;
     }
-    @media (min-width: 768px) {
-      .sandbox-card { padding: 28px; }
+
+    .sandbox-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 14px;
     }
+
+    .sandbox-top h3 {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 3vw, 1.75rem);
+      line-height: 1.2;
+      color: var(--indigo-brand);
+    }
+
     .track-wrapper {
       background: #F8FAFC;
       border: 2px solid var(--border-dark);
-      border-radius: 10px;
-      padding: 12px;
-      margin: 16px 0;
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 20px;
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
-      max-width: 100%;
     }
-    .track-row { display: flex; gap: 4px; min-width: 680px; margin-bottom: 6px; }
+
+    .track-row {
+      display: flex;
+      gap: 6px;
+      min-width: 720px;
+      margin-bottom: 8px;
+    }
+
     .track-letter {
-      width: 32px;
-      height: 40px;
+      width: 36px;
+      height: 44px;
       border: 2px solid var(--border-dark);
-      background: #FFFFFF;
-      border-radius: 5px;
+      background: var(--surface-card);
+      border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 700;
-      font-size: 0.95rem;
+      font-weight: 800;
+      font-size: 1.1rem;
     }
+
     .track-letter.shifted {
       background: #D1FAE5;
       border-color: var(--step-green);
       color: #065F46;
     }
 
-    /* SYMMETRICAL ENTRY & OUTPUT PAIR */
+    .sandbox-controls {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
     .sandbox-tester {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 16px;
-      margin-top: 14px;
-      min-width: 0;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
     }
-    @media (min-width: 768px) {
-      .sandbox-tester { grid-template-columns: 1fr 1fr; gap: 20px; }
-    }
-    .box-wrapper { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
-    .box-label {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-weight: 700;
-      font-size: 0.88rem;
-      color: var(--text-main);
-    }
-    .cipher-input-box {
+
+    .test-box input {
       width: 100%;
-      height: 54px;
-      background: #FFFFFF;
-      border: 3px solid var(--border-dark);
-      border-radius: 12px;
+      height: 52px;
       font-family: var(--font-body);
       font-size: 1.25rem;
       font-weight: 700;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
-      padding: 0 14px;
-      color: #0F172A;
+      padding: 0 16px;
+      border: 3px solid var(--border-dark);
+      border-radius: 10px;
       outline: none;
-      box-shadow: 2px 3px 0 var(--border-dark);
-      transition: all 0.15s ease;
     }
-    .cipher-input-box:focus {
-      border-color: var(--indigo-brand);
-      background: #F8FAFC;
-    }
-    .cipher-output-box {
-      width: 100%;
-      height: 54px;
+
+    .test-box .output-pill {
+      height: 52px;
       background: #FEE2E2;
       border: 3px solid var(--buzzy-red);
-      border-radius: 12px;
+      border-radius: 10px;
       display: flex;
       align-items: center;
-      padding: 0 14px;
+      padding: 0 16px;
       font-size: 1.25rem;
       font-weight: 800;
       color: #991B1B;
-      letter-spacing: 0.2em;
-      box-shadow: 2px 3px 0 var(--border-dark);
+      letter-spacing: 0.15em;
     }
-    .quick-chips {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      flex-wrap: wrap;
-      margin-top: 6px;
-    }
-    .chip-label { font-size: 0.75rem; font-weight: 700; color: var(--text-muted); }
-    .chip-btn {
-      background: #F1F5F9;
-      border: 2px solid var(--border-dark);
-      border-radius: 6px;
-      padding: 3px 8px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      cursor: pointer;
-    }
-    .step-map-strip {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-      margin-top: 10px;
-      padding: 10px;
-      background: #F8FAFC;
-      border: 2px dashed var(--border-dark);
-      border-radius: 8px;
-      min-height: 40px;
-      align-items: center;
-    }
-    .step-map-pill {
-      background: #FFFFFF;
-      border: 1px solid var(--border-dark);
-      border-radius: 4px;
-      padding: 2px 6px;
-      font-weight: 700;
-      font-size: 0.8rem;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-    .step-map-pill span { color: var(--step-green); }
 
-    /* 8. COMMUNITY IDEA BOX & QUESTION DESK */
-    .community-section {
-      padding: 48px 0;
-      background: #FFFFFF;
-      border-bottom: 3px solid var(--border-dark);
-      width: 100%;
-    }
-    .community-grid {
+    /* 6. TEACHER SUPERPOWERS (THE 3 MOATS) */
+    .moats-grid {
       display: grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(3, 1fr);
       gap: 24px;
-      min-width: 0;
     }
-    @media (min-width: 860px) {
-      .community-grid { grid-template-columns: 1.1fr 0.9fr; gap: 32px; }
-    }
-    .idea-box-card {
-      background: var(--bg-canvas);
+
+    .moat-card {
+      background: var(--surface-card);
       border: 3px solid var(--border-dark);
       border-radius: 16px;
-      padding: 20px;
-      box-shadow: 4px 5px 0 var(--border-dark);
-      min-width: 0;
+      padding: 24px;
+      box-shadow: 3px 4px 0 var(--border-dark);
     }
-    .idea-box-card h3 { font-family: var(--font-display); font-size: 1.45rem; margin-bottom: 8px; }
-    .form-group { margin-bottom: 12px; }
-    .form-group label { display: block; font-weight: 700; font-size: 0.85rem; margin-bottom: 4px; }
-    .form-control {
-      width: 100%;
-      padding: 10px 12px;
-      font-family: var(--font-body);
-      font-size: 0.9rem;
-      border: 2px solid var(--border-dark);
-      border-radius: 8px;
-      outline: none;
-    }
-    textarea.form-control { resize: vertical; min-height: 70px; }
-    .ideas-feed {
-      margin-top: 18px;
-      border-top: 2px dashed var(--border-subtle);
-      padding-top: 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      max-height: 220px;
-      overflow-y: auto;
-    }
-    .idea-item {
-      background: #FFFFFF;
-      border: 2px solid var(--border-dark);
-      border-radius: 8px;
-      padding: 10px 12px;
-      font-size: 0.85rem;
-    }
-    .idea-item strong { display: block; color: var(--indigo-brand); font-size: 0.8rem; }
 
-    .faq-card {
-      background: var(--boxy-ochre-soft);
-      border: 3px solid var(--border-dark);
-      border-radius: 16px;
-      padding: 20px;
-      box-shadow: 4px 5px 0 var(--border-dark);
-      min-width: 0;
+    .moat-tag {
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--indigo-brand);
+      margin-bottom: 6px;
     }
-    .faq-card h3 { font-family: var(--font-display); font-size: 1.45rem; color: #92400E; margin-bottom: 10px; }
-    .faq-list { display: flex; flex-direction: column; gap: 10px; }
-    .faq-item { background: #FFFFFF; border: 2px solid var(--border-dark); border-radius: 8px; padding: 12px; }
-    .faq-question { font-weight: 700; font-size: 0.88rem; color: var(--text-main); margin-bottom: 4px; }
-    .faq-answer { font-size: 0.82rem; color: var(--text-muted); }
 
-    /* 9. ASK AI SIDEBAR DRAWER */
-    .drawer-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(15, 23, 42, 0.6);
-      z-index: 2000;
-      display: none;
-      backdrop-filter: blur(4px);
+    .moat-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      line-height: 1.2;
+      margin-bottom: 10px;
     }
-    .ai-drawer {
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: 100%;
-      max-width: 420px;
-      height: 100vh;
+
+    .moat-card p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+
+    /* 7. SYLLABUS GRID (14 CHAPTERS) */
+    .syllabus-section {
       background: #FFFFFF;
-      border-left: 3px solid var(--border-dark);
-      z-index: 2001;
-      transform: translateX(100%);
-      transition: transform 0.25s ease-out;
-      display: flex;
-      flex-direction: column;
+      border-top: 3px solid var(--border-dark);
+      border-bottom: 3px solid var(--border-dark);
+      padding: 60px 0;
     }
-    .drawer-open .ai-drawer { transform: translateX(0); }
-    .drawer-open .drawer-overlay { display: block; }
-    .drawer-head {
-      background: var(--indigo-soft);
-      border-bottom: 2px solid var(--border-dark);
-      padding: 16px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+
+    .chapters-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 14px;
     }
-    .drawer-head h3 { font-family: var(--font-display); font-size: 1.2rem; color: var(--indigo-brand); }
-    .btn-close-drawer { background: transparent; border: none; font-size: 1.4rem; cursor: pointer; font-weight: bold; }
-    .drawer-body {
-      flex: 1;
-      padding: 16px;
-      overflow-y: auto;
+
+    .chapter-pill {
+      background: #F8FAFC;
+      border: 2px solid var(--border-dark);
+      border-radius: 12px;
+      padding: 14px;
       display: flex;
-      flex-direction: column;
       gap: 12px;
+      align-items: flex-start;
+      transition: transform 0.15s ease;
     }
-    .ai-preset-chip {
-      background: #F1F5F9;
+
+    .chapter-pill:hover {
+      transform: translateY(-2px);
+      background: #FEF3C7;
+    }
+
+    .chapter-num {
+      background: var(--indigo-brand);
+      color: #FFFFFF;
+      font-weight: 800;
+      font-size: 0.85rem;
+      padding: 4px 8px;
+      border-radius: 6px;
       border: 1px solid var(--border-dark);
-      border-radius: 6px;
-      padding: 6px 10px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      cursor: pointer;
-      text-align: left;
+      flex-shrink: 0;
     }
-    .chat-bubble {
-      padding: 10px 12px;
-      border-radius: 10px;
-      font-size: 0.85rem;
-      border: 2px solid var(--border-dark);
-      max-width: 90%;
+
+    .chapter-info strong {
+      display: block;
+      font-size: 0.92rem;
+      color: var(--text-main);
+      margin-bottom: 2px;
     }
-    .chat-user { align-self: flex-end; background: var(--indigo-soft); color: var(--indigo-brand); font-weight: 600; }
-    .chat-bot { align-self: flex-start; background: #F8FAFC; color: var(--text-main); }
-    .drawer-foot {
-      padding: 12px 16px;
-      border-top: 2px solid var(--border-subtle);
+
+    .chapter-info span {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      display: block;
+    }
+
+    /* 8. CTA SECTION */
+    .cta-banner {
+      background: #FEF08A;
+      border-bottom: 3px solid var(--border-dark);
+      padding: 60px 0;
+      text-align: center;
+    }
+
+    .cta-banner h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      line-height: 1.15;
+      color: var(--text-main);
+      margin-bottom: 14px;
+    }
+
+    .cta-banner p {
+      font-size: 1.15rem;
+      color: #713F12;
+      max-width: 600px;
+      margin: 0 auto 28px;
+    }
+
+    .cta-buttons {
       display: flex;
-      gap: 6px;
-    }
-    .drawer-foot input {
-      flex: 1;
-      padding: 8px 12px;
-      border: 2px solid var(--border-dark);
-      border-radius: 6px;
-      font-family: var(--font-body);
-      font-size: 0.85rem;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
     }
 
-    /* 10. PRINTABLE WORKSHEET COMPONENT (HIDDEN ON SCREEN) */
-    #print-worksheet-area {
-      display: none;
-    }
-
-    @media print {
-      body * {
-        visibility: hidden;
-      }
-      #print-worksheet-area, #print-worksheet-area * {
-        visibility: visible;
-      }
-      #print-worksheet-area {
-        display: block !important;
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        margin: 0;
-        padding: 20px;
-        background: #FFFFFF;
-        color: #000000;
-      }
-      @page {
-        size: A4 portrait;
-        margin: 1cm;
-      }
-    }
-
-    /* FOOTER */
+    /* 9. FOOTER */
     footer {
       background: var(--text-main);
       color: #F8FAFC;
-      padding: 36px 0 20px;
+      padding: 52px 0 28px;
       border-top: 3px solid var(--border-dark);
-      width: 100%;
     }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 36px;
+      margin-bottom: 40px;
+    }
+
+    .footer-col h4 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      color: #FDE047;
+      margin-bottom: 14px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 8px;
+      font-size: 0.88rem;
+      color: #94A3B8;
+    }
+
+    .footer-col ul li a:hover {
+      color: #FFFFFF;
+    }
+
     .footer-bottom {
       border-top: 1px solid #334155;
-      padding-top: 16px;
-      margin-top: 24px;
-      font-size: 0.8rem;
-      color: #94A3B8;
+      padding-top: 20px;
+      font-size: 0.82rem;
+      color: #64748B;
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 12px;
+    }
+
+    /* CHAPTER 1 EXPLAINER */
+    .chapter1-guide {
+      margin-top: 28px;
+      display: grid;
+      gap: 18px;
+    }
+    .chapter1-intro,
+    .chapter1-card,
+    .chapter1-example,
+    .chapter1-thinking,
+    .chapter1-safety {
+      background: var(--surface-card);
+      border: 3px solid var(--border-dark);
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: 3px 4px 0 var(--border-dark);
+    }
+    .chapter1-intro h3,
+    .chapter1-card h3,
+    .chapter1-thinking h3,
+    .chapter1-safety h3 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      line-height: 1.2;
+      margin-bottom: 8px;
+      color: var(--text-main);
+    }
+    .chapter1-intro p,
+    .chapter1-card p,
+    .chapter1-thinking p,
+    .chapter1-safety p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+    }
+    .chapter1-intro p:last-child,
+    .chapter1-card p:last-child,
+    .chapter1-thinking p:last-child,
+    .chapter1-safety p:last-child { margin-bottom: 0; }
+    .chapter1-grid2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+    .chapter1-grid4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    .chapter1-mini {
+      background: #F8FAFC;
+      border: 2px solid var(--border-dark);
+      border-radius: 12px;
+      padding: 14px;
+    }
+    .chapter1-mini .icon { font-size: 1.7rem; display:block; margin-bottom: 6px; }
+    .chapter1-mini strong { display:block; margin-bottom: 4px; font-size: 0.92rem; }
+    .chapter1-mini span { color:var(--text-muted); font-size:0.82rem; }
+    .chapter1-steps {
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:12px;
+      margin-top:14px;
+    }
+    .chapter1-step {
+      background:#F8FAFC;
+      border:2px solid var(--border-subtle);
+      border-radius:12px;
+      padding:14px;
+    }
+    .chapter1-step .num {
+      width:30px;height:30px;border-radius:50%;background:var(--indigo-brand);color:#fff;
+      display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;margin-bottom:8px;
+    }
+    .chapter1-step strong { display:block; margin-bottom:4px; font-size:0.92rem; }
+    .chapter1-step span { color:var(--text-muted); font-size:0.82rem; }
+    .chapter1-example {
+      background:#FFFBEB;
+      border-color:var(--boxy-ochre);
+      box-shadow:3px 4px 0 #B45309;
+    }
+    .chapter1-example h3 { color:#92400E; }
+    .letter-map {
+      display:flex; flex-wrap:wrap; gap:8px; margin-top:12px;
+    }
+    .letter-map span {
+      background:#fff; border:2px solid var(--border-dark); border-radius:8px;
+      padding:6px 10px; font-weight:800; font-size:0.95rem;
+    }
+    .chapter1-callout {
+      margin-top:14px; padding:12px 14px; border-radius:10px;
+      background:var(--indigo-soft); border:2px solid #C7D2FE;
+      font-weight:700; font-size:0.92rem;
+    }
+    .chapter1-thinking-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:14px; }
+    .chapter1-thinking-item { background:#fff; border:2px solid var(--border-dark); border-radius:12px; padding:14px; }
+    .chapter1-thinking-item strong { display:block; margin-bottom:6px; font-size:0.92rem; }
+    .chapter1-thinking-item p { margin:0; font-size:0.84rem; }
+    .chapter1-safety { background:#F8FAFC; box-shadow:none; }
+    .chapter1-safety strong { color:var(--buzzy-red); }
+    .chapter1-demo-head { margin-top: 8px; }
+    .chapter1-demo-head h3 { font-family:var(--font-display); font-size:1.55rem; color:var(--indigo-brand); }
+    .chapter1-demo-head p { color:var(--text-muted); margin-top:4px; }
+    .cipher-mode-row { display:flex; gap:10px; flex-wrap:wrap; margin:16px 0; }
+    .cipher-mode {
+      border:2px solid var(--border-dark); background:#fff; border-radius:10px; padding:8px 14px; font-weight:800; font-family:var(--font-body); cursor:pointer;
+    }
+    .cipher-mode.active { background:var(--indigo-soft); color:var(--indigo-brand); }
+    .cipher-challenge { margin-top:18px; padding:18px; background:#F0FDFA; border:2px solid var(--locky-teal); border-radius:14px; }
+    .cipher-challenge h4 { margin-bottom:6px; font-family:var(--font-display); font-size:1.3rem; }
+    .challenge-answer { display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; }
+    .challenge-answer input { flex:1; min-width:200px; height:48px; border:3px solid var(--border-dark); border-radius:10px; padding:0 12px; font-weight:800; text-transform:uppercase; font-family:var(--font-body); }
+    .challenge-feedback { margin-top:10px; padding:10px 12px; border-radius:10px; font-weight:700; display:none; font-size:0.92rem; }
+    .challenge-feedback.show { display:block; }
+    .challenge-feedback.ok { background:#DCFCE7; color:#166534; }
+    .challenge-feedback.try { background:#FEF3C7; color:#92400E; }
+
+    @media(max-width:900px){
+      .chapter1-grid4,.chapter1-thinking-grid { grid-template-columns:repeat(2,1fr); }
+      .chapter1-steps { grid-template-columns:repeat(2,1fr); }
+      .hero-grid { grid-template-columns: 1fr; }
+      .pillars-grid { grid-template-columns: repeat(2, 1fr); }
+      .moats-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .nav-links { display: none; }
+    }
+
+    @media(max-width:600px){
+      .chapter1-grid2,.chapter1-grid4,.chapter1-thinking-grid,.chapter1-steps { grid-template-columns:1fr; }
+      .chapter1-intro,.chapter1-card,.chapter1-example,.chapter1-thinking,.chapter1-safety { padding:16px; }
+      .pillars-grid { grid-template-columns: 1fr; }
+      .sandbox-tester { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .nav-inner { min-height: 56px; }
+      .nav-cta .btn { padding: 6px 12px; font-size: 0.85rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- FLOATING QUICK ACCESS BUTTON: ASK AI -->
-  <button class="floating-ai-btn" onclick="toggleDrawer(true)">
-    🤖 Ask AI
-  </button>
-
-  <!-- ASK AI SIDEBAR DRAWER -->
-  <div class="drawer-overlay" onclick="toggleDrawer(false)"></div>
-  <aside class="ai-drawer" id="ai-drawer">
-    <div class="drawer-head">
-      <h3>🤖 AI Doubt Solver</h3>
-      <button class="btn-close-drawer" onclick="toggleDrawer(false)">✕</button>
-    </div>
-
-    <div class="drawer-body" id="chat-messages">
-      <div class="chat-bubble chat-bot">
-        Namaste! Ask me any doubt about CBSE Class 3 Computational Thinking, how to run the Caesar Cipher activity, or how to explain logic without coding!
-      </div>
-
-      <div style="font-size:0.75rem; font-weight:700; color:var(--text-muted); margin-top:6px;">POPULAR TEACHER QUESTIONS:</div>
-      <button class="ai-preset-chip" onclick="askPreset('Why are we teaching AI in Class 3 without coding?')">
-        ❓ Why teach AI in Class 3 without coding?
-      </button>
-      <button class="ai-preset-chip" onclick="askPreset('How does Chapter 1 Caesar Cipher relate to real AI?')">
-        🔐 How does Chapter 1 Caesar Cipher relate to real AI?
-      </button>
-      <button class="ai-preset-chip" onclick="askPreset('What should I do if a student shifts letters backwards?')">
-        🔄 What if a child shifts letters backwards?
-      </button>
-    </div>
-
-    <div class="drawer-foot">
-      <input type="text" id="ai-input" placeholder="Type your doubt..." onkeypress="handleEnter(event)" />
-      <button class="btn btn-primary" onclick="submitUserQuestion()" style="padding: 6px 12px;">Ask</button>
-    </div>
-  </aside>
-
   <!-- STICKY NAVBAR -->
   <nav class="navbar">
     <div class="container nav-inner">
       <div class="brand-wrap">
-        <a href="#" class="brand-logo">WonderLogic</a>
-        <span class="brand-badge">Class 3 CT & AI</span>
+        <a href="#" class="brand-logo">
+          WonderLogic <span>Class 3 CT & AI</span>
+        </a>
       </div>
 
       <ul class="nav-links">
-        <li><a href="#syllabus-integrity">Syllabus</a></li>
-        <li><a href="#what-is-it">What is CT?</a></li>
-        <li><a href="#pedagogy">4 Pillars</a></li>
-        <li><a href="#sandbox">Cipher Demo</a></li>
-        <li><a href="#idea-box">💡 Idea Box</a></li>
+        <li><a href="#pedagogy">Why Unplugged?</a></li>
+        <li><a href="#sandbox">Chapter 1 Demo</a></li>
+        <li><a href="#teachers">Teacher Tools</a></li>
+        <li><a href="#curriculum">14-Chapter Syllabus</a></li>
       </ul>
 
-      <div class="nav-actions">
-        <!-- RESPONSIVE DOWNLOAD BUTTON -->
-        <button class="btn btn-teal" onclick="triggerWorksheetDownload()">
-          <span>📥</span>
-          <span class="btn-text-full">Download Worksheet</span>
-          <span class="btn-text-short">Worksheet</span>
-        </button>
-        <button class="btn btn-secondary" onclick="toggleDrawer(true)">
-          🤖 Ask AI
-        </button>
+      <div class="nav-cta">
+        <a href="#sandbox" class="btn btn-secondary">Try Demo</a>
+        <a href="#contact" class="btn btn-primary">Book School Pilot</a>
       </div>
     </div>
   </nav>
@@ -1005,62 +899,70 @@
   <header class="hero">
     <div class="container hero-grid">
       <div class="hero-content">
-        <div class="pill-badge">🇮🇳 Aligned with CBSE & NCF-SE 2026–27</div>
-        <h1>Before Children Code, They Must Learn <mark>How to Think</mark>.</h1>
+        <div class="pill-badge">
+          🇮🇳 Aligned with CBSE & NCF-SE 2026–27
+        </div>
+        <h1>Class 3 AI Begins with <mark>Logical Thinking</mark>, Not Syntax.</h1>
         <p>
-          Computational Thinking (CT) and Artificial Intelligence (AI) for 8-year-olds are not about screens or programming syntax[span_4](start_span)[span_4](end_span). They are joyful, unplugged thinking habits taught through stories, cutouts, and games[span_5](start_span)[span_5](end_span).
+          Transform early computer science into joyful, screen-sensible classroom games. Zero coding, zero typing, and 100% compliant with CBSE Preparatory Stage guidelines.
         </p>
 
         <div class="hero-actions">
-          <a href="#syllabus-integrity" class="btn btn-primary">📖 View Syllabus Map</a>
-          <button class="btn btn-teal" onclick="triggerWorksheetDownload()">
-            📥 Download A4 Worksheet
-          </button>
+          <a href="#sandbox" class="btn btn-primary">
+            🚀 Test Chapter 1 Cipher Demo
+          </a>
+          <a href="#curriculum" class="btn btn-secondary">
+            📖 View 14-Chapter Scope
+          </a>
+        </div>
+
+        <div class="hero-note">
+          <span>✨</span> Designed for non-CS primary teachers • 35-min scripted lessons
         </div>
       </div>
 
-      <!-- HERO CONCEPT MASCOTS CARD -->
+      <!-- HERO VISUAL PREVIEW CARD -->
       <div class="hero-preview-card">
-        <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
-          <strong style="font-size:0.88rem;">Concept Mascots</strong>
-          <span style="font-size:0.7rem; font-weight:700; color:var(--step-green); background:#DCFCE7; padding:2px 6px; border-radius:4px;">No Tech Jargon</span>
+        <div class="hero-card-header">
+          <span style="font-weight: 800; font-size: 0.95rem;">Meet Your Living Logic Mascots</span>
+          <span class="hero-card-tag">No Tech Jargon</span>
         </div>
 
         <div class="mascot-roster">
-          <div class="mascot-mini-tile" onclick="setMascotVoice('step')">
+          <div class="mascot-mini-tile" onclick="speakMascot('step')">
             <span class="emoji">👟</span>
             <strong>Step-by-Step</strong>
-            <span>Algorithm</span>
+            <span>Algorithm Arrow</span>
           </div>
-          <div class="mascot-mini-tile" onclick="setMascotVoice('boxy')">
+          <div class="mascot-mini-tile" onclick="speakMascot('boxy')">
             <span class="emoji">📦</span>
             <strong>Boxy</strong>
-            <span>Classifier</span>
+            <span>Data Classifier</span>
           </div>
-          <div class="mascot-mini-tile" onclick="setMascotVoice('locky')">
+          <div class="mascot-mini-tile" onclick="speakMascot('locky')">
             <span class="emoji">🔐</span>
             <strong>Locky</strong>
-            <span>Cipher / Data</span>
+            <span>Secret Cipher</span>
           </div>
-          <div class="mascot-mini-tile" onclick="setMascotVoice('twirly')">
+          <div class="mascot-mini-tile" onclick="speakMascot('twirly')">
             <span class="emoji">🎀</span>
             <strong>Twirly</strong>
-            <span>Loops</span>
+            <span>Pattern Loops</span>
           </div>
-          <div class="mascot-mini-tile" onclick="setMascotVoice('buzzy')">
+          <div class="mascot-mini-tile" onclick="speakMascot('buzzy')">
             <span class="emoji">🪲</span>
             <strong>Buzzy</strong>
             <span>Bug Doctor</span>
           </div>
-          <div class="mascot-mini-tile" onclick="setMascotVoice('think')">
+          <div class="mascot-mini-tile" onclick="speakMascot('think')">
             <span class="emoji">💡</span>
             <strong>Thinking Spot</strong>
-            <span>Deduction</span>
+            <span>Deduction Puzzles</span>
           </div>
         </div>
 
-        <div class="mascot-dialogue-box" id="hero-dialogue">
-          💬 <strong>Tap any mascot</strong> to hear how it explains its thinking power to Class 3 kids!
+        <div class="mascot-dialogue-box" id="mascot-voice-box">
+          💬 <strong>Locky says:</strong> "Click any concept mascot above to hear how they teach 8-year-olds!"
         </div>
       </div>
     </div>
@@ -1089,7 +991,7 @@
         <div class="icon">🛡️</div>
         <div>
           <strong>DPDP Act 2023</strong>
-          <span>Zero PII / No Child Profiling</span>
+          <span>Zero PII / No Student Profiling</span>
         </div>
       </div>
 
@@ -1103,602 +1005,563 @@
     </div>
   </section>
 
-  <!-- 4. CORE THOUGHT PLAN & OFFICIAL TABLE OF CONTENTS -->
-  <section class="thought-plan-section" id="syllabus-integrity">
-    <div class="container">
-      <div class="thought-plan-banner">
-        <div class="pill-badge" style="background:#FEF3C7; color:#B45309; border-color:#D97706;">OUR GUIDING PRINCIPLE</div>
-        <h2>We Do Not Change the Syllabus for the Subject.</h2>
-        <p>
-          We have adopted a strict thought plan: <strong>We preserve the exact sequence, page structure, and pedagogy of the official CBSE curriculum without inventing arbitrary coding topics or external clutter[span_6](start_span)[span_6](end_span).</strong>
-        </p>
-        
-        <div class="pillar-duo">
-          <div class="duo-card">
-            <strong style="color:var(--indigo-brand);">🧑‍🏫 Teachers' Work Made Easy</strong>
-            <p style="font-size:0.88rem; color:var(--text-muted); margin:0;">
-              Zero-prep scripted dialogues, 1-click A4 printables, and formative observation logs eliminate teacher stress[span_7](start_span)[span_7](end_span)[span_8](start_span)[span_8](end_span)[span_9](start_span)[span_9](end_span)[span_10](start_span)[span_10](end_span).
-            </p>
-          </div>
-          <div class="duo-card">
-            <strong style="color:var(--step-green);">🎈 Kids Learn in a Fun Way</strong>
-            <p style="font-size:0.88rem; color:var(--text-muted); margin:0;">
-              Hands-on paper wheels, friendly mascots, and playground logic turn abstract thinking into joyful games[span_11](start_span)[span_11](end_span)[span_12](start_span)[span_12](end_span)[span_13](start_span)[span_13](end_span)[span_14](start_span)[span_14](end_span).
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- EXACT 16-ITEM TABLE OF CONTENTS (CLEAN SUBTITLE, SCREEN-SAFE CARDS) -->
-      <div class="toc-container">
-        <div class="toc-header">
-          <div>
-            <h3>Official CBSE Table of Contents</h3>
-            <p style="font-size:0.85rem; color:var(--text-muted); margin-top:2px;">
-              Strict chapter mapping matching the Class 3 textbook page numbers[span_15](start_span)[span_15](end_span).
-            </p>
-          </div>
-          <span style="font-size:0.75rem; font-weight:700; color:var(--step-green); background:#DCFCE7; padding:4px 8px; border-radius:6px; border:1px solid var(--step-green);">
-            ✓ 100% Sequence Aligned
-          </span>
-        </div>
-
-        <div class="toc-grid">
-          <div class="toc-card">
-            <div class="toc-left"><span class="toc-badge">1</span><span class="toc-title">Introduction</span></div>
-            <span class="toc-page">Page 5</span>
-          </div>
-          <div class="toc-card">
-            <div class="toc-left"><span class="toc-badge">2</span><span class="toc-title">How to use this Book?</span></div>
-            <span class="toc-page">Page 8</span>
-          </div>
-          <div class="toc-card" style="border-color:var(--indigo-brand); background:#EEF2FF;">
-            <div class="toc-left">
-              <span class="toc-badge" style="background:var(--indigo-brand); color:#FFF;">3</span>
-              <span class="toc-title" style="color:var(--indigo-brand); font-weight:700;">What’s in a Name? (Ch 1)</span>
-            </div>
-            <span class="toc-page" style="background:#C7D2FE; color:var(--indigo-brand);">Page 9</span>
-          </div>
-          <div class="toc-card">
-            <div class="toc-left"><span class="toc-badge">4</span><span class="toc-title">Toy Joy (Ch 2)</span></div>
-            <span class="toc-page">Page 15</span>
-          </div>
-          <div class="toc-card">
-            <div class="toc-left"><span class="toc-badge">5</span><span class="toc-title">Double Century (Ch 3)</span></div>
-            <span class="toc-page">Page 18</span>
-          </div>
-          <div class="toc-card">
-            <div class="toc-left"><span class="toc-badge">6</span><span class="toc-title">Vacation with My Nani Maa (Ch 4)</span></div>
-            <span class="toc-page">Page 21</span>
-          </div>
-          <div class="toc-card">
-            <div class="toc-left"><span class="toc-badge">7</span><span class="toc-title">Fun with Shapes (Ch 5)</span></div>
-            <span class="toc-page">Page 23</span>
-          </div>
-          <div class="toc-card">
-            <div class="toc-left"><span class="toc-badge">8</span><span class="toc-title">House of Hundreds – I (Ch 6)</span></div>
-            <span class="toc-page">Page 27</span>
-          </div>
-          <div class="toc-card">
-            <div class="toc-left"><span class="toc-badge">9</span><span class="toc-title">Raksha Bandhan (Ch 7)</span></div>
-            <span class="toc-page">Page 29</span>
-          </div>
-          <div class="toc-card">
-            <div class="toc-left"><span class="toc-badge">10</span><span class="toc-title">Fair Share (Ch 8)</span></div>
-            <span class="toc-page">Page 32</span>
-          </div>
-          <div class="toc-card">
-            <div class="toc-left"><span class="toc-badge">11</span><span class="toc-title">House of Hundreds – II (Ch 9)</span></div>
-            <span class="toc-page">Page 34</span>
-          </div>
-          <div class="toc-card">
-            <div class="toc-left"><span class="toc-badge">12</span><span class="toc-title">Fun at Class Party! (Ch 10)</span></div>
-            <span class="toc-page">Page 37</span>
-          </div>
-          <div class="toc-card">
-            <div class="toc-left"><span class="toc-badge">13</span><span class="toc-title">Filling and Lifting (Ch 11)</span></div>
-            <span class="toc-page">Page 40</span>
-          </div>
-          <div class="toc-card">
-            <div class="toc-left"><span class="toc-badge">14</span><span class="toc-title">Give and Take (Ch 12)</span></div>
-            <span class="toc-page">Page 43</span>
-          </div>
-          <div class="toc-card">
-            <div class="toc-left"><span class="toc-badge">15</span><span class="toc-title">Time Goes On (Ch 13)</span></div>
-            <span class="toc-page">Page 46</span>
-          </div>
-          <div class="toc-card">
-            <div class="toc-left"><span class="toc-badge">16</span><span class="toc-title">The Surajkund Fair (Ch 14)</span></div>
-            <span class="toc-page">Page 48</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 5. DEFINITIONS: WHAT IS CT & AI + USES -->
-  <section class="definition-section" id="what-is-it">
-    <div class="container">
-      <div class="section-head">
-        <h2>What is CT & AI in Class 3?</h2>
-        <p>A simple, clear guide for teachers and parents on why we build mental models before code[span_16](start_span)[span_16](end_span)[span_17](start_span)[span_17](end_span).</p>
-      </div>
-
-      <div class="definition-grid">
-        <div class="def-card">
-          <span class="def-badge" style="background:var(--step-green-soft); color:var(--step-green); border-color:var(--step-green);">THE HUMAN HABIT</span>
-          <h3>1. Computational Thinking (CT)</h3>
-          <p class="meaning">
-            <strong>What it is:</strong> A step-by-step problem-solving method. The logical process of breaking down a large task, spotting repeating patterns, and organizing clear instructions[span_18](start_span)[span_18](end_span).
-          </p>
-          <div class="use-box">
-            <strong>What is the use in daily life?</strong>
-            <ul>
-              <li><strong>In School:</strong> Solving word problems, grouping numbers into hundreds and tens, and organizing tiffin boxes[span_19](start_span)[span_19](end_span).</li>
-              <li><strong>At Home:</strong> Packing school bags according to the timetable, or following a recipe step-by-step[span_20](start_span)[span_20](end_span).</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="def-card">
-          <span class="def-badge" style="background:var(--indigo-soft); color:var(--indigo-brand); border-color:var(--indigo-brand);">THE MACHINE APPLICATION</span>
-          <h3>2. Artificial Intelligence (AI)</h3>
-          <p class="meaning">
-            <strong>What it is:</strong> Technology that mimics human decision-making by recognizing patterns from past examples (data) to make predictions or choices[span_21](start_span)[span_21](end_span).
-          </p>
-          <div class="use-box">
-            <strong>What is the use in daily life?</strong>
-            <ul>
-              <li><strong>Voice Recognition:</strong> Recognizing voices when asking a phone or speaker to play music.</li>
-              <li><strong>Data Privacy & Security:</strong> Protecting parents' UPI payments, ATM PINs, and passwords using secret keys[span_22](start_span)[span_22](end_span).</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 6. THE 4 PILLARS -->
+  <!-- 4 PILLARS SECTION -->
   <section class="section" id="pedagogy">
     <div class="container">
-      <div class="section-head">
+      <div class="section-title">
         <h2>The 4 Foundations of Early AI</h2>
-        <p>Building foundational thinking before children ever touch a programming language[span_23](start_span)[span_23](end_span)[span_24](start_span)[span_24](end_span)[span_25](start_span)[span_25](end_span).</p>
+        <p>Class 3 AI isn't about writing code. It builds the 4 mental models children need before they ever touch a programming language.</p>
       </div>
 
       <div class="pillars-grid">
         <div class="pillar-card">
           <div class="icon-bubble" style="background:#ECFDF5; color:var(--step-green);">🧩</div>
           <h3>Decomposition</h3>
-          <p>Breaking large everyday challenges into small, bite-sized tasks[span_26](start_span)[span_26](end_span)[span_27](start_span)[span_27](end_span).</p>
+          <p>Breaking large everyday challenges into small, orderly, bite-sized tasks.</p>
           <span class="example-tag">Ch 12: Packing Tiffin</span>
         </div>
 
         <div class="pillar-card">
           <div class="icon-bubble" style="background:#FFFBEB; color:var(--boxy-ochre);">🔍</div>
           <h3>Pattern Recognition</h3>
-          <p>Spotting repeating sequences and what comes next[span_28](start_span)[span_28](end_span)[span_29](start_span)[span_29](end_span).</p>
+          <p>Spotting repeating sequences, geometric symmetries, and what comes next.</p>
           <span class="example-tag">Ch 5: Cricket Scores</span>
         </div>
 
         <div class="pillar-card">
           <div class="icon-bubble" style="background:#EEF2FF; color:var(--indigo-brand);">🎯</div>
           <h3>Abstraction</h3>
-          <p>Ignoring visual clutter to focus strictly on active rules[span_30](start_span)[span_30](end_span)[span_31](start_span)[span_31](end_span).</p>
+          <p>Filtering out useless visual clutter to focus strictly on the active problem rules.</p>
           <span class="example-tag">Ch 2: Sorting Toys</span>
         </div>
 
         <div class="pillar-card">
           <div class="icon-bubble" style="background:#F0FDFA; color:var(--locky-teal);">⚡</div>
           <h3>Algorithmic Thinking</h3>
-          <p>Formulating exact, step-by-step instructions so robots navigate safely[span_32](start_span)[span_32](end_span)[span_33](start_span)[span_33](end_span).</p>
+          <p>Formulating exact, step-by-step instructions so robots navigate safely.</p>
           <span class="example-tag">Ch 6: Railway Station Maze</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 7. LIVE CHAPTER 1 CIPHER SANDBOX -->
+  <!-- CHAPTER 1: WHAT'S IN A NAME? -->
   <section class="sandbox-section" id="sandbox">
     <div class="container">
       <div class="sandbox-card">
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-bottom:12px; gap:8px;">
+        <div class="sandbox-top">
           <div>
-            <div class="pill-badge" style="background:#DCFCE7; color:#15803D; margin-bottom:6px;">Official Chapter 1 Activity (Page 9)</div>
-            <h3 style="font-family:var(--font-display); font-size:1.4rem; color:var(--indigo-brand);">The Caesar Cipher (What's in a Name?)</h3>
+            <div class="pill-badge" style="background:#DCFCE7; color:#15803D;">Chapter 1 • What’s in a Name?</div>
+            <h3>🔐 Caesar Cipher — understand it before you try it</h3>
           </div>
-          <button class="btn btn-teal" onclick="triggerWorksheetDownload()" style="padding: 6px 14px;">
-            📥 Download A4 Worksheet
-          </button>
+          <span style="font-weight:700; color:var(--text-muted); font-size:0.9rem;">Based on the Chapter 1 activity, pages 9–13</span>
         </div>
 
-        <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:14px;">
-          Try the digital version of the concentric paper cipher wheel from page 9 of the handbook[span_34](start_span)[span_34](end_span)[span_35](start_span)[span_35](end_span). Change the shift key to scramble words!
-        </p>
+        <div class="chapter1-guide">
+          <div class="chapter1-intro">
+            <h3>🌟 What are we learning?</h3>
+            <p>This activity introduces a simple way to hide a message by changing its letters according to one clear rule.</p>
+            <p>You will learn five simple ideas: <b>secret messages, ciphers, encryption, decryption, and keys.</b> You will also practise following steps and spotting patterns.</p>
+          </div>
 
-        <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-bottom:12px;">
-          <strong id="key-label" style="font-size:1rem; color:var(--boxy-ochre);">Key: Shift +2</strong>
-          <button class="btn btn-secondary" onclick="adjustShift(-1)" style="padding:4px 10px; min-height:32px;">◀ -1</button>
-          <button class="btn btn-secondary" onclick="adjustShift(1)" style="padding:4px 10px; min-height:32px;">+1 ▶</button>
-          <button class="btn btn-secondary" onclick="setShift(2)" style="padding:4px 10px; min-height:32px;">Reset (Key = 2)</button>
-        </div>
-
-        <div class="track-wrapper">
-          <div style="font-size:0.72rem; font-weight:700; color:var(--text-muted); margin-bottom:3px;">OUTER WHEEL: ORIGINAL ALPHABET</div>
-          <div class="track-row" id="outer-track"></div>
-          <div style="font-size:0.72rem; font-weight:700; color:var(--step-green); margin-top:8px; margin-bottom:3px;">INNER WHEEL: SHIFTED CIPHER KEY</div>
-          <div class="track-row" id="inner-track"></div>
-        </div>
-
-        <!-- SYMMETRICAL ENTRY & OUTPUT BOXES -->
-        <div class="sandbox-tester">
-          <div class="box-wrapper">
-            <div class="box-label">
-              <span>1. Type Original Word:</span>
-              <span style="font-size:0.75rem; color:var(--text-muted); font-weight:600;">Max 10 Letters</span>
+          <div class="chapter1-grid2">
+            <div class="chapter1-card">
+              <h3>🕵️ Why do people use secret messages?</h3>
+              <p>Some information should not be understood by everyone. Passwords, payment details and private messages need protection.</p>
+              <p>Modern computers use much stronger security methods. The Caesar Cipher is a simple classroom model that helps us understand the basic idea of hiding information.</p>
             </div>
-
-            <input 
-              type="text" 
-              id="plain-text" 
-              class="cipher-input-box" 
-              value="ROTI" 
-              maxlength="10" 
-              placeholder="TYPE WORD..." 
-              autocomplete="off" 
-            />
-
-            <div class="quick-chips">
-              <span class="chip-label">Quick Words:</span>
-              <button type="button" class="chip-btn" onclick="selectPresetWord('ROTI')">ROTI</button>
-              <button type="button" class="chip-btn" onclick="selectPresetWord('KABIR')">KABIR</button>
-              <button type="button" class="chip-btn" onclick="selectPresetWord('TARA')">TARA</button>
-              <button type="button" class="chip-btn" onclick="selectPresetWord('NANI')">NANI</button>
+            <div class="chapter1-card">
+              <h3>🔤 What is a cipher?</h3>
+              <p>A <b>cipher</b> is a rule for changing a message so its original meaning is hidden.</p>
+              <p>The person receiving the message needs the correct <b>key</b> — the information that tells them how the letters were changed.</p>
             </div>
           </div>
 
-          <div class="box-wrapper">
-            <div class="box-label">
-              <span>2. Encrypted Secret Note:</span>
-              <span style="font-size:0.75rem; color:var(--buzzy-red); font-weight:700;">Locked by Key</span>
+          <div class="chapter1-card">
+            <h3>👑 What is the Caesar Cipher?</h3>
+            <p>The Caesar Cipher is a simple cipher in which every letter is shifted by the same number of places in the alphabet.</p>
+            <div class="chapter1-grid4">
+              <div class="chapter1-mini"><span class="icon">🔑</span><strong>Choose a key</strong><span>The key is the number of places to move.</span></div>
+              <div class="chapter1-mini"><span class="icon">🔤</span><strong>Move the letters</strong><span>Every letter follows the same rule.</span></div>
+              <div class="chapter1-mini"><span class="icon">🔒</span><strong>Hide the message</strong><span>The changed letters make the coded message.</span></div>
+              <div class="chapter1-mini"><span class="icon">🔓</span><strong>Use key to decode</strong><span>Move back using the same key.</span></div>
             </div>
+          </div>
 
-            <div class="cipher-output-box" id="cipher-text">TQVK</div>
-            <div class="step-map-strip" id="letter-mapping-strip"></div>
+          <div class="chapter1-example">
+            <h3>🔑 Example: What does “Key +2” mean?</h3>
+            <p>It means every letter moves <b>2 places forward</b> in the alphabet.</p>
+            <div class="letter-map">
+              <span>A → C</span><span>B → D</span><span>C → E</span><span>D → F</span><span>…</span><span>Y → A</span><span>Z → B</span>
+            </div>
+            <div class="chapter1-callout">The alphabet wraps around. After Z, we come back to A.</div>
+          </div>
+
+          <div class="chapter1-card">
+            <h3>🔄 How does it work?</h3>
+            <div class="chapter1-steps">
+              <div class="chapter1-step"><div class="num">1</div><strong>Choose a word</strong><span>Example: NANI</span></div>
+              <div class="chapter1-step"><div class="num">2</div><strong>Choose a key</strong><span>Example: +2</span></div>
+              <div class="chapter1-step"><div class="num">3</div><strong>Shift each letter</strong><span>N→P, A→C, N→P, I→K</span></div>
+              <div class="chapter1-step"><div class="num">4</div><strong>Write the code</strong><span>NANI → PCPK</span></div>
+            </div>
+          </div>
+
+          <div class="chapter1-grid2">
+            <div class="chapter1-card">
+              <h3>🔓 How do we decode?</h3>
+              <p>To decode <b>PCPK</b> with key +2, move each letter back by 2:</p>
+              <div class="letter-map"><span>P → N</span><span>C → A</span><span>P → N</span><span>K → I</span></div>
+              <div class="chapter1-callout"><b>PCPK → NANI</b><br>Encode = hide the message. Decode = reveal the message.</div>
+            </div>
+            <div class="chapter1-card">
+              <h3>🎡 Why use a cipher wheel?</h3>
+              <p>The activity uses two alphabet circles. The smaller circle can turn over the bigger circle.</p>
+              <p>Align the letters, choose the key, and then use the matching letters to encode or decode one letter at a time.</p>
+            </div>
+          </div>
+
+          <div class="chapter1-card">
+            <h3>👯 How can two friends play?</h3>
+            <p><b>Friend A:</b> choose a short message, choose a key, encode the message, and give the coded message plus the key to Friend B.</p>
+            <p><b>Friend B:</b> use the same key, decode each letter, and discover the original message.</p>
+            <div class="chapter1-callout">Good messages for children can be a name, a school name, or a food item from their lunchbox.</div>
+          </div>
+
+          <div class="chapter1-thinking">
+            <h3>🧠 What Computational Thinking is happening here?</h3>
+            <p>The activity is not only about secret codes. It gives children a simple problem and asks them to follow a rule, break the job into parts and notice what repeats.</p>
+            <div class="chapter1-thinking-grid">
+              <div class="chapter1-thinking-item"><strong>👣 Algorithmic Thinking</strong><p>Follow the steps in order: choose a key → shift letters → write the result.</p></div>
+              <div class="chapter1-thinking-item"><strong>🧩 Decomposition</strong><p>Break the message into individual letters and solve one small part at a time.</p></div>
+              <div class="chapter1-thinking-item"><strong>🔍 Pattern Recognition</strong><p>Notice that every letter moves by the same number of places.</p></div>
+              <div class="chapter1-thinking-item"><strong>🔁 Generalisation</strong><p>Realise that the same rule works for different words and different keys.</p></div>
+            </div>
+          </div>
+
+          <div class="chapter1-safety">
+            <h3>🚦 Is Caesar Cipher used for bank or UPI security?</h3>
+            <p><strong>No.</strong> It is a simple learning model, not modern security.</p>
+            <p>The activity explains that there are only a small number of possible shifts, so this method is not strong enough for protecting real financial information. Modern systems use much more sophisticated security methods.</p>
+          </div>
+
+          <div class="chapter1-demo-head">
+            <h3>🎯 Now try it yourself</h3>
+            <p>Use the interactive version below to see exactly what happens to each letter.</p>
+          </div>
+
+          <div class="cipher-mode-row">
+            <button class="cipher-mode active" data-cipher-mode="encode">🔒 Encode — hide a message</button>
+            <button class="cipher-mode" data-cipher-mode="decode">🔓 Decode — reveal a message</button>
+          </div>
+
+          <div class="sandbox-controls">
+            <span style="font-weight:800; font-size:1.15rem; color:var(--boxy-ochre); font-family:var(--font-display);" id="key-display">Key: Shift +2</span>
+            <button class="btn btn-secondary" onclick="shiftKey(-1)" style="padding:6px 14px; min-height:38px;">◀ −1</button>
+            <button class="btn btn-secondary" onclick="shiftKey(1)" style="padding:6px 14px; min-height:38px;">+1 ▶</button>
+            <button class="btn btn-secondary" onclick="setShift(2)" style="padding:6px 14px; min-height:38px;">↻ Reset (Key = 2)</button>
+          </div>
+
+          <div class="track-wrapper">
+            <div style="font-size:0.8rem;font-weight:800;color:var(--text-muted);margin-bottom:4px;">ORIGINAL ALPHABET</div>
+            <div class="track-row" id="outer-alphabet"></div>
+            <div style="font-size:0.8rem;font-weight:800;color:var(--step-green);margin-top:10px;margin-bottom:4px;">SHIFTED ALPHABET • KEY <span id="wheel-key">+2</span></div>
+            <div class="track-row" id="inner-alphabet"></div>
+          </div>
+
+          <div class="sandbox-tester">
+            <div class="test-box">
+              <label style="display:block;font-weight:700;margin-bottom:6px;" id="input-label">Type Original Word:</label>
+              <input type="text" id="plain-input" value="ROTI" maxlength="20" />
+              <div style="font-size:0.82rem;color:var(--text-muted);margin-top:6px;">Try ROTI, NANI, TARA, or any short word.</div>
+            </div>
+            <div class="test-box">
+              <label style="display:block;font-weight:700;margin-bottom:6px;" id="output-label">Encrypted Secret Message:</label>
+              <div class="output-pill" id="cipher-output">TQVK</div>
+              <div style="font-size:0.82rem;color:var(--text-muted);margin-top:6px;" id="mapping-note">Each letter moves forward by the key.</div>
+            </div>
+          </div>
+
+          <div class="cipher-challenge">
+            <h4>🔐 Locky's Challenge</h4>
+            <p id="challenge-prompt">With key +2, decode <b>PCPK</b>. What is the original word?</p>
+            <div class="challenge-answer">
+              <input id="challenge-input" type="text" maxlength="20" placeholder="Type your answer" />
+              <button class="btn btn-primary" onclick="checkCipherChallenge()" style="padding:8px 16px;">CHECK MY ANSWER</button>
+            </div>
+            <div class="challenge-feedback" id="challenge-feedback"></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 8. COMMUNITY IDEA BOX & QUESTION DESK -->
-  <section class="community-section" id="idea-box">
+  <!-- TEACHER SUPERPOWERS (THE 3 MOATS) -->
+  <section class="section" id="teachers">
     <div class="container">
-      <div class="section-head">
-        <h2>Co-Creation & Doubt Desk</h2>
-        <p>Share your classroom experiences, submit ideas, or ask curriculum questions[span_36](start_span)[span_36](end_span).</p>
+      <div class="section-title">
+        <h2>Built for the Real Classroom Reality</h2>
+        <p>No computer lab? No Wi-Fi? Non-CS primary teacher? The platform is engineered to succeed in everyday school conditions.</p>
       </div>
 
-      <div class="community-grid">
-        <div class="idea-box-card">
-          <h3>💡 The Platform Idea Box</h3>
-          <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:14px;">
-            Have an idea for a fun unplugged game or a better worksheet layout? Tell us!
-          </p>
+      <div class="moats-grid">
+        <div class="moat-card">
+          <div class="moat-tag">Zero-Prep Fallback</div>
+          <h3>1-Click Printable Sheets</h3>
+          <p>School Wi-Fi drops? Tap one button to generate high-contrast, black-and-white printable A4 activity cutouts, tangrams, and cipher wheels.</p>
+        </div>
 
-          <form onsubmit="submitIdea(event)">
-            <div class="form-group">
-              <label>Your Role & Name:</label>
-              <input type="text" class="form-control" id="idea-author" placeholder="e.g., Priya Sharma (Class 3 Teacher)" required />
-            </div>
-            <div class="form-group">
-              <label>Your Idea / Suggestion:</label>
-              <textarea class="form-control" id="idea-text" placeholder="e.g., Add a button to print black-and-white cipher wheels..." required></textarea>
-            </div>
-            <button type="submit" class="btn btn-amber" style="width:100%;">💡 Submit Idea to Community</button>
-          </form>
+        <div class="moat-card">
+          <div class="moat-tag">No CS Degree Required</div>
+          <h3>Smartboard Co-Pilot</h3>
+          <p>Oversized 64x64px touch buttons with a collapsible drawer giving teachers the exact dialogue to say and misconceptions to watch out for.</p>
+        </div>
 
-          <div class="ideas-feed" id="ideas-feed">
-            <div class="idea-item">
-              <strong>Anita Verma (DPS Gurgaon) • Yesterday</strong>
-              "We played Caesar Cipher using paper plates with split pins! Kids loved encoding their lunchbox foods."
-            </div>
+        <div class="moat-card">
+          <div class="moat-tag">NEP 2020 Compliance</div>
+          <h3>1-Click HPC Comments</h3>
+          <p>No written exams. Our continuous observation journal compiles rubric choices into descriptive qualitative report card comments in seconds.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 14-CHAPTER SYLLABUS GRID -->
+  <section class="syllabus-section" id="curriculum">
+    <div class="container">
+      <div class="section-title">
+        <h2>The 14-Chapter Master Curriculum</h2>
+        <p>Directly aligned with the CBSE Class 3 Teacher Handbook (2026–27 First Edition).</p>
+      </div>
+
+      <div class="chapters-grid">
+        <div class="chapter-pill">
+          <span class="chapter-num">01</span>
+          <div class="chapter-info">
+            <strong>What's in a Name?</strong>
+            <span>Caesar Cipher & Letter Logic</span>
           </div>
         </div>
 
-        <div class="faq-card" id="questions">
-          <h3>❓ Teacher & Parent Doubt Desk</h3>
-          <p style="font-size:0.85rem; color:#78350F; margin-bottom:14px;">
-            Quick answers to common questions about CBSE Class 3 CT & AI.
-          </p>
-
-          <div class="faq-list">
-            <div class="faq-item">
-              <div class="faq-question">Will there be written exams or marks?</div>
-              <div class="faq-answer">No. CBSE strictly mandates 100% formative assessment through teacher observation journals. No pen-and-paper marks[span_37](start_span)[span_37](end_span)[span_38](start_span)[span_38](end_span).</div>
-            </div>
-
-            <div class="faq-item">
-              <div class="faq-question">What if our school has no computer lab?</div>
-              <div class="faq-answer">Every single chapter is 100% unplugged. Lessons run on printed paper cutouts, chalkboards, and classroom games[span_39](start_span)[span_39](end_span)[span_40](start_span)[span_40](end_span).</div>
-            </div>
+        <div class="chapter-pill">
+          <span class="chapter-num">02</span>
+          <div class="chapter-info">
+            <strong>Toy Joy</strong>
+            <span>3D Solids, Views & Attribute Sorting</span>
           </div>
+        </div>
 
-          <div style="margin-top:16px; text-align:center;">
-            <button class="btn btn-secondary" onclick="toggleDrawer(true)" style="width:100%;">
-              🤖 Have another question? Ask AI directly
-            </button>
+        <div class="chapter-pill">
+          <span class="chapter-num">03</span>
+          <div class="chapter-info">
+            <strong>Double Century</strong>
+            <span>Abacus Math & Skip Counting Sequences</span>
+          </div>
+        </div>
+
+        <div class="chapter-pill">
+          <span class="chapter-num">04</span>
+          <div class="chapter-info">
+            <strong>Vacation with Nani Maa</strong>
+            <span>Number Lines, Balance & Logic Steps</span>
+          </div>
+        </div>
+
+        <div class="chapter-pill">
+          <span class="chapter-num">05</span>
+          <div class="chapter-info">
+            <strong>Fun with Shapes</strong>
+            <span>Spatial Tangrams, Folds & Rotations</span>
+          </div>
+        </div>
+
+        <div class="chapter-pill">
+          <span class="chapter-num">06</span>
+          <div class="chapter-info">
+            <strong>House of Hundreds – I</strong>
+            <span>Place Value Logic & Permutations</span>
+          </div>
+        </div>
+
+        <div class="chapter-pill">
+          <span class="chapter-num">07</span>
+          <div class="chapter-info">
+            <strong>Raksha Bandhan</strong>
+            <span>Divisibility Patterns & Fair Grouping</span>
+          </div>
+        </div>
+
+        <div class="chapter-pill">
+          <span class="chapter-num">08</span>
+          <div class="chapter-info">
+            <strong>Fair Share</strong>
+            <span>Fractions, Bisections & Equal Parts</span>
+          </div>
+        </div>
+
+        <div class="chapter-pill">
+          <span class="chapter-num">09</span>
+          <div class="chapter-info">
+            <strong>House of Hundreds – II</strong>
+            <span>Data Sufficiency & Alternating Series</span>
+          </div>
+        </div>
+
+        <div class="chapter-pill">
+          <span class="chapter-num">10</span>
+          <div class="chapter-info">
+            <strong>Fun at Class Party!</strong>
+            <span>Bar Charts, Heights & Tally Data</span>
+          </div>
+        </div>
+
+        <div class="chapter-pill">
+          <span class="chapter-num">11</span>
+          <div class="chapter-info">
+            <strong>Filling and Lifting</strong>
+            <span>Transitive Logic & Balance Scales</span>
+          </div>
+        </div>
+
+        <div class="chapter-pill">
+          <span class="chapter-num">12</span>
+          <div class="chapter-info">
+            <strong>Give and Take</strong>
+            <span>State Tracking & The Knapsack Problem</span>
+          </div>
+        </div>
+
+        <div class="chapter-pill">
+          <span class="chapter-num">13</span>
+          <div class="chapter-info">
+            <strong>Time Goes On</strong>
+            <span>Clock Loops, Timelines & Schedules</span>
+          </div>
+        </div>
+
+        <div class="chapter-pill">
+          <span class="chapter-num">14</span>
+          <div class="chapter-info">
+            <strong>The Surajkund Fair</strong>
+            <span>Grid Coordinates & 4-Color Problem</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 9. PRINTABLE A4 WORKSHEET (TRIGGERED ON DOWNLOAD / PRINT) -->
-  <div id="print-worksheet-area">
-    <div style="border: 2px solid #000; padding: 24px; font-family: 'Lexend', sans-serif;">
-      <div style="display:flex; justify-content:space-between; border-bottom: 2px solid #000; padding-bottom: 12px; margin-bottom: 16px;">
-        <div>
-          <h2 style="font-size: 20px; margin: 0; text-transform: uppercase;">CBSE Class 3: Computational Thinking & AI</h2>
-          <h3 style="font-size: 16px; margin: 4px 0 0 0;">Chapter 1: What's in a Name? — The Caesar Cipher Wheel</h3>
-        </div>
-        <div style="text-align: right; font-size: 13px;">
-          <p style="margin:2px 0;"><strong>Name:</strong> _______________________</p>
-          <p style="margin:2px 0;"><strong>Roll No:</strong> _______  <strong>Date:</strong> _________</p>
-        </div>
-      </div>
-
-      <div style="background: #F1F5F9; border: 1px solid #000; padding: 10px; margin-bottom: 20px; font-size: 12px;">
-        <strong>✂️️ Student Craft Instructions:</strong>
-        <ol style="margin: 4px 0 0 18px; padding: 0;">
-          <li>Cut along the dashed lines around both the <strong>Outer Wheel</strong> and <strong>Inner Wheel</strong>.</li>
-          <li>Place the smaller wheel on top of the bigger wheel and push a split pin or toothpick through the center (⨁).</li>
-          <li>Choose a shift number (Key = 2) and line up the indicator arrow to start encoding!</li>
-        </ol>
-      </div>
-
-      <div style="display: flex; justify-content: space-around; align-items: center; margin-bottom: 24px;">
-        <!-- OUTER WHEEL -->
-        <div style="text-align: center;">
-          <div style="width: 240px; height: 240px; border: 2px dashed #000; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;">
-            <div style="position: absolute; top: 8px; font-weight: bold; font-size: 12px;">A B C D E F G H I J K L M</div>
-            <div style="position: absolute; bottom: 8px; font-weight: bold; font-size: 12px;">N O P Q R S T U V W X Y Z</div>
-            <div style="font-size: 14px; font-weight: bold;">OUTER WHEEL<br><span style="font-size:11px;">(Original Alphabet 0–25)</span></div>
-            <div style="margin-top: 10px; width: 14px; height: 14px; border: 2px solid #000; border-radius: 50%; font-size: 10px; line-height: 12px;">⨁</div>
-          </div>
-          <span style="font-size: 11px; font-weight: bold;">✂️ Cut Wheel 1 (Base)</span>
-        </div>
-
-        <!-- INNER WHEEL -->
-        <div style="text-align: center;">
-          <div style="width: 170px; height: 170px; border: 2px dashed #000; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; background:#FAFAFA;">
-            <div style="position: absolute; top: 6px; font-weight: bold; font-size: 11px;">▲ [INDICATOR ARROW]</div>
-            <div style="position: absolute; bottom: 6px; font-weight: bold; font-size: 11px;">A B C D E F G H I ... Z</div>
-            <div style="font-size: 13px; font-weight: bold; margin-top:8px;">INNER WHEEL<br><span style="font-size:10px;">(Shifted Secret Dial)</span></div>
-            <div style="margin-top: 8px; width: 14px; height: 14px; border: 2px solid #000; border-radius: 50%; font-size: 10px; line-height: 12px;">⨁</div>
-          </div>
-          <span style="font-size: 11px; font-weight: bold;">✂️ Cut Wheel 2 (Rotatable)</span>
-        </div>
-      </div>
-
-      <div style="border-top: 2px solid #000; padding-top: 14px;">
-        <h4 style="margin: 0 0 10px 0; font-size: 14px; text-transform: uppercase;">Classroom Partner Challenge:</h4>
-        
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 12px;">
-          <div style="border: 1px solid #000; padding: 10px;">
-            <strong>MISSION 1: Encode a Message</strong>
-            <p style="margin: 6px 0;">1. Write your secret word (e.g., ROTI): <br><code>[ &nbsp; ][ &nbsp; ][ &nbsp; ][ &nbsp; ]</code></p>
-            <p style="margin: 6px 0;">2. Chosen Secret Key: <strong>Shift = _____</strong></p>
-            <p style="margin: 6px 0;">3. Encrypted Note for Friend: <br><code>[ &nbsp; ][ &nbsp; ][ &nbsp; ][ &nbsp; ]</code></p>
-          </div>
-
-          <div style="border: 1px solid #000; padding: 10px;">
-            <strong>MISSION 2: Decode Friend's Note</strong>
-            <p style="margin: 6px 0;">1. Secret Note from Friend: <br><code>[ &nbsp; ][ &nbsp; ][ &nbsp; ][ &nbsp; ]</code></p>
-            <p style="margin: 6px 0;">2. Friend's Key: <strong>Shift = _____</strong></p>
-            <p style="margin: 6px 0;">3. Unscrambled Secret Word: <br><code>[ &nbsp; ][ &nbsp; ][ &nbsp; ][ &nbsp; ]</code></p>
-          </div>
-        </div>
-
-        <div style="margin-top: 14px; display: flex; justify-content: space-between; font-size: 11px; font-style: italic;">
-          <span>💡 Buzzy's Rule: Decoded word looks wrong? Check the key! Check one letter!</span>
-          <span>CBSE Preparatory Stage • 100% Unplugged</span>
-        </div>
+  <!-- CTA BANNER -->
+  <section class="cta-banner" id="contact">
+    <div class="container">
+      <h2>Bring Joyful AI to Your School</h2>
+      <p>Equip your Class 3 teachers with complete activity workbooks, physical manipulative kits, and smartboard companion tools.</p>
+      
+      <div class="cta-buttons">
+        <button class="btn btn-primary" onclick="alert('Sample Pilot Kit requested! Our team will contact your school within 24 hours.')">
+          📦 Request School Inspection Kit
+        </button>
+        <button class="btn btn-secondary" onclick="alert('Launching Interactive Teacher Guide...')">
+          🧑‍🏫 Open Teacher Cockpit
+        </button>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- 10. FOOTER -->
+  <!-- FOOTER -->
   <footer>
-    <div class="container">
-      <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:16px;">
-        <div>
-          <h4 style="font-family:var(--font-display); font-size:1.3rem; color:#FEF08A; margin-bottom:6px;">WonderLogic CT & AI</h4>
-          <p style="color:#94A3B8; font-size:0.85rem; max-width:400px;">
-            Foundational, unplugged Computational Thinking & AI curricula for CBSE primary schools[span_41](start_span)[span_41](end_span)[span_42](start_span)[span_42](end_span).
-          </p>
-        </div>
-        <div>
-          <span style="display:block; font-weight:700; color:#FFFFFF; margin-bottom:4px; font-size:0.85rem;">Compliance</span>
-          <p style="font-size:0.8rem; color:#94A3B8;">• NEP 2020 Preparatory Stage</p>
-          <p style="font-size:0.8rem; color:#94A3B8;">• PRAGYATA 20-Min Screen Cap[span_43](start_span)[span_43](end_span)[span_44](start_span)[span_44](end_span)</p>
-          <p style="font-size:0.8rem; color:#94A3B8;">• DPDP Act 2023 Child Privacy[span_45](start_span)[span_45](end_span)</p>
-        </div>
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <h4 style="color:#FFFFFF;">WonderLogic CT & AI</h4>
+        <p style="color:#94A3B8; font-size:0.9rem; margin-bottom:16px;">
+          Empowering CBSE affiliated schools across India with NEP 2020 compliant, unplugged-first Computational Thinking & AI curricula.
+        </p>
+        <span style="font-size:0.8rem; color:#64748B;">Academic Session 2026–27 Edition</span>
       </div>
-      <div class="footer-bottom">
-        <span>© 2026 WonderLogic EdTech India. Academic Session 2026–27 Edition.</span>
-        <span>CBSE Class 3 Teacher Handbook Aligned[span_46](start_span)[span_46](end_span)[span_47](start_span)[span_47](end_span).</span>
+
+      <div class="footer-col">
+        <h4>Curriculum</h4>
+        <ul>
+          <li><a href="#pedagogy">NCF-SE Framework</a></li>
+          <li><a href="#curriculum">14 Chapters Scope</a></li>
+          <li><a href="#sandbox">Caesar Cipher Demo</a></li>
+          <li><a href="#">The Thinking Spot</a></li>
+        </ul>
       </div>
+
+      <div class="footer-col">
+        <h4>Teachers</h4>
+        <ul>
+          <li><a href="#">Smartboard Mode</a></li>
+          <li><a href="#">Printable Worksheets</a></li>
+          <li><a href="#">HPC Comment Exporter</a></li>
+          <li><a href="#">Teacher Observation Log</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Compliance</h4>
+        <ul>
+          <li><a href="#">PRAGYATA Guidelines</a></li>
+          <li><a href="#">DPDP Act 2023 Child Privacy</a></li>
+          <li><a href="#">NEP 2020 Preparatory Stage</a></li>
+          <li><a href="#">CBSE Academic Circulars</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <span>© 2026 WonderLogic EdTech India. All rights reserved.</span>
+      <span>Designed for CBSE Primary Schools</span>
     </div>
   </footer>
 
-  <!-- JAVASCRIPT LOGIC -->
+  <!-- CHAPTER 1 INTERACTIVE LOGIC -->
   <script>
     const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
     let currentShift = 2;
+    let cipherMode = "encode";
 
-    const outerTrack = document.getElementById("outer-track");
-    const innerTrack = document.getElementById("inner-track");
-    const keyLabel = document.getElementById("key-label");
-    const plainText = document.getElementById("plain-text");
-    const cipherText = document.getElementById("cipher-text");
-    const letterMappingStrip = document.getElementById("letter-mapping-strip");
-    const heroDialogue = document.getElementById("hero-dialogue");
-    const aiDrawer = document.getElementById("ai-drawer");
-    const chatMessages = document.getElementById("chat-messages");
+    const outerRow = document.getElementById("outer-alphabet");
+    const innerRow = document.getElementById("inner-alphabet");
+    const keyDisplay = document.getElementById("key-display");
+    const wheelKey = document.getElementById("wheel-key");
+    const plainInput = document.getElementById("plain-input");
+    const cipherOutput = document.getElementById("cipher-output");
+    const inputLabel = document.getElementById("input-label");
+    const outputLabel = document.getElementById("output-label");
+    const mappingNote = document.getElementById("mapping-note");
+    const challengeFeedback = document.getElementById("challenge-feedback");
 
-    // Mascot Speech Profiles
+    // Mascot Dialogues
     const MASCOTS = {
-      step: '👟 <strong>Step-by-Step says:</strong> "I am an algorithm arrow! I have no brain of my own, so you must give me clear, numbered steps!"',
-      boxy: '📦 <strong>Boxy says:</strong> "I am a data classifier crate! Today my rule is: Wooden and Red only! What is your sorting rule?"',
-      locky: '🔐 <strong>Locky says:</strong> "I protect passwords and secret codes! Turn my brass wheel to scramble letters so snoopers cannot read your notes!"',
-      twirly: '🎀 <strong>Twirly says:</strong> "Why repeat steps 4 times? Just wrap me around and save time with repeating loops!"',
-      buzzy: '🪲 <strong>Buzzy says:</strong> "Oops! A bug sneaked in! Don\'t worry, mistakes aren\'t bad—they just need a friendly bug doctor to fix them!"',
-      think: '💡 <strong>Thinking Spot says:</strong> "Deduction time! If Aryan went Friday and Rahul went Sunday, which day did Raj go?"'
+      step: '👟 <strong>Step-by-Step says:</strong> "I am an algorithm! I only move if you give me clear, numbered steps!"',
+      boxy: '📦 <strong>Boxy says:</strong> "I love classifying! Today my rule is: Wooden toys only! What is your sorting rule?"',
+      locky: '🔐 <strong>Locky says:</strong> "Keep your keys secret! Rotate my inner wheel to encode words for your best friend!"',
+      twirly: '🎀 <strong>Twirly says:</strong> "Why repeat steps 4 times? Just wrap me around and save time with loops!"',
+      buzzy: '🪲 <strong>Buzzy says:</strong> "Oops! A bug sneaked in! Don\'t worry, let\'s investigate and fix the step together!"',
+      think: '💡 <strong>Thinking Spot says:</strong> "Use deduction! If Aryan went Friday and Rahul went Sunday, which day did Raj go?"'
     };
 
-    function setMascotVoice(type) {
-      if (MASCOTS[type]) heroDialogue.innerHTML = MASCOTS[type];
+    function speakMascot(type) {
+      const box = document.getElementById("mascot-voice-box");
+      if (box && MASCOTS[type]) {
+        box.innerHTML = `💬 ${MASCOTS[type]}`;
+      }
     }
 
-    // Render Cipher Tracks
+    function signed(n) {
+      return n >= 0 ? `+${n}` : `${n}`;
+    }
+
+    function encodeLetter(ch) {
+      const index = ALPHABET.indexOf(ch);
+      return index === -1 ? ch : ALPHABET[(index + currentShift + 26) % 26];
+    }
+
+    function decodeLetter(ch) {
+      const index = ALPHABET.indexOf(ch);
+      return index === -1 ? ch : ALPHABET[(index - currentShift + 26) % 26];
+    }
+
+    function transformText(text) {
+      return [...text].map(ch => {
+        const upper = ch.toUpperCase();
+        if (!ALPHABET.includes(upper)) return ch;
+        return cipherMode === "encode" ? encodeLetter(upper) : decodeLetter(upper);
+      }).join("");
+    }
+
     function renderTracks() {
-      outerTrack.innerHTML = "";
-      innerTrack.innerHTML = "";
-
+      outerRow.innerHTML = "";
+      innerRow.innerHTML = "";
       ALPHABET.forEach((letter, i) => {
-        const outDiv = document.createElement("div");
-        outDiv.className = "track-letter";
-        outDiv.textContent = letter;
-        outerTrack.appendChild(outDiv);
+        const original = document.createElement("div");
+        original.className = "track-letter";
+        original.textContent = letter;
+        outerRow.appendChild(original);
 
-        const shiftedIndex = (i + currentShift) % 26;
-        const inDiv = document.createElement("div");
-        inDiv.className = "track-letter shifted";
-        inDiv.textContent = ALPHABET[shiftedIndex];
-        innerTrack.appendChild(inDiv);
+        const shifted = document.createElement("div");
+        shifted.className = "track-letter shifted";
+        shifted.textContent = ALPHABET[(i + currentShift + 26) % 26];
+        innerRow.appendChild(shifted);
       });
+      keyDisplay.textContent = `Key: Shift ${signed(currentShift)}`;
+      wheelKey.textContent = signed(currentShift);
     }
 
-    function setShift(shift) {
-      currentShift = (shift + 26) % 26;
-      keyLabel.textContent = `Key: Shift +${currentShift}`;
+    function updateCipher() {
+      const text = plainInput.value.toUpperCase();
+      plainInput.value = text;
+      cipherOutput.textContent = transformText(text) || "---";
+      if (cipherMode === "encode") {
+        inputLabel.textContent = "Type Original Word:";
+        outputLabel.textContent = "Encrypted Secret Message:";
+        mappingNote.textContent = "Each letter moves forward by the key.";
+      } else {
+        inputLabel.textContent = "Type Encrypted Message:";
+        outputLabel.textContent = "Decoded Original Word:";
+        mappingNote.textContent = "Each letter moves back by the key.";
+      }
+    }
+
+    function setShift(value) {
+      currentShift = ((value % 26) + 26) % 26;
       renderTracks();
       updateCipher();
+      resetChallengeFeedback();
     }
 
-    function adjustShift(delta) {
+    function shiftKey(delta) {
       setShift(currentShift + delta);
     }
 
-    // Symmetrical Cipher Logic + Dynamic Step Breakdown Strip
-    function updateCipher() {
-      const text = plainText.value.toUpperCase();
-      let res = "";
-      letterMappingStrip.innerHTML = "";
+    function resetChallengeFeedback() {
+      challengeFeedback.className = "challenge-feedback";
+      challengeFeedback.textContent = "";
+    }
 
-      for (let ch of text) {
-        const idx = ALPHABET.indexOf(ch);
-        if (idx !== -1) {
-          const shiftedChar = ALPHABET[(idx + currentShift) % 26];
-          res += shiftedChar;
-
-          const pill = document.createElement("div");
-          pill.className = "step-map-pill";
-          pill.innerHTML = `${ch} <span>➔</span> ${shiftedChar}`;
-          letterMappingStrip.appendChild(pill);
-        } else {
-          res += ch;
-        }
+    function updateChallenge() {
+      const challengeText = document.getElementById("challenge-prompt");
+      if (cipherMode === "decode") {
+        challengeText.innerHTML = `With key ${signed(currentShift)}, decode <b>${encodeWordForChallenge("NANI")}</b>. What is the original word?`;
+      } else {
+        challengeText.innerHTML = `With key ${signed(currentShift)}, encode <b>NANI</b>. What secret message do you get?`;
       }
-
-      cipherText.textContent = res || "---";
+      document.getElementById("challenge-input").value = "";
+      resetChallengeFeedback();
     }
 
-    // 1-Tap Preset Word Selector
-    function selectPresetWord(word) {
-      plainText.value = word;
-      updateCipher();
-      plainText.focus();
+    function encodeWordForChallenge(word) {
+      return [...word].map(encodeLetter).join("");
     }
 
-    plainText.addEventListener("input", (e) => {
-      e.target.value = e.target.value.toUpperCase();
-      updateCipher();
+    function checkCipherChallenge() {
+      const answer = document.getElementById("challenge-input").value.trim().toUpperCase();
+      const expected = cipherMode === "decode" ? "NANI" : encodeWordForChallenge("NANI");
+      if (answer === expected) {
+        challengeFeedback.textContent = `🎉 Correct! ${cipherMode === "decode" ? expected + " is the original word." : "NANI becomes " + expected + "."}`;
+        challengeFeedback.className = "challenge-feedback show ok";
+      } else {
+        challengeFeedback.textContent = "Almost! Check the key and try one letter at a time.";
+        challengeFeedback.className = "challenge-feedback show try";
+      }
+    }
+
+    document.querySelectorAll("[data-cipher-mode]").forEach(button => {
+      button.addEventListener("click", () => {
+        cipherMode = button.dataset.cipherMode;
+        document.querySelectorAll("[data-cipher-mode]").forEach(b => b.classList.toggle("active", b === button));
+        plainInput.value = cipherMode === "decode" ? "PCPK" : "ROTI";
+        updateCipher();
+        updateChallenge();
+      });
     });
 
-    // TRIGGER WORKSHEET DOWNLOAD / PRINT
-    function triggerWorksheetDownload() {
-      window.print();
-    }
+    plainInput.addEventListener("input", updateCipher);
 
-    // ASK AI DRAWER TOGGLE
-    function toggleDrawer(open) {
-      if (open) {
-        document.body.classList.add("drawer-open");
-      } else {
-        document.body.classList.remove("drawer-open");
-      }
-    }
-
-    function askPreset(question) {
-      appendChat(question, "user");
-      setTimeout(() => {
-        let answer = "";
-        if (question.includes("without coding")) {
-          answer = "Under NEP 2020 and NCF-SE 2023, Class 3 children are in the Preparatory Stage. Teaching coding syntax at age 8 leads to mechanical memorization. Instead, we teach foundational Computational Thinking (patterns, decomposition, and sequencing) through physical games first[span_48](start_span)[span_48](end_span)[span_49](start_span)[span_49](end_span)[span_50](start_span)[span_50](end_span)!";
-        } else if (question.includes("Caesar Cipher")) {
-          answer = "The Caesar Cipher introduces data encryption! In the real world, AI and computer networks protect banking data, passwords, and ATM PINs using mathematical keys. In Class 3, we teach this same concept using a physical paper wheel[span_51](start_span)[span_51](end_span)[span_52](start_span)[span_52](end_span)!";
-        } else if (question.includes("backwards")) {
-          answer = "This is the most common trip-up! Remind students that cipher wheels always advance clockwise forward (A to Z). If they get stuck, use Buzzy's rule: 'Check the key! Check one letter[span_53](start_span)[span_54](start_span)[span_55](start_span)!'[span_53](end_span)[span_54](end_span)[span_55](end_span)";
-        }
-        appendChat(answer, "bot");
-      }, 400);
-    }
-
-    function submitUserQuestion() {
-      const input = document.getElementById("ai-input");
-      const val = input.value.trim();
-      if (!val) return;
-      appendChat(val, "user");
-      input.value = "";
-      setTimeout(() => {
-        appendChat("Great question! In CBSE Class 3, our primary goal is to make teachers' work easy and kids' learning fun. We stick 100% to the official textbook syllabus without adding coding syntax[span_56](start_span)[span_56](end_span)[span_57](start_span)[span_57](end_span)[span_58](start_span)[span_58](end_span)!", "bot");
-      }, 500);
-    }
-
-    function handleEnter(e) {
-      if (e.key === "Enter") submitUserQuestion();
-    }
-
-    function appendChat(text, sender) {
-      const div = document.createElement("div");
-      div.className = `chat-bubble chat-${sender}`;
-      div.textContent = text;
-      chatMessages.appendChild(div);
-      chatMessages.scrollTop = chatMessages.scrollHeight;
-    }
-
-    // IDEA BOX SUBMISSION
-    function submitIdea(e) {
-      e.preventDefault();
-      const author = document.getElementById("idea-author").value;
-      const text = document.getElementById("idea-text").value;
-      const feed = document.getElementById("ideas-feed");
-
-      const newItem = document.createElement("div");
-      newItem.className = "idea-item";
-      newItem.innerHTML = `<strong>${author} • Just now</strong>"${text}"`;
-      feed.prepend(newItem);
-
-      document.getElementById("idea-author").value = "";
-      document.getElementById("idea-text").value = "";
-      alert("Thank you! Your idea has been added to our community board. 💡");
-    }
-
-    // Initial Execution
     renderTracks();
     updateCipher();
+    updateChallenge();
   </script>
 </body>
 </html>
