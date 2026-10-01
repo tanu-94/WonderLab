@@ -39,10 +39,16 @@
       --max-width: 1240px;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
+    }
+
     html, body {
-      overflow-x: hidden;
       width: 100%;
+      max-width: 100vw;
+      overflow-x: hidden;
     }
     html { scroll-behavior: smooth; }
     body {
@@ -59,6 +65,7 @@
       max-width: var(--max-width);
       margin: 0 auto;
       padding: 0 16px;
+      min-width: 0;
     }
 
     @media (min-width: 768px) {
@@ -122,6 +129,7 @@
       min-height: 64px;
       padding: 8px 0;
       gap: 8px;
+      width: 100%;
     }
     .brand-wrap {
       display: flex;
@@ -206,12 +214,14 @@
       padding: 36px 0 40px;
       background: radial-gradient(circle at 10% 20%, #EEF2FF 0%, #F8FAFC 70%);
       border-bottom: 3px solid var(--border-dark);
+      width: 100%;
     }
     .hero-grid {
       display: grid;
       grid-template-columns: 1fr;
       gap: 32px;
       align-items: center;
+      min-width: 0;
     }
     @media (min-width: 900px) {
       .hero { padding: 60px 0 52px; }
@@ -254,6 +264,8 @@
       border-radius: 16px;
       padding: 16px;
       box-shadow: 4px 6px 0 var(--border-dark);
+      min-width: 0;
+      width: 100%;
     }
     .mascot-roster {
       display: grid;
@@ -288,11 +300,13 @@
       background: #FFFFFF;
       border-bottom: 3px solid var(--border-dark);
       padding: 20px 0;
+      width: 100%;
     }
     .trust-grid {
       display: grid;
       grid-template-columns: 1fr;
       gap: 16px;
+      min-width: 0;
     }
     @media (min-width: 540px) {
       .trust-grid { grid-template-columns: repeat(2, 1fr); }
@@ -300,7 +314,7 @@
     @media (min-width: 900px) {
       .trust-grid { grid-template-columns: repeat(4, 1fr); }
     }
-    .trust-item { display: flex; align-items: center; gap: 10px; }
+    .trust-item { display: flex; align-items: center; gap: 10px; min-width: 0; }
     .trust-item .icon {
       font-size: 1.5rem;
       background: #F1F5F9;
@@ -321,6 +335,7 @@
       background: #FFFFFF;
       padding: 48px 0;
       border-bottom: 3px solid var(--border-dark);
+      width: 100%;
     }
     .thought-plan-banner {
       background: #FFFBEB;
@@ -329,6 +344,8 @@
       padding: 20px;
       box-shadow: 4px 6px 0 var(--border-dark);
       margin-bottom: 36px;
+      width: 100%;
+      min-width: 0;
     }
     @media (min-width: 768px) {
       .thought-plan-banner { padding: 32px; }
@@ -366,13 +383,15 @@
       margin-bottom: 6px;
     }
 
-    /* TABLE OF CONTENTS PRESENTATION */
+    /* TABLE OF CONTENTS PRESENTATION (SCREEN-SAFE CONTAINER) */
     .toc-container {
       background: var(--bg-canvas);
       border: 3px solid var(--border-dark);
       border-radius: 16px;
-      padding: 20px;
+      padding: 16px;
       box-shadow: 4px 6px 0 var(--border-dark);
+      width: 100%;
+      min-width: 0;
     }
     @media (min-width: 768px) {
       .toc-container { padding: 32px; }
@@ -386,6 +405,7 @@
       gap: 12px;
       border-bottom: 2px dashed var(--border-subtle);
       padding-bottom: 14px;
+      width: 100%;
     }
     .toc-header h3 {
       font-family: var(--font-display);
@@ -396,6 +416,8 @@
       display: grid;
       grid-template-columns: 1fr;
       gap: 10px;
+      width: 100%;
+      min-width: 0;
     }
     @media (min-width: 600px) {
       .toc-grid { grid-template-columns: repeat(2, 1fr); }
@@ -403,17 +425,28 @@
     @media (min-width: 990px) {
       .toc-grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
     }
+    
+    /* UNIVERSAL CARD FIT */
     .toc-card {
       background: var(--surface-card);
       border: 2px solid var(--border-dark);
       border-radius: 10px;
-      padding: 12px 14px;
+      padding: 10px 12px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       box-shadow: 2px 3px 0 var(--border-dark);
+      width: 100%;
+      min-width: 0;
+      gap: 8px;
     }
-    .toc-left { display: flex; align-items: center; gap: 10px; min-width: 0; }
+    .toc-left { 
+      display: flex; 
+      align-items: center; 
+      gap: 10px; 
+      min-width: 0; 
+      flex: 1;
+    }
     .toc-badge {
       width: 28px;
       height: 28px;
@@ -432,9 +465,8 @@
       font-size: 0.88rem;
       font-weight: 600;
       color: var(--text-main);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      word-break: break-word;
+      line-height: 1.3;
     }
     .toc-page {
       font-family: monospace;
@@ -443,10 +475,10 @@
       color: var(--text-muted);
       background: #F1F5F9;
       border: 1px solid var(--border-subtle);
-      padding: 2px 6px;
+      padding: 3px 6px;
       border-radius: 4px;
       flex-shrink: 0;
-      margin-left: 8px;
+      white-space: nowrap;
     }
 
     /* 5. DEFINITIONS: WHAT IS CT & AI + USES */
@@ -454,11 +486,13 @@
       background: #FFFFFF;
       padding: 48px 0;
       border-bottom: 3px solid var(--border-dark);
+      width: 100%;
     }
     .section-head {
       text-align: center;
       max-width: 760px;
       margin: 0 auto 36px;
+      min-width: 0;
     }
     .section-head h2 {
       font-family: var(--font-display);
@@ -471,6 +505,7 @@
       grid-template-columns: 1fr;
       gap: 20px;
       margin-bottom: 32px;
+      min-width: 0;
     }
     @media (min-width: 768px) {
       .definition-grid { grid-template-columns: repeat(2, 1fr); gap: 28px; }
@@ -481,6 +516,7 @@
       border-radius: 16px;
       padding: 20px;
       box-shadow: 4px 5px 0 var(--border-dark);
+      min-width: 0;
     }
     @media (min-width: 768px) {
       .def-card { padding: 28px; }
@@ -507,11 +543,12 @@
     .use-box ul { padding-left: 18px; font-size: 0.85rem; color: var(--text-muted); }
 
     /* 6. THE 4 PILLARS */
-    .section { padding: 48px 0; }
+    .section { padding: 48px 0; width: 100%; }
     .pillars-grid {
       display: grid;
       grid-template-columns: 1fr;
       gap: 16px;
+      min-width: 0;
     }
     @media (min-width: 580px) {
       .pillars-grid { grid-template-columns: repeat(2, 1fr); }
@@ -525,6 +562,7 @@
       border-radius: 14px;
       padding: 20px;
       box-shadow: 3px 4px 0 var(--border-dark);
+      min-width: 0;
     }
     .pillar-card .icon-bubble {
       width: 44px;
@@ -556,14 +594,16 @@
       background: #F1F5F9;
       border-top: 3px solid var(--border-dark);
       border-bottom: 3px solid var(--border-dark);
+      width: 100%;
     }
     .sandbox-card {
       background: #FFFFFF;
       border: 3px solid var(--border-dark);
       border-radius: 16px;
-      padding: 18px;
+      padding: 16px;
       box-shadow: 4px 6px 0 var(--border-dark);
       width: 100%;
+      min-width: 0;
     }
     @media (min-width: 768px) {
       .sandbox-card { padding: 28px; }
@@ -576,6 +616,7 @@
       margin: 16px 0;
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
+      max-width: 100%;
     }
     .track-row { display: flex; gap: 4px; min-width: 680px; margin-bottom: 6px; }
     .track-letter {
@@ -602,11 +643,12 @@
       grid-template-columns: 1fr;
       gap: 16px;
       margin-top: 14px;
+      min-width: 0;
     }
     @media (min-width: 768px) {
       .sandbox-tester { grid-template-columns: 1fr 1fr; gap: 20px; }
     }
-    .box-wrapper { display: flex; flex-direction: column; gap: 6px; }
+    .box-wrapper { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
     .box-label {
       display: flex;
       justify-content: space-between;
@@ -698,11 +740,13 @@
       padding: 48px 0;
       background: #FFFFFF;
       border-bottom: 3px solid var(--border-dark);
+      width: 100%;
     }
     .community-grid {
       display: grid;
       grid-template-columns: 1fr;
       gap: 24px;
+      min-width: 0;
     }
     @media (min-width: 860px) {
       .community-grid { grid-template-columns: 1.1fr 0.9fr; gap: 32px; }
@@ -713,6 +757,7 @@
       border-radius: 16px;
       padding: 20px;
       box-shadow: 4px 5px 0 var(--border-dark);
+      min-width: 0;
     }
     .idea-box-card h3 { font-family: var(--font-display); font-size: 1.45rem; margin-bottom: 8px; }
     .form-group { margin-bottom: 12px; }
@@ -752,6 +797,7 @@
       border-radius: 16px;
       padding: 20px;
       box-shadow: 4px 5px 0 var(--border-dark);
+      min-width: 0;
     }
     .faq-card h3 { font-family: var(--font-display); font-size: 1.45rem; color: #92400E; margin-bottom: 10px; }
     .faq-list { display: flex; flex-direction: column; gap: 10px; }
@@ -837,7 +883,7 @@
       font-size: 0.85rem;
     }
 
-    /* 10. PRINTABLE WORKSHEET COMPONENT (HIDDEN ON SCREEN, SHOWN ON PRINT) */
+    /* 10. PRINTABLE WORKSHEET COMPONENT (HIDDEN ON SCREEN) */
     #print-worksheet-area {
       display: none;
     }
@@ -872,6 +918,7 @@
       color: #F8FAFC;
       padding: 36px 0 20px;
       border-top: 3px solid var(--border-dark);
+      width: 100%;
     }
     .footer-bottom {
       border-top: 1px solid #334155;
@@ -961,7 +1008,7 @@
         <div class="pill-badge">🇮🇳 Aligned with CBSE & NCF-SE 2026–27</div>
         <h1>Before Children Code, They Must Learn <mark>How to Think</mark>.</h1>
         <p>
-          Computational Thinking (CT) and Artificial Intelligence (AI) for 8-year-olds are not about screens or programming syntax[span_6](start_span)[span_6](end_span). They are joyful, unplugged thinking habits taught through stories, cutouts, and games[span_7](start_span)[span_7](end_span).
+          Computational Thinking (CT) and Artificial Intelligence (AI) for 8-year-olds are not about screens or programming syntax[span_4](start_span)[span_4](end_span). They are joyful, unplugged thinking habits taught through stories, cutouts, and games[span_5](start_span)[span_5](end_span).
         </p>
 
         <div class="hero-actions">
@@ -1063,32 +1110,32 @@
         <div class="pill-badge" style="background:#FEF3C7; color:#B45309; border-color:#D97706;">OUR GUIDING PRINCIPLE</div>
         <h2>We Do Not Change the Syllabus for the Subject.</h2>
         <p>
-          We have adopted a strict thought plan: <strong>We preserve the exact sequence, page structure, and pedagogy of the official CBSE curriculum without inventing arbitrary coding topics or external clutter[span_8](start_span)[span_8](end_span).</strong>
+          We have adopted a strict thought plan: <strong>We preserve the exact sequence, page structure, and pedagogy of the official CBSE curriculum without inventing arbitrary coding topics or external clutter[span_6](start_span)[span_6](end_span).</strong>
         </p>
         
         <div class="pillar-duo">
           <div class="duo-card">
             <strong style="color:var(--indigo-brand);">🧑‍🏫 Teachers' Work Made Easy</strong>
             <p style="font-size:0.88rem; color:var(--text-muted); margin:0;">
-              Zero-prep scripted dialogues, 1-click A4 printables, and formative observation logs eliminate teacher stress[span_9](start_span)[span_9](end_span)[span_10](start_span)[span_10](end_span)[span_11](start_span)[span_11](end_span)[span_12](start_span)[span_12](end_span).
+              Zero-prep scripted dialogues, 1-click A4 printables, and formative observation logs eliminate teacher stress[span_7](start_span)[span_7](end_span)[span_8](start_span)[span_8](end_span)[span_9](start_span)[span_9](end_span)[span_10](start_span)[span_10](end_span).
             </p>
           </div>
           <div class="duo-card">
             <strong style="color:var(--step-green);">🎈 Kids Learn in a Fun Way</strong>
             <p style="font-size:0.88rem; color:var(--text-muted); margin:0;">
-              Hands-on paper wheels, friendly mascots, and playground logic turn abstract thinking into joyful games[span_13](start_span)[span_13](end_span)[span_14](start_span)[span_14](end_span)[span_15](start_span)[span_15](end_span)[span_16](start_span)[span_16](end_span).
+              Hands-on paper wheels, friendly mascots, and playground logic turn abstract thinking into joyful games[span_11](start_span)[span_11](end_span)[span_12](start_span)[span_12](end_span)[span_13](start_span)[span_13](end_span)[span_14](start_span)[span_14](end_span).
             </p>
           </div>
         </div>
       </div>
 
-      <!-- EXACT 16-ITEM TABLE OF CONTENTS -->
+      <!-- EXACT 16-ITEM TABLE OF CONTENTS (CLEAN SUBTITLE, SCREEN-SAFE CARDS) -->
       <div class="toc-container">
         <div class="toc-header">
           <div>
             <h3>Official CBSE Table of Contents</h3>
             <p style="font-size:0.85rem; color:var(--text-muted); margin-top:2px;">
-              Strict chapter mapping matching the Class 3 textbook page numbers[span_17](start_span)[span_17](end_span).
+              Strict chapter mapping matching the Class 3 textbook page numbers[span_15](start_span)[span_15](end_span).
             </p>
           </div>
           <span style="font-size:0.75rem; font-weight:700; color:var(--step-green); background:#DCFCE7; padding:4px 8px; border-radius:6px; border:1px solid var(--step-green);">
@@ -1174,7 +1221,7 @@
     <div class="container">
       <div class="section-head">
         <h2>What is CT & AI in Class 3?</h2>
-        <p>A simple, clear guide for teachers and parents on why we build mental models before code[span_18](start_span)[span_18](end_span)[span_19](start_span)[span_19](end_span).</p>
+        <p>A simple, clear guide for teachers and parents on why we build mental models before code[span_16](start_span)[span_16](end_span)[span_17](start_span)[span_17](end_span).</p>
       </div>
 
       <div class="definition-grid">
@@ -1182,13 +1229,13 @@
           <span class="def-badge" style="background:var(--step-green-soft); color:var(--step-green); border-color:var(--step-green);">THE HUMAN HABIT</span>
           <h3>1. Computational Thinking (CT)</h3>
           <p class="meaning">
-            <strong>What it is:</strong> A step-by-step problem-solving method. The logical process of breaking down a large task, spotting repeating patterns, and organizing clear instructions[span_20](start_span)[span_20](end_span).
+            <strong>What it is:</strong> A step-by-step problem-solving method. The logical process of breaking down a large task, spotting repeating patterns, and organizing clear instructions[span_18](start_span)[span_18](end_span).
           </p>
           <div class="use-box">
             <strong>What is the use in daily life?</strong>
             <ul>
-              <li><strong>In School:</strong> Solving word problems, grouping numbers into hundreds and tens, and organizing tiffin boxes[span_21](start_span)[span_21](end_span).</li>
-              <li><strong>At Home:</strong> Packing school bags according to the timetable, or following a recipe step-by-step[span_22](start_span)[span_22](end_span).</li>
+              <li><strong>In School:</strong> Solving word problems, grouping numbers into hundreds and tens, and organizing tiffin boxes[span_19](start_span)[span_19](end_span).</li>
+              <li><strong>At Home:</strong> Packing school bags according to the timetable, or following a recipe step-by-step[span_20](start_span)[span_20](end_span).</li>
             </ul>
           </div>
         </div>
@@ -1197,13 +1244,13 @@
           <span class="def-badge" style="background:var(--indigo-soft); color:var(--indigo-brand); border-color:var(--indigo-brand);">THE MACHINE APPLICATION</span>
           <h3>2. Artificial Intelligence (AI)</h3>
           <p class="meaning">
-            <strong>What it is:</strong> Technology that mimics human decision-making by recognizing patterns from past examples (data) to make predictions or choices[span_23](start_span)[span_23](end_span).
+            <strong>What it is:</strong> Technology that mimics human decision-making by recognizing patterns from past examples (data) to make predictions or choices[span_21](start_span)[span_21](end_span).
           </p>
           <div class="use-box">
             <strong>What is the use in daily life?</strong>
             <ul>
               <li><strong>Voice Recognition:</strong> Recognizing voices when asking a phone or speaker to play music.</li>
-              <li><strong>Data Privacy & Security:</strong> Protecting parents' UPI payments, ATM PINs, and passwords using secret keys[span_24](start_span)[span_24](end_span).</li>
+              <li><strong>Data Privacy & Security:</strong> Protecting parents' UPI payments, ATM PINs, and passwords using secret keys[span_22](start_span)[span_22](end_span).</li>
             </ul>
           </div>
         </div>
@@ -1216,35 +1263,35 @@
     <div class="container">
       <div class="section-head">
         <h2>The 4 Foundations of Early AI</h2>
-        <p>Building foundational thinking before children ever touch a programming language[span_25](start_span)[span_25](end_span)[span_26](start_span)[span_26](end_span)[span_27](start_span)[span_27](end_span).</p>
+        <p>Building foundational thinking before children ever touch a programming language[span_23](start_span)[span_23](end_span)[span_24](start_span)[span_24](end_span)[span_25](start_span)[span_25](end_span).</p>
       </div>
 
       <div class="pillars-grid">
         <div class="pillar-card">
           <div class="icon-bubble" style="background:#ECFDF5; color:var(--step-green);">🧩</div>
           <h3>Decomposition</h3>
-          <p>Breaking large everyday challenges into small, bite-sized tasks[span_28](start_span)[span_28](end_span)[span_29](start_span)[span_29](end_span).</p>
+          <p>Breaking large everyday challenges into small, bite-sized tasks[span_26](start_span)[span_26](end_span)[span_27](start_span)[span_27](end_span).</p>
           <span class="example-tag">Ch 12: Packing Tiffin</span>
         </div>
 
         <div class="pillar-card">
           <div class="icon-bubble" style="background:#FFFBEB; color:var(--boxy-ochre);">🔍</div>
           <h3>Pattern Recognition</h3>
-          <p>Spotting repeating sequences and what comes next[span_30](start_span)[span_30](end_span)[span_31](start_span)[span_31](end_span).</p>
+          <p>Spotting repeating sequences and what comes next[span_28](start_span)[span_28](end_span)[span_29](start_span)[span_29](end_span).</p>
           <span class="example-tag">Ch 5: Cricket Scores</span>
         </div>
 
         <div class="pillar-card">
           <div class="icon-bubble" style="background:#EEF2FF; color:var(--indigo-brand);">🎯</div>
           <h3>Abstraction</h3>
-          <p>Ignoring visual clutter to focus strictly on active rules[span_32](start_span)[span_32](end_span)[span_33](start_span)[span_33](end_span).</p>
+          <p>Ignoring visual clutter to focus strictly on active rules[span_30](start_span)[span_30](end_span)[span_31](start_span)[span_31](end_span).</p>
           <span class="example-tag">Ch 2: Sorting Toys</span>
         </div>
 
         <div class="pillar-card">
           <div class="icon-bubble" style="background:#F0FDFA; color:var(--locky-teal);">⚡</div>
           <h3>Algorithmic Thinking</h3>
-          <p>Formulating exact, step-by-step instructions so robots navigate safely[span_34](start_span)[span_34](end_span)[span_35](start_span)[span_35](end_span).</p>
+          <p>Formulating exact, step-by-step instructions so robots navigate safely[span_32](start_span)[span_32](end_span)[span_33](start_span)[span_33](end_span).</p>
           <span class="example-tag">Ch 6: Railway Station Maze</span>
         </div>
       </div>
@@ -1266,7 +1313,7 @@
         </div>
 
         <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:14px;">
-          Try the digital version of the concentric paper cipher wheel from page 9 of the handbook[span_36](start_span)[span_36](end_span)[span_37](start_span)[span_37](end_span). Change the shift key to scramble words!
+          Try the digital version of the concentric paper cipher wheel from page 9 of the handbook[span_34](start_span)[span_34](end_span)[span_35](start_span)[span_35](end_span). Change the shift key to scramble words!
         </p>
 
         <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-bottom:12px;">
@@ -1329,7 +1376,7 @@
     <div class="container">
       <div class="section-head">
         <h2>Co-Creation & Doubt Desk</h2>
-        <p>Share your classroom experiences, submit ideas, or ask curriculum questions[span_38](start_span)[span_38](end_span).</p>
+        <p>Share your classroom experiences, submit ideas, or ask curriculum questions[span_36](start_span)[span_36](end_span).</p>
       </div>
 
       <div class="community-grid">
@@ -1368,12 +1415,12 @@
           <div class="faq-list">
             <div class="faq-item">
               <div class="faq-question">Will there be written exams or marks?</div>
-              <div class="faq-answer">No. CBSE strictly mandates 100% formative assessment through teacher observation journals. No pen-and-paper marks[span_39](start_span)[span_39](end_span)[span_40](start_span)[span_40](end_span).</div>
+              <div class="faq-answer">No. CBSE strictly mandates 100% formative assessment through teacher observation journals. No pen-and-paper marks[span_37](start_span)[span_37](end_span)[span_38](start_span)[span_38](end_span).</div>
             </div>
 
             <div class="faq-item">
               <div class="faq-question">What if our school has no computer lab?</div>
-              <div class="faq-answer">Every single chapter is 100% unplugged. Lessons run on printed paper cutouts, chalkboards, and classroom games[span_41](start_span)[span_41](end_span)[span_42](start_span)[span_42](end_span).</div>
+              <div class="faq-answer">Every single chapter is 100% unplugged. Lessons run on printed paper cutouts, chalkboards, and classroom games[span_39](start_span)[span_39](end_span)[span_40](start_span)[span_40](end_span).</div>
             </div>
           </div>
 
@@ -1402,7 +1449,7 @@
       </div>
 
       <div style="background: #F1F5F9; border: 1px solid #000; padding: 10px; margin-bottom: 20px; font-size: 12px;">
-        <strong>✂️ Student Craft Instructions:</strong>
+        <strong>✂️️ Student Craft Instructions:</strong>
         <ol style="margin: 4px 0 0 18px; padding: 0;">
           <li>Cut along the dashed lines around both the <strong>Outer Wheel</strong> and <strong>Inner Wheel</strong>.</li>
           <li>Place the smaller wheel on top of the bigger wheel and push a split pin or toothpick through the center (⨁).</li>
@@ -1468,19 +1515,19 @@
         <div>
           <h4 style="font-family:var(--font-display); font-size:1.3rem; color:#FEF08A; margin-bottom:6px;">WonderLogic CT & AI</h4>
           <p style="color:#94A3B8; font-size:0.85rem; max-width:400px;">
-            Foundational, unplugged Computational Thinking & AI curricula for CBSE primary schools[span_43](start_span)[span_43](end_span)[span_44](start_span)[span_44](end_span).
+            Foundational, unplugged Computational Thinking & AI curricula for CBSE primary schools[span_41](start_span)[span_41](end_span)[span_42](start_span)[span_42](end_span).
           </p>
         </div>
         <div>
           <span style="display:block; font-weight:700; color:#FFFFFF; margin-bottom:4px; font-size:0.85rem;">Compliance</span>
           <p style="font-size:0.8rem; color:#94A3B8;">• NEP 2020 Preparatory Stage</p>
-          <p style="font-size:0.8rem; color:#94A3B8;">• PRAGYATA 20-Min Screen Cap[span_45](start_span)[span_45](end_span)[span_46](start_span)[span_46](end_span)</p>
-          <p style="font-size:0.8rem; color:#94A3B8;">• DPDP Act 2023 Child Privacy[span_47](start_span)[span_47](end_span)</p>
+          <p style="font-size:0.8rem; color:#94A3B8;">• PRAGYATA 20-Min Screen Cap[span_43](start_span)[span_43](end_span)[span_44](start_span)[span_44](end_span)</p>
+          <p style="font-size:0.8rem; color:#94A3B8;">• DPDP Act 2023 Child Privacy[span_45](start_span)[span_45](end_span)</p>
         </div>
       </div>
       <div class="footer-bottom">
         <span>© 2026 WonderLogic EdTech India. Academic Session 2026–27 Edition.</span>
-        <span>CBSE Class 3 Teacher Handbook Aligned[span_48](start_span)[span_48](end_span)[span_49](start_span)[span_49](end_span).</span>
+        <span>CBSE Class 3 Teacher Handbook Aligned[span_46](start_span)[span_46](end_span)[span_47](start_span)[span_47](end_span).</span>
       </div>
     </div>
   </footer>
@@ -1599,11 +1646,11 @@
       setTimeout(() => {
         let answer = "";
         if (question.includes("without coding")) {
-          answer = "Under NEP 2020 and NCF-SE 2023, Class 3 children are in the Preparatory Stage. Teaching coding syntax at age 8 leads to mechanical memorization. Instead, we teach foundational Computational Thinking (patterns, decomposition, and sequencing) through physical games first[span_50](start_span)[span_50](end_span)[span_51](start_span)[span_51](end_span)[span_52](start_span)[span_52](end_span)!";
+          answer = "Under NEP 2020 and NCF-SE 2023, Class 3 children are in the Preparatory Stage. Teaching coding syntax at age 8 leads to mechanical memorization. Instead, we teach foundational Computational Thinking (patterns, decomposition, and sequencing) through physical games first[span_48](start_span)[span_48](end_span)[span_49](start_span)[span_49](end_span)[span_50](start_span)[span_50](end_span)!";
         } else if (question.includes("Caesar Cipher")) {
-          answer = "The Caesar Cipher introduces data encryption! In the real world, AI and computer networks protect banking data, passwords, and ATM PINs using mathematical keys. In Class 3, we teach this same concept using a physical paper wheel[span_53](start_span)[span_53](end_span)[span_54](start_span)[span_54](end_span)!";
+          answer = "The Caesar Cipher introduces data encryption! In the real world, AI and computer networks protect banking data, passwords, and ATM PINs using mathematical keys. In Class 3, we teach this same concept using a physical paper wheel[span_51](start_span)[span_51](end_span)[span_52](start_span)[span_52](end_span)!";
         } else if (question.includes("backwards")) {
-          answer = "This is the most common trip-up! Remind students that cipher wheels always advance clockwise forward (A to Z). If they get stuck, use Buzzy's rule: 'Check the key! Check one letter[span_55](start_span)[span_56](start_span)[span_57](start_span)!'[span_55](end_span)[span_56](end_span)[span_57](end_span)";
+          answer = "This is the most common trip-up! Remind students that cipher wheels always advance clockwise forward (A to Z). If they get stuck, use Buzzy's rule: 'Check the key! Check one letter[span_53](start_span)[span_54](start_span)[span_55](start_span)!'[span_53](end_span)[span_54](end_span)[span_55](end_span)";
         }
         appendChat(answer, "bot");
       }, 400);
@@ -1616,7 +1663,7 @@
       appendChat(val, "user");
       input.value = "";
       setTimeout(() => {
-        appendChat("Great question! In CBSE Class 3, our primary goal is to make teachers' work easy and kids' learning fun. We stick 100% to the official textbook syllabus without adding coding syntax[span_58](start_span)[span_58](end_span)[span_59](start_span)[span_59](end_span)[span_60](start_span)[span_60](end_span)!", "bot");
+        appendChat("Great question! In CBSE Class 3, our primary goal is to make teachers' work easy and kids' learning fun. We stick 100% to the official textbook syllabus without adding coding syntax[span_56](start_span)[span_56](end_span)[span_57](start_span)[span_57](end_span)[span_58](start_span)[span_58](end_span)!", "bot");
       }, 500);
     }
 
