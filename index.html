@@ -221,6 +221,16 @@
       margin-bottom: 28px;
     }
 
+    /* WORKSHEET DOWNLOAD */
+    .worksheet-download {
+      background: #FEF08A;
+      color: var(--text-main);
+    }
+
+    .worksheet-download:hover {
+      background: #FDE047;
+    }
+
     .hero-note {
       font-size: 0.9rem;
       color: var(--text-muted);
@@ -701,6 +711,34 @@
 
 
 
+
+    /* CHAPTER 1 TEACHER PREPARATION */
+    .teacher-prep { margin: 0 0 28px; }
+    .teacher-prep-box {
+      background:#FFFFFF; border:2px solid var(--border); border-radius:18px; padding:24px;
+      box-shadow:var(--shadow); margin-bottom:18px;
+    }
+    .teacher-prep-intro { background:#FFF7ED; border-color:#FED7AA; }
+    .teacher-prep h2, .teacher-prep h3 { color:var(--text-dark); margin-top:0; }
+    .teacher-prep h2 { font-size:2rem; margin-bottom:8px; }
+    .teacher-prep h3 { font-size:1.3rem; margin-bottom:10px; }
+    .teacher-prep p { margin-bottom:10px; }
+    .teacher-prep-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+    .teacher-prep-card { border:2px solid var(--border); border-radius:14px; padding:18px; background:#FFFFFF; }
+    .teacher-prep-card.do { background:#ECFDF5; border-color:#A7F3D0; }
+    .teacher-prep-card.dont { background:#FFF7ED; border-color:#FED7AA; }
+    .teacher-prep-list { margin:0; padding-left:1.25rem; }
+    .teacher-prep-list li { margin:8px 0; }
+    .teacher-prep-checklist { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin-top:12px; }
+    .teacher-prep-item { border:2px solid var(--border); border-radius:12px; padding:12px 14px; background:#F8FAFC; font-weight:700; }
+    .teacher-prep-flow { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; margin-top:14px; }
+    .teacher-prep-step { border:2px solid var(--border); border-radius:12px; padding:14px; text-align:center; background:#FFFFFF; }
+    .teacher-prep-step strong, .teacher-prep-step span { display:block; }
+    .teacher-prep-step span { color:var(--text-muted); font-size:.88rem; margin-top:4px; }
+    @media (max-width: 700px) {
+      .teacher-prep-grid, .teacher-prep-checklist, .teacher-prep-flow { grid-template-columns:1fr; }
+    }
+
     /* CHAPTER 1 LEARNING GUIDE — uses existing WonderLogic colours/fonts */
     .chapter1-visual-hero { display:grid; grid-template-columns:1fr auto 1fr auto 1fr; gap:12px; align-items:center; margin:20px 0; }
     .chapter1-visual-box { border:2px solid var(--border); border-radius:16px; padding:16px; background:#FFFFFF; text-align:center; box-shadow:0 4px 10px rgba(15,23,42,.05); }
@@ -789,6 +827,35 @@
       .chapter1-grid2, .chapter1-grid4 { grid-template-columns: 1fr; }
       .chapter1-intro, .chapter1-card, .chapter1-callout, .chapter1-safety { padding: 18px; }
     }
+
+
+    /* CHAPTER 1 QUESTIONS — PAGES 12–14 */
+    .chapter1-questions {
+      background:#F8FAFC; border:3px solid var(--border-dark); border-radius:20px; padding:24px;
+      box-shadow:var(--shadow); margin:22px 0;
+    }
+    .chapter1-question-card {
+      background:#FFFFFF; border:2px solid var(--border); border-radius:16px; padding:20px; margin-top:16px;
+    }
+    .chapter1-question-card h4 { margin:0 0 10px; font-size:1.08rem; color:var(--text-dark); }
+    .question-answer {
+      margin-top:14px; padding:14px 16px; border-radius:13px; background:#ECFDF5; border:2px solid #A7F3D0;
+    }
+    .question-answer strong { color:#047857; }
+    .question-solution {
+      margin-top:12px; padding:14px 16px; border-radius:13px; background:#EEF2FF; border:2px solid #C7D2FE;
+    }
+    .question-solution strong { color:var(--indigo-brand); }
+    .alphabet-solution { overflow-x:auto; margin-top:12px; }
+    .alphabet-table { width:100%; min-width:720px; border-collapse:separate; border-spacing:0; overflow:hidden; border:2px solid var(--border); border-radius:12px; }
+    .alphabet-table th, .alphabet-table td { padding:8px 6px; text-align:center; border-right:1px solid var(--border); border-bottom:1px solid var(--border); font-weight:800; font-size:.82rem; }
+    .alphabet-table th { background:#F1F5F9; color:var(--text-dark); }
+    .alphabet-table tr:last-child td { border-bottom:0; }
+    .alphabet-table th:last-child, .alphabet-table td:last-child { border-right:0; }
+    .choice-row { display:flex; flex-wrap:wrap; gap:9px; margin:10px 0; }
+    .choice-chip { padding:8px 12px; border:2px solid var(--border); border-radius:10px; background:#FFFFFF; font-weight:800; }
+    .choice-chip.correct { background:#ECFDF5; border-color:#34D399; color:#047857; }
+    .page-tag { display:inline-block; margin-bottom:8px; padding:5px 9px; border-radius:999px; background:#E0E7FF; color:#4338CA; font-size:.75rem; font-weight:900; }
 
     /* RESPONSIVE DESIGN */
     @media (max-width: 900px) {
@@ -901,7 +968,94 @@
       .floating-ai-btn { right: 12px; bottom: 12px; }
     }
 
-  </style>
+
+    /* MOBILE NAVBAR FIX — prevents header items from overlapping */
+    @media (max-width: 600px) {
+      .nav-inner {
+        height: 72px;
+        padding-left: 14px;
+        padding-right: 14px;
+        gap: 8px;
+        min-width: 0;
+      }
+
+      .brand-logo {
+        min-width: 0;
+        flex: 1 1 auto;
+        gap: 6px;
+        font-size: 1.35rem;
+        white-space: nowrap;
+      }
+
+      .brand-logo span {
+        flex: 0 0 auto;
+        max-width: 78px;
+        padding: 4px 6px;
+        font-size: 0.74rem;
+        line-height: 1.08;
+        text-align: center;
+      }
+
+      .nav-cta {
+        flex: 0 0 auto;
+        gap: 6px;
+      }
+
+      .nav-cta .btn {
+        font-size: 0.82rem !important;
+        padding: 7px 10px !important;
+        min-height: 40px !important;
+        box-shadow: 2px 3px 0 var(--border-dark);
+      }
+
+      /* Keep the most useful mobile action; the second CTA moves out of the way. */
+      .nav-cta a[href="#contact"] {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 42px;
+      }
+    }
+
+  
+    /* CT & AI — keep both concept boxes side by side */
+    .definition-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .definition-grid .def-card {
+      min-width: 0;
+      height: 100%;
+      box-sizing: border-box;
+    }
+
+    @media (max-width: 560px) {
+      .definition-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .definition-grid .def-card {
+        padding: 14px;
+      }
+
+      .definition-grid .def-card h3 {
+        font-size: 1rem;
+        line-height: 1.15;
+      }
+
+      .definition-grid .def-card p,
+      .definition-grid .def-card li {
+        font-size: .78rem;
+        line-height: 1.4;
+      }
+    }
+
+</style>
 </head>
 <body>
 
@@ -914,6 +1068,7 @@
 
       <ul class="nav-links">
         <li><a href="#pedagogy">Why Unplugged?</a></li>
+        <li><a href="#teacher-prep">Teacher Guide</a></li>
         <li><a href="#chapter1-guide">Chapter 1 Guide</a></li>
         <li><a href="#sandbox">Chapter 1 Demo</a></li>
         <li><a href="#teachers">Teacher Tools</a></li>
@@ -945,6 +1100,9 @@
           </a>
           <a href="#curriculum" class="btn btn-secondary">
             📖 View 14-Chapter Scope
+          </a>
+          <a href="worksheet-caesar-cipher.pdf" class="btn worksheet-download" download>
+            📄 Download Worksheet PDF
           </a>
         </div>
 
@@ -1037,6 +1195,53 @@
     </div>
   </section>
 
+
+
+  <!-- CT & AI INTRODUCTION: RESTORED -->
+  <section class="definition-section" id="what-is-it">
+    <div class="container">
+      <div class="section-title">
+        <h2>What is CT & AI in Class 3?</h2>
+        <p>A simple, clear guide for teachers and parents: what these terms mean, why they matter, and how children use them in everyday life.</p>
+      </div>
+
+      <div class="definition-grid">
+        <div class="def-card">
+          <span class="def-badge" style="background:#ECFDF5; color:var(--step-green); border-color:var(--step-green);">THE HUMAN HABIT</span>
+          <h3>1. Computational Thinking (CT)</h3>
+          <p class="meaning"><strong>What it is:</strong> A step-by-step problem-solving method. Children learn to break a big problem into smaller parts, spot patterns, focus on what matters, and create clear steps.</p>
+          <div class="use-box">
+            <strong>Where do children use CT?</strong>
+            <ul>
+              <li><strong>In School:</strong> Solving maths problems, organising information, and following multi-step tasks.</li>
+              <li><strong>At Home:</strong> Packing a school bag, following a recipe, or giving directions.</li>
+              <li><strong>In Technology:</strong> CT provides the logical foundation used before writing software.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="def-card">
+          <span class="def-badge" style="background:#EEF2FF; color:var(--indigo-brand); border-color:var(--indigo-brand);">THE MACHINE APPLICATION</span>
+          <h3>2. Artificial Intelligence (AI)</h3>
+          <p class="meaning"><strong>What it is:</strong> Technology that enables computers and machines to perform tasks that usually require human-like abilities, such as recognising patterns, making predictions, solving problems, and making choices.</p>
+          <div class="use-box">
+            <strong>Where do children see AI in daily life?</strong>
+            <ul>
+              <li><strong>Voice Recognition:</strong> A device recognising what someone says.</li>
+              <li><strong>Maps:</strong> Suggesting routes based on information and patterns.</li>
+              <li><strong>Everyday Technology:</strong> Helping computers recognise images, language, patterns, or recommendations.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="why-unplugged-banner">
+        <h4>💡 Why start with thinking before coding?</h4>
+        <p>For Class 3, the goal is not to teach programming syntax first. Children first build the thinking habits behind technology — logical reasoning, problem solving, pattern recognition, sequencing and clear instructions — through stories, games, paper activities and discussion.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- 4 PILLARS SECTION -->
   <section class="section" id="pedagogy">
     <div class="container">
@@ -1078,6 +1283,83 @@
   </section>
 
 
+
+
+  <!-- CHAPTER 1 TEACHER PREPARATION GUIDE -->
+  <section class="section teacher-prep" id="teacher-prep">
+    <div class="container">
+      <div class="teacher-prep-box teacher-prep-intro">
+        <div class="pill-badge" style="background:#FEF3C7; color:#92400E;">👩‍🏫 Teacher Guide • Before Class</div>
+        <h2>Get Ready for the Caesar Cipher Activity</h2>
+        <p><strong>A little preparation makes the activity smooth, playful, and easy for every Class 3 learner.</strong></p>
+        <p>The goal is not to teach coding. The goal is to let children <strong>make a rule, follow it, notice a pattern, and explain their thinking</strong>.</p>
+      </div>
+
+      <div class="teacher-prep-grid">
+        <div class="teacher-prep-card">
+          <h3>📋 Before the class</h3>
+          <ul class="teacher-prep-list">
+            <li>👥 <strong>Make partners:</strong> Plan pairs before the activity begins.</li>
+            <li>📄 <strong>Ready the worksheet:</strong> Print the Caesar Cipher worksheet for the children.</li>
+            <li>✂️ <strong>Keep child-friendly scissors ready:</strong> Children will cut out the cipher wheel pieces.</li>
+            <li>📎 Keep the simple joining material needed to assemble the wheel ready.</li>
+            <li>🧑‍🏫 Keep one completed/demo cipher wheel ready so you can model the first example.</li>
+          </ul>
+        </div>
+
+        <div class="teacher-prep-card">
+          <h3>🎒 Materials checklist</h3>
+          <div class="teacher-prep-checklist">
+            <div class="teacher-prep-item">☐ Printed worksheet</div>
+            <div class="teacher-prep-item">☐ Child-friendly scissors</div>
+            <div class="teacher-prep-item">☐ Pencil / crayons</div>
+            <div class="teacher-prep-item">☐ Joining fastener / split pin</div>
+            <div class="teacher-prep-item">☐ One teacher demo wheel</div>
+            <div class="teacher-prep-item">☐ Partner seating</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="teacher-prep-grid">
+        <div class="teacher-prep-card do">
+          <h3>✅ Do's</h3>
+          <ul class="teacher-prep-list">
+            <li>Let children <strong>try, discuss, and discover</strong>.</li>
+            <li>Ask: <strong>“How did you figure that out?”</strong></li>
+            <li>Let partners explain the rule to each other.</li>
+            <li>Encourage children to use the physical cipher wheel.</li>
+            <li>Praise <strong>reasoning and explanation</strong>, not just the final answer.</li>
+          </ul>
+        </div>
+
+        <div class="teacher-prep-card dont">
+          <h3>🚫 Don'ts</h3>
+          <ul class="teacher-prep-list">
+            <li>Don't give the answer immediately.</li>
+            <li>Don't turn this into a coding lesson.</li>
+            <li>Don't ask children to type or write code.</li>
+            <li>Don't make children work alone when the activity is designed for partners.</li>
+            <li>Don't worry about perfect cutting — <strong>the thinking is the important part.</strong></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="teacher-prep-box">
+        <h3>⏱️ Suggested classroom flow</h3>
+        <div class="teacher-prep-flow">
+          <div class="teacher-prep-step"><strong>1. Prepare & introduce</strong><span>5 min</span></div>
+          <div class="teacher-prep-step"><strong>2. Make / use the wheel</strong><span>10–15 min</span></div>
+          <div class="teacher-prep-step"><strong>3. Partner challenge</strong><span>10 min</span></div>
+          <div class="teacher-prep-step"><strong>4. Discuss the thinking</strong><span>5 min</span></div>
+        </div>
+      </div>
+
+      <div class="teacher-prep-box" style="background:#EEF2FF; border-color:#C7D2FE;">
+        <h3>💬 Teacher prompt</h3>
+        <p><strong>“Your job is not to guess the secret word. Your job is to discover the rule, use the rule, and explain how you know your answer is correct.”</strong></p>
+      </div>
+    </div>
+  </section>
 
   <!-- CHAPTER 1 EASY LEARNING GUIDE -->
   <section class="section chapter1-guide" id="chapter1-guide">
@@ -1247,6 +1529,56 @@
         </div>
       </div>
 
+
+      <!-- PAGES 12–14: SOLVE THE QUESTIONS -->
+      <div class="chapter1-questions" id="chapter1-questions">
+        <div class="pill-badge" style="background:#FEF3C7; color:#92400E;">🧩 Pages 12–14 • Solve the Questions</div>
+        <h3 style="margin-top:12px;">12. ✏️ Let’s solve it step by step</h3>
+        <p>These are the Chapter 1 Caesar Cipher questions from pages 12–14. Children can <strong>try first</strong>, then open the explanation with the teacher or partner.</p>
+
+        <div class="chapter1-question-card">
+          <span class="page-tag">Page 12 • Question 1</span>
+          <h4>Complete the table by shifting the alphabet.</h4>
+          <div class="alphabet-solution">
+            <table class="alphabet-table" aria-label="Solved Caesar Cipher alphabet shift table">
+              <tr><th>Original</th><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td><td>K</td><td>L</td><td>M</td><td>N</td><td>O</td><td>P</td><td>Q</td><td>R</td><td>S</td><td>T</td><td>U</td><td>V</td><td>W</td><td>X</td><td>Y</td><td>Z</td></tr>
+              <tr><th>Shift 1</th><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td><td>K</td><td>L</td><td>M</td><td>N</td><td>O</td><td>P</td><td>Q</td><td>R</td><td>S</td><td>T</td><td>U</td><td>V</td><td>W</td><td>X</td><td>Y</td><td>Z</td><td>A</td></tr>
+              <tr><th>Shift 2</th><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td><td>K</td><td>L</td><td>M</td><td>N</td><td>O</td><td>P</td><td>Q</td><td>R</td><td>S</td><td>T</td><td>U</td><td>V</td><td>W</td><td>X</td><td>Y</td><td>Z</td><td>A</td><td>B</td></tr>
+              <tr><th>Shift 20</th><td>U</td><td>V</td><td>W</td><td>X</td><td>Y</td><td>Z</td><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td><td>K</td><td>L</td><td>M</td><td>N</td><td>O</td><td>P</td><td>Q</td><td>R</td><td>S</td><td>T</td></tr>
+            </table>
+          </div>
+          <div class="question-solution"><strong>💡 How to solve:</strong> Move every letter forward by the same number. When you reach Z, continue from A.</div>
+        </div>
+
+        <div class="chapter1-question-card">
+          <span class="page-tag">Page 12 • Question 2</span>
+          <h4>If “CAESAR CIPHER” is encoded with a shift of 3 places, which is correct?</h4>
+          <div class="choice-row"><span class="choice-chip">A. ECGUCT EKRJGT</span><span class="choice-chip correct">B. FDHVDU FLSKHU ✓</span><span class="choice-chip">C. GEIWEV GMTLIV</span><span class="choice-chip">D. DBFTBS DJQIFS</span></div>
+          <div class="question-answer"><strong>Answer: B — FDHVDU FLSKHU</strong></div>
+          <div class="question-solution"><strong>💡 Solution:</strong> Shift each letter 3 places: C→F, A→D, E→H, S→V, A→D, R→U. So <strong>CAESAR → FDHVDU</strong>. Similarly, <strong>CIPHER → FLSKHU</strong>.</div>
+        </div>
+
+        <div class="chapter1-question-card">
+          <span class="page-tag">Page 13 • Question 3</span>
+          <h4>“THIS MESSAGE IS HIDDEN” becomes “ESTD XPDDLRP TD STOOPY”. By how many positions was the alphabet shifted?</h4>
+          <div class="choice-row"><span class="choice-chip">A. 5</span><span class="choice-chip correct">B. 11 ✓</span><span class="choice-chip">C. 17</span><span class="choice-chip">D. 7</span></div>
+          <div class="question-answer"><strong>Answer: B — 11 positions</strong></div>
+          <div class="question-solution"><strong>💡 Solution:</strong> Compare one original letter with its encoded letter. <strong>T→E</strong> means moving 11 places around the alphabet. Check again: H→S, I→T, S→D. The same shift works each time, so the key is <strong>11</strong>.</div>
+        </div>
+
+        <div class="chapter1-question-card">
+          <span class="page-tag">Page 14 • Question 4</span>
+          <h4>How many possible meaningful ways are there to shift the alphabet in a Caesar Cipher?</h4>
+          <div class="choice-row"><span class="choice-chip">A. 26</span><span class="choice-chip">B. 52</span><span class="choice-chip correct">C. 25 ✓</span><span class="choice-chip">D. 50</span></div>
+          <div class="question-answer"><strong>Answer: C — 25 meaningful shifts</strong></div>
+          <div class="question-solution"><strong>💡 Solution:</strong> The alphabet has 26 letters, but a shift of 26 brings every letter back to itself. That changes nothing. Therefore, shifts <strong>1 through 25</strong> are the meaningful choices.</div>
+        </div>
+
+        <div class="chapter1-callout" style="margin-top:18px; margin-bottom:0;">
+          <strong>🧠 CT Thinking:</strong> These questions practise <strong>Algorithmic Thinking, Decomposition, Pattern Recognition, Generalisation, and Evaluation</strong>. The goal is not only to select an answer, but to explain the rule used to get there.
+        </div>
+      </div>
+
       <p class="chapter1-source"><strong>Source:</strong> Based on Chapter 1: “What’s in a Name?” — Caesar Cipher, CBSE Computational Thinking Class 3 Teacher Handbook, 2026–27, pages 9–13.</p>
     </div>
   </section>
@@ -1272,6 +1604,9 @@
           <button class="btn btn-secondary" onclick="shiftKey(-1)" style="padding: 6px 14px; min-height: 38px;">◀ -1</button>
           <button class="btn btn-secondary" onclick="shiftKey(1)" style="padding: 6px 14px; min-height: 38px;">+1 ▶</button>
           <button class="btn btn-secondary" onclick="setShift(2)" style="padding: 6px 14px; min-height: 38px;">Reset (Key = 2)</button>
+          <a href="worksheet-caesar-cipher.pdf" class="btn worksheet-download" download style="padding: 6px 14px; min-height: 38px;">
+            📄 Download Worksheet PDF
+          </a>
         </div>
 
         <div class="track-wrapper">
