@@ -828,35 +828,6 @@
       .chapter1-intro, .chapter1-card, .chapter1-callout, .chapter1-safety { padding: 18px; }
     }
 
-
-    /* CHAPTER 1 QUESTIONS — PAGES 12–14 */
-    .chapter1-questions {
-      background:#F8FAFC; border:3px solid var(--border-dark); border-radius:20px; padding:24px;
-      box-shadow:var(--shadow); margin:22px 0;
-    }
-    .chapter1-question-card {
-      background:#FFFFFF; border:2px solid var(--border); border-radius:16px; padding:20px; margin-top:16px;
-    }
-    .chapter1-question-card h4 { margin:0 0 10px; font-size:1.08rem; color:var(--text-dark); }
-    .question-answer {
-      margin-top:14px; padding:14px 16px; border-radius:13px; background:#ECFDF5; border:2px solid #A7F3D0;
-    }
-    .question-answer strong { color:#047857; }
-    .question-solution {
-      margin-top:12px; padding:14px 16px; border-radius:13px; background:#EEF2FF; border:2px solid #C7D2FE;
-    }
-    .question-solution strong { color:var(--indigo-brand); }
-    .alphabet-solution { overflow-x:auto; margin-top:12px; }
-    .alphabet-table { width:100%; min-width:720px; border-collapse:separate; border-spacing:0; overflow:hidden; border:2px solid var(--border); border-radius:12px; }
-    .alphabet-table th, .alphabet-table td { padding:8px 6px; text-align:center; border-right:1px solid var(--border); border-bottom:1px solid var(--border); font-weight:800; font-size:.82rem; }
-    .alphabet-table th { background:#F1F5F9; color:var(--text-dark); }
-    .alphabet-table tr:last-child td { border-bottom:0; }
-    .alphabet-table th:last-child, .alphabet-table td:last-child { border-right:0; }
-    .choice-row { display:flex; flex-wrap:wrap; gap:9px; margin:10px 0; }
-    .choice-chip { padding:8px 12px; border:2px solid var(--border); border-radius:10px; background:#FFFFFF; font-weight:800; }
-    .choice-chip.correct { background:#ECFDF5; border-color:#34D399; color:#047857; }
-    .page-tag { display:inline-block; margin-bottom:8px; padding:5px 9px; border-radius:999px; background:#E0E7FF; color:#4338CA; font-size:.75rem; font-weight:900; }
-
     /* RESPONSIVE DESIGN */
     @media (max-width: 900px) {
       .hero-grid { grid-template-columns: 1fr; }
@@ -1055,6 +1026,215 @@
       }
     }
 
+
+
+    /* DAILY WONDER — one small, age-aware message each day */
+    .daily-wonder-launch {
+      position: fixed;
+      left: 18px;
+      bottom: 18px;
+      z-index: 1500;
+      border: 3px solid var(--border-dark);
+      border-radius: 999px;
+      background: #FEF08A;
+      color: var(--text-main);
+      padding: 11px 16px;
+      font-family: var(--font-body);
+      font-weight: 800;
+      font-size: 0.86rem;
+      box-shadow: 4px 5px 0 var(--border-dark);
+      cursor: pointer;
+    }
+    .daily-wonder-launch:hover { transform: translateY(-2px); }
+    .daily-wonder-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15,23,42,.60);
+      z-index: 3000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      backdrop-filter: blur(3px);
+    }
+    .daily-wonder-overlay.is-open { display: flex; }
+    .daily-wonder-modal {
+      width: min(560px, 100%);
+      background: #FFFFFF;
+      border: 3px solid var(--border-dark);
+      border-radius: 24px;
+      box-shadow: 8px 10px 0 var(--border-dark);
+      overflow: hidden;
+      animation: wonderPop .22s ease-out;
+    }
+    @keyframes wonderPop {
+      from { opacity: 0; transform: translateY(12px) scale(.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .daily-wonder-head {
+      background: linear-gradient(135deg, #EEF2FF, #ECFDF5);
+      border-bottom: 2px solid var(--border-dark);
+      padding: 18px 20px;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .daily-wonder-kicker {
+      font-size: .76rem;
+      font-weight: 900;
+      color: var(--indigo-brand);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+    .daily-wonder-head h3 {
+      font-family: var(--font-display);
+      font-size: 1.55rem;
+      line-height: 1.15;
+    }
+    .daily-wonder-close {
+      border: 2px solid var(--border-dark);
+      background: #FFFFFF;
+      border-radius: 10px;
+      width: 38px;
+      height: 38px;
+      font-size: 1.2rem;
+      font-weight: 900;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .daily-wonder-body { padding: 22px; }
+    .daily-wonder-emoji {
+      font-size: 3.2rem;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .daily-wonder-message {
+      font-family: var(--font-display);
+      font-size: 1.55rem;
+      line-height: 1.35;
+      margin-bottom: 16px;
+    }
+    .daily-wonder-action {
+      background: #FFFBEB;
+      border: 2px solid #FDE68A;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin-bottom: 14px;
+    }
+    .daily-wonder-action strong { display:block; color:#92400E; margin-bottom:4px; }
+    .daily-wonder-action span { color:var(--text-muted); font-size:.9rem; }
+    .daily-wonder-age {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      align-items: center;
+      margin-top: 12px;
+      padding-top: 14px;
+      border-top: 2px dashed var(--border-subtle);
+    }
+    .daily-wonder-age-label { font-size:.78rem; color:var(--text-muted); font-weight:800; margin-right:2px; }
+    .wonder-age-btn {
+      border: 2px solid var(--border-dark);
+      background:#FFFFFF;
+      border-radius:999px;
+      padding:6px 10px;
+      font-family:var(--font-body);
+      font-size:.75rem;
+      font-weight:800;
+      cursor:pointer;
+    }
+    .wonder-age-btn.active { background:var(--indigo-soft); color:var(--indigo-brand); }
+    .daily-wonder-footer {
+      padding: 0 22px 22px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .daily-wonder-footer small { color:var(--text-muted); font-size:.72rem; }
+    .daily-wonder-next { padding:8px 13px; font-size:.82rem; }
+    @media (max-width: 600px) {
+      .daily-wonder-launch { left: 10px; bottom: 10px; padding: 9px 12px; font-size: .76rem; }
+      .daily-wonder-modal { border-radius: 18px; }
+      .daily-wonder-body { padding: 18px; }
+      .daily-wonder-message { font-size: 1.3rem; }
+      .daily-wonder-footer { padding: 0 18px 18px; }
+    }
+
+    /* THREE DOORS / ACCOUNT HUB */
+    .platform-hub { padding: 46px 0 30px; background: #fff; border-bottom: 2px solid var(--border-subtle); }
+    .platform-kicker { text-align:center; font-weight:800; color:var(--indigo-brand); letter-spacing:.04em; font-size:.78rem; text-transform:uppercase; }
+    .platform-hub h2 { text-align:center; font-family:var(--font-display); font-size:clamp(1.8rem,3vw,2.5rem); margin:6px 0 8px; }
+    .platform-hub .hub-intro { text-align:center; max-width:760px; margin:0 auto 24px; color:var(--text-muted); }
+    .door-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
+    .door-card { background:var(--surface-card); border:3px solid var(--border-dark); border-radius:20px; padding:22px; box-shadow:5px 6px 0 var(--border-dark); display:flex; flex-direction:column; min-height:275px; }
+    .door-card.teacher { background:linear-gradient(180deg,#EEF2FF 0%,#fff 72%); }
+    .door-card.student { background:linear-gradient(180deg,#ECFDF5 0%,#fff 72%); }
+    .door-card.parent { background:linear-gradient(180deg,#FFFBEB 0%,#fff 72%); }
+    .door-icon { font-size:2.4rem; margin-bottom:5px; }
+    .door-card h3 { font-family:var(--font-display); font-size:1.45rem; margin-bottom:5px; }
+    .door-flow { font-weight:800; font-size:.88rem; margin-bottom:12px; }
+    .door-card p { color:var(--text-muted); font-size:.9rem; margin-bottom:12px; }
+    .door-features { list-style:none; display:grid; gap:5px; font-size:.82rem; margin-bottom:16px; }
+    .door-features li::before { content:'✓'; font-weight:900; margin-right:7px; color:var(--step-green); }
+    .door-actions { display:flex; gap:9px; margin-top:auto; flex-wrap:wrap; }
+    .door-actions .btn { font-size:.84rem; padding:8px 13px; box-shadow:2px 3px 0 var(--border-dark); }
+
+    .account-modal { position:fixed; inset:0; background:rgba(15,23,42,.62); display:none; align-items:center; justify-content:center; padding:18px; z-index:1000; }
+    .account-modal.open { display:flex; }
+    .account-panel { width:min(760px,100%); max-height:92vh; overflow:auto; background:#fff; border:3px solid var(--border-dark); border-radius:20px; box-shadow:8px 9px 0 var(--border-dark); padding:24px; }
+    .account-head { display:flex; justify-content:space-between; gap:14px; align-items:flex-start; margin-bottom:18px; }
+    .account-head h3 { font-family:var(--font-display); font-size:1.6rem; }
+    .close-account { border:2px solid var(--border-dark); background:#fff; border-radius:10px; padding:7px 10px; cursor:pointer; font-weight:800; }
+    .account-tabs { display:flex; gap:8px; margin-bottom:16px; }
+    .account-tab { flex:1; border:2px solid var(--border-dark); border-radius:10px; padding:9px; background:#fff; font-weight:800; cursor:pointer; }
+    .account-tab.active { background:var(--indigo-soft); }
+    .account-form { display:grid; gap:11px; }
+    .account-form label { font-size:.8rem; font-weight:800; }
+    .account-form input,.account-form select { width:100%; border:2px solid #94A3B8; border-radius:10px; padding:10px 12px; font:inherit; }
+    .account-note { font-size:.75rem; color:var(--text-muted); background:#F8FAFC; border-radius:10px; padding:10px; }
+    .profile-upload { display:flex; align-items:center; gap:14px; padding:12px; border:2px dashed #94A3B8; border-radius:12px; }
+    .profile-preview { width:58px; height:58px; border-radius:50%; background:var(--indigo-soft); border:2px solid var(--border-dark); object-fit:cover; display:flex; align-items:center; justify-content:center; font-size:1.7rem; overflow:hidden; flex:0 0 auto; }
+    .profile-preview img { width:100%; height:100%; object-fit:cover; }
+
+    .teacher-dashboard { display:none; }
+    .teacher-dashboard.active { display:block; }
+    .dashboard-top { display:flex; justify-content:space-between; gap:15px; align-items:center; margin-bottom:16px; }
+    .teacher-profile-card { display:grid; grid-template-columns:auto 1fr auto; gap:14px; align-items:center; background:var(--indigo-soft); border:2px solid #C7D2FE; border-radius:15px; padding:14px; margin-bottom:16px; }
+    .profile-avatar-large { width:70px; height:70px; border-radius:50%; border:3px solid var(--border-dark); background:#fff; overflow:hidden; display:flex; align-items:center; justify-content:center; font-size:2rem; }
+    .profile-avatar-large img { width:100%; height:100%; object-fit:cover; }
+    .teacher-profile-card h4 { font-family:var(--font-display); font-size:1.25rem; }
+    .teacher-profile-meta { color:var(--text-muted); font-size:.82rem; }
+    .topic-summary-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:16px; }
+    .summary-stat { border:2px solid var(--border-subtle); border-radius:12px; padding:12px; background:#fff; }
+    .summary-stat strong { display:block; font-size:1.4rem; font-family:var(--font-display); }
+    .summary-stat span { color:var(--text-muted); font-size:.75rem; }
+    .topic-list { display:grid; gap:8px; }
+    .topic-row { display:grid; grid-template-columns:44px 1fr auto; align-items:center; gap:10px; border:2px solid var(--border-subtle); border-radius:12px; padding:10px 12px; }
+    .topic-num { font-weight:900; color:var(--indigo-brand); }
+    .topic-row small { color:var(--text-muted); display:block; }
+    .topic-status { font-size:.73rem; font-weight:900; padding:5px 8px; border-radius:999px; white-space:nowrap; }
+    .topic-status.done { background:var(--step-green-soft); color:#047857; }
+    .topic-status.progress { background:#FFFBEB; color:#B45309; }
+    .topic-status.next { background:#F1F5F9; color:#475569; }
+    .dashboard-actions { display:flex; gap:8px; margin-top:16px; flex-wrap:wrap; }
+
+    @media (max-width: 800px) {
+      .door-grid { grid-template-columns:1fr; }
+      .door-card { min-height:auto; }
+      .teacher-profile-card { grid-template-columns:auto 1fr; }
+      .teacher-profile-card .btn { grid-column:1/-1; width:100%; }
+    }
+    @media (max-width:560px) {
+      .platform-hub { padding:32px 0 20px; }
+      .door-card { padding:17px; }
+      .topic-summary-grid { grid-template-columns:1fr; }
+      .account-panel { padding:18px; }
+    }
+
 </style>
 </head>
 <body>
@@ -1073,6 +1253,7 @@
         <li><a href="#sandbox">Chapter 1 Demo</a></li>
         <li><a href="#teachers">Teacher Tools</a></li>
         <li><a href="#curriculum">14-Chapter Syllabus</a></li>
+        <li><a href="javascript:void(0)" onclick="openDailyWonder()">🌱 Daily Wonder</a></li>
       </ul>
 
       <div class="nav-cta">
@@ -1081,6 +1262,181 @@
       </div>
     </div>
   </nav>
+
+  <!-- DAILY WONDER: age-aware, one small message per day -->
+  <button class="daily-wonder-launch" type="button" onclick="openDailyWonder()" aria-label="Open today's Daily Wonder">
+    🌱 Daily Wonder
+  </button>
+
+  <div class="daily-wonder-overlay" id="daily-wonder-overlay" role="dialog" aria-modal="true" aria-labelledby="daily-wonder-title" onclick="closeDailyWonderFromBackdrop(event)">
+    <div class="daily-wonder-modal">
+      <div class="daily-wonder-head">
+        <div>
+          <div class="daily-wonder-kicker" id="daily-wonder-band-label">For Class 3–4</div>
+          <h3 id="daily-wonder-title">🌱 Today's Wonder</h3>
+        </div>
+        <button class="daily-wonder-close" type="button" onclick="closeDailyWonder()" aria-label="Close today's wonder">✕</button>
+      </div>
+      <div class="daily-wonder-body">
+        <div class="daily-wonder-emoji" id="daily-wonder-emoji">🌱</div>
+        <div class="daily-wonder-message" id="daily-wonder-message">Think before you print!</div>
+        <div class="daily-wonder-action">
+          <strong>✨ Tiny challenge</strong>
+          <span id="daily-wonder-action-text">Use only the paper you really need. If a sheet has a clean side, think about whether it can be reused.</span>
+        </div>
+        <div class="daily-wonder-age">
+          <span class="daily-wonder-age-label">Show messages for:</span>
+          <button class="wonder-age-btn" data-band="1-2" type="button" onclick="setWonderBand('1-2')">Class 1–2</button>
+          <button class="wonder-age-btn active" data-band="3-4" type="button" onclick="setWonderBand('3-4')">Class 3–4</button>
+          <button class="wonder-age-btn" data-band="5-6" type="button" onclick="setWonderBand('5-6')">Class 5–6</button>
+          <button class="wonder-age-btn" data-band="7-8" type="button" onclick="setWonderBand('7-8')">Class 7–8</button>
+        </div>
+      </div>
+      <div class="daily-wonder-footer">
+        <small id="daily-wonder-date">One small thought for today.</small>
+        <button class="btn btn-secondary daily-wonder-next" type="button" onclick="closeDailyWonder()">Got it — back to learning 👋</button>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- THREE DOORS: TEACHER / STUDENT / PARENT -->
+  <section class="platform-hub" id="platform">
+    <div class="container">
+      <div class="platform-kicker">One WonderLogic Platform • Three Experiences</div>
+      <h2>Choose Your Door</h2>
+      <p class="hub-intro">The same learning system feels different for each person. Teachers teach and see the class. Children explore and solve. Parents understand and encourage.</p>
+
+      <div class="door-grid">
+        <article class="door-card teacher">
+          <div class="door-icon">👩‍🏫</div>
+          <h3>Teacher</h3>
+          <div class="door-flow">Teach → Assign → See class progress</div>
+          <p>A teacher home for lessons, classes, profiles and topic progress.</p>
+          <ul class="door-features">
+            <li>Teacher profile + photo</li>
+            <li>Select grades/classes taught</li>
+            <li>Topics completed / in progress / next</li>
+            <li>Class 3 student scores & status</li>
+          </ul>
+          <div class="door-actions">
+            <button class="btn btn-primary" type="button" onclick="openAccount('teacher','signin')">👩‍🏫 Teacher Sign In</button>
+            <button class="btn btn-secondary" type="button" onclick="openAccount('teacher','register')">Register</button>
+          </div>
+        </article>
+
+        <article class="door-card student">
+          <div class="door-icon">👧</div>
+          <h3>Student</h3>
+          <div class="door-flow">Discover → Play → Make → Solve → Reflect</div>
+          <p>A child-friendly Wonder Lab with short missions, hands-on tasks and auto-checks.</p>
+          <ul class="door-features">
+            <li>Student name + school/parent ID</li>
+            <li>Today's learning mission</li>
+            <li>Score + mission completion</li>
+            <li>What I learned reflection</li>
+          </ul>
+          <div class="door-actions">
+            <button class="btn btn-primary" type="button" onclick="openAccount('student','signin')">🚀 Student Sign In</button>
+            <button class="btn btn-secondary" type="button" onclick="openAccount('student','register')">Join</button>
+          </div>
+        </article>
+
+        <article class="door-card parent">
+          <div class="door-icon">👨‍👩‍👧</div>
+          <h3>Parent / Home</h3>
+          <div class="door-flow">Understand → Encourage → See progress</div>
+          <p>A calm home view — not another school dashboard — showing what the child learned and how to encourage them.</p>
+          <ul class="door-features">
+            <li>What we learned today</li>
+            <li>Simple home mission</li>
+            <li>Screen-time estimate</li>
+            <li>Progress without ranking</li>
+          </ul>
+          <div class="door-actions">
+            <button class="btn btn-accent" type="button" onclick="openAccount('parent','signin')">🏠 Parent Sign In</button>
+            <button class="btn btn-secondary" type="button" onclick="openAccount('parent','register')">Register</button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACCOUNT MODAL / PROTOTYPE AUTH -->
+  <div class="account-modal" id="account-modal" role="dialog" aria-modal="true" aria-labelledby="account-title" onclick="closeAccountOutside(event)">
+    <div class="account-panel">
+      <div class="account-head">
+        <div>
+          <div class="platform-kicker" style="text-align:left;">WonderLogic Account</div>
+          <h3 id="account-title">Teacher Sign In</h3>
+        </div>
+        <button class="close-account" type="button" onclick="closeAccount()">✕</button>
+      </div>
+
+      <div class="account-tabs">
+        <button class="account-tab active" id="signin-tab" type="button" onclick="setAccountMode('signin')">Sign In</button>
+        <button class="account-tab" id="register-tab" type="button" onclick="setAccountMode('register')">Register</button>
+      </div>
+
+      <div id="teacher-account-form">
+        <form class="account-form" onsubmit="submitAccount(event)">
+          <div id="teacher-signin-fields">
+            <label>Teacher ID</label><input id="teacher-login-id" placeholder="e.g. WL-T-1024" required />
+            <label>Password</label><input type="password" placeholder="••••••••" required />
+          </div>
+          <div id="teacher-register-fields" style="display:none;">
+            <label>Teacher name</label><input id="teacher-name" placeholder="e.g. Anita Sharma" />
+            <label>School</label><input id="teacher-school" placeholder="School name" />
+            <label>Grades / classes you teach</label><input id="teacher-grades" placeholder="e.g. Class 3A, 4B, 5A" />
+            <label>Profile picture</label>
+            <div class="profile-upload"><div class="profile-preview" id="profile-preview">👩‍🏫</div><input type="file" id="teacher-photo" accept="image/*" onchange="previewTeacherPhoto(event)" /></div>
+            <label>Create password</label><input type="password" placeholder="Create a password" />
+          </div>
+          <div class="account-note">Prototype mode: this page demonstrates the account experience. Real school accounts, authentication and student data should be connected to a secure school backend before production.</div>
+          <button class="btn btn-primary" type="submit" id="account-submit">Sign In</button>
+        </form>
+      </div>
+
+      <div id="generic-account-form" style="display:none;">
+        <form class="account-form" onsubmit="submitAccount(event)">
+          <label id="generic-id-label">School / Parent ID</label><input id="generic-id" placeholder="Enter your school-managed ID" required />
+          <label>Password / PIN</label><input type="password" placeholder="••••••••" required />
+          <div class="account-note" id="generic-account-note">Use a school-managed ID for children. Avoid collecting a child's personal phone number or email just to access learning.</div>
+          <button class="btn btn-primary" type="submit" id="generic-submit">Sign In</button>
+        </form>
+      </div>
+
+      <div class="teacher-dashboard" id="teacher-dashboard">
+        <div class="dashboard-top">
+          <div><strong>Teacher Dashboard</strong><div class="teacher-profile-meta">Your teaching profile and curriculum progress</div></div>
+          <button class="btn btn-secondary" type="button" onclick="closeAccount()">Close</button>
+        </div>
+        <div class="teacher-profile-card">
+          <div class="profile-avatar-large" id="dashboard-avatar">👩‍🏫</div>
+          <div><h4 id="dashboard-teacher-name">Anita Sharma</h4><div class="teacher-profile-meta" id="dashboard-teacher-meta">Wonder Valley School • Class 3A, 4B, 5A</div></div>
+          <button class="btn btn-secondary" type="button" onclick="setAccountMode('register')">Edit Profile</button>
+        </div>
+        <div class="topic-summary-grid">
+          <div class="summary-stat"><strong>4</strong><span>Topics completed</span></div>
+          <div class="summary-stat"><strong>2</strong><span>In progress</span></div>
+          <div class="summary-stat"><strong>8</strong><span>Still to complete</span></div>
+        </div>
+        <h4 style="margin-bottom:8px;">📚 Topic progress</h4>
+        <div class="topic-list">
+          <div class="topic-row"><div class="topic-num">01</div><div><strong>What's in a Name?</strong><small>Caesar Cipher & Letter Logic</small></div><span class="topic-status done">Completed</span></div>
+          <div class="topic-row"><div class="topic-num">02</div><div><strong>Toy Joy</strong><small>3D Solids & Attribute Sorting</small></div><span class="topic-status done">Completed</span></div>
+          <div class="topic-row"><div class="topic-num">03</div><div><strong>Double Century</strong><small>Sequences & Skip Counting</small></div><span class="topic-status progress">In progress</span></div>
+          <div class="topic-row"><div class="topic-num">04</div><div><strong>Vacation with Nani Maa</strong><small>Number Lines & Logic Steps</small></div><span class="topic-status next">Still to complete</span></div>
+          <div class="topic-row"><div class="topic-num">05</div><div><strong>Fun with Shapes</strong><small>Tangrams, Folds & Rotations</small></div><span class="topic-status next">Still to complete</span></div>
+        </div>
+        <div class="dashboard-actions">
+          <button class="btn btn-primary" type="button" onclick="alert('Class 3A dashboard demo: 38 students — 31 Did it, 4 In Progress, 3 Not Started.')">📊 See Class 3A Progress</button>
+          <button class="btn btn-secondary" type="button" onclick="alert('Assignment demo: Chapter 1 — Caesar Cipher')">➕ Assign Topic</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- HERO SECTION -->
   <header class="hero">
@@ -1529,56 +1885,6 @@
         </div>
       </div>
 
-
-      <!-- PAGES 12–14: SOLVE THE QUESTIONS -->
-      <div class="chapter1-questions" id="chapter1-questions">
-        <div class="pill-badge" style="background:#FEF3C7; color:#92400E;">🧩 Pages 12–14 • Solve the Questions</div>
-        <h3 style="margin-top:12px;">12. ✏️ Let’s solve it step by step</h3>
-        <p>These are the Chapter 1 Caesar Cipher questions from pages 12–14. Children can <strong>try first</strong>, then open the explanation with the teacher or partner.</p>
-
-        <div class="chapter1-question-card">
-          <span class="page-tag">Page 12 • Question 1</span>
-          <h4>Complete the table by shifting the alphabet.</h4>
-          <div class="alphabet-solution">
-            <table class="alphabet-table" aria-label="Solved Caesar Cipher alphabet shift table">
-              <tr><th>Original</th><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td><td>K</td><td>L</td><td>M</td><td>N</td><td>O</td><td>P</td><td>Q</td><td>R</td><td>S</td><td>T</td><td>U</td><td>V</td><td>W</td><td>X</td><td>Y</td><td>Z</td></tr>
-              <tr><th>Shift 1</th><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td><td>K</td><td>L</td><td>M</td><td>N</td><td>O</td><td>P</td><td>Q</td><td>R</td><td>S</td><td>T</td><td>U</td><td>V</td><td>W</td><td>X</td><td>Y</td><td>Z</td><td>A</td></tr>
-              <tr><th>Shift 2</th><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td><td>K</td><td>L</td><td>M</td><td>N</td><td>O</td><td>P</td><td>Q</td><td>R</td><td>S</td><td>T</td><td>U</td><td>V</td><td>W</td><td>X</td><td>Y</td><td>Z</td><td>A</td><td>B</td></tr>
-              <tr><th>Shift 20</th><td>U</td><td>V</td><td>W</td><td>X</td><td>Y</td><td>Z</td><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td><td>K</td><td>L</td><td>M</td><td>N</td><td>O</td><td>P</td><td>Q</td><td>R</td><td>S</td><td>T</td></tr>
-            </table>
-          </div>
-          <div class="question-solution"><strong>💡 How to solve:</strong> Move every letter forward by the same number. When you reach Z, continue from A.</div>
-        </div>
-
-        <div class="chapter1-question-card">
-          <span class="page-tag">Page 12 • Question 2</span>
-          <h4>If “CAESAR CIPHER” is encoded with a shift of 3 places, which is correct?</h4>
-          <div class="choice-row"><span class="choice-chip">A. ECGUCT EKRJGT</span><span class="choice-chip correct">B. FDHVDU FLSKHU ✓</span><span class="choice-chip">C. GEIWEV GMTLIV</span><span class="choice-chip">D. DBFTBS DJQIFS</span></div>
-          <div class="question-answer"><strong>Answer: B — FDHVDU FLSKHU</strong></div>
-          <div class="question-solution"><strong>💡 Solution:</strong> Shift each letter 3 places: C→F, A→D, E→H, S→V, A→D, R→U. So <strong>CAESAR → FDHVDU</strong>. Similarly, <strong>CIPHER → FLSKHU</strong>.</div>
-        </div>
-
-        <div class="chapter1-question-card">
-          <span class="page-tag">Page 13 • Question 3</span>
-          <h4>“THIS MESSAGE IS HIDDEN” becomes “ESTD XPDDLRP TD STOOPY”. By how many positions was the alphabet shifted?</h4>
-          <div class="choice-row"><span class="choice-chip">A. 5</span><span class="choice-chip correct">B. 11 ✓</span><span class="choice-chip">C. 17</span><span class="choice-chip">D. 7</span></div>
-          <div class="question-answer"><strong>Answer: B — 11 positions</strong></div>
-          <div class="question-solution"><strong>💡 Solution:</strong> Compare one original letter with its encoded letter. <strong>T→E</strong> means moving 11 places around the alphabet. Check again: H→S, I→T, S→D. The same shift works each time, so the key is <strong>11</strong>.</div>
-        </div>
-
-        <div class="chapter1-question-card">
-          <span class="page-tag">Page 14 • Question 4</span>
-          <h4>How many possible meaningful ways are there to shift the alphabet in a Caesar Cipher?</h4>
-          <div class="choice-row"><span class="choice-chip">A. 26</span><span class="choice-chip">B. 52</span><span class="choice-chip correct">C. 25 ✓</span><span class="choice-chip">D. 50</span></div>
-          <div class="question-answer"><strong>Answer: C — 25 meaningful shifts</strong></div>
-          <div class="question-solution"><strong>💡 Solution:</strong> The alphabet has 26 letters, but a shift of 26 brings every letter back to itself. That changes nothing. Therefore, shifts <strong>1 through 25</strong> are the meaningful choices.</div>
-        </div>
-
-        <div class="chapter1-callout" style="margin-top:18px; margin-bottom:0;">
-          <strong>🧠 CT Thinking:</strong> These questions practise <strong>Algorithmic Thinking, Decomposition, Pattern Recognition, Generalisation, and Evaluation</strong>. The goal is not only to select an answer, but to explain the rule used to get there.
-        </div>
-      </div>
-
       <p class="chapter1-source"><strong>Source:</strong> Based on Chapter 1: “What’s in a Name?” — Caesar Cipher, CBSE Computational Thinking Class 3 Teacher Handbook, 2026–27, pages 9–13.</p>
     </div>
   </section>
@@ -1914,7 +2220,7 @@
     </div>
 
     <div class="container footer-bottom">
-      <span>© 2026 WonderLogic EdTech India. All rights reserved.</span>
+      <span>© 2026 WonderLogic India. All rights reserved.</span>
       <span>Designed for CBSE Primary Schools</span>
     </div>
   </footer>
@@ -2062,6 +2368,205 @@
       item.appendChild(document.createTextNode(input.value.trim()));
       list.prepend(item);
       input.value = "";
+    }
+
+
+    // DAILY WONDER — deterministic daily message, age-aware, no student data required.
+    const WONDER_BANDS = {
+      "1-2": {
+        label: "For Class 1–2",
+        messages: [
+          ["🌱", "Use only what you need.", "Today, notice one thing you can reuse instead of taking a new one."],
+          ["🧠", "Think first, then try.", "Before asking for the answer, make one guess."],
+          ["🔍", "Look closely.", "Find one pattern around you today."],
+          ["🤝", "Learning is better together.", "Ask a friend to explain one idea in their own words."],
+          ["🛑", "Your brain needs breaks.", "Look away from the screen and do one hands-on activity."],
+          ["♻️", "Reuse before you replace.", "Can you use something you already have today?"],
+          ["💡", "Questions are powerful.", "Ask one 'Why?' question today."]
+        ]
+      },
+      "3-4": {
+        label: "For Class 3–4",
+        messages: [
+          ["🌱", "Think before you print!", "Use only the paper you really need. If a sheet has a clean side, think about whether it can be reused."],
+          ["🧠", "Don't rush to the answer.", "First find the rule. Then try it. Then check your answer."],
+          ["🔍", "Be a pattern detective.", "Find one thing that repeats today and explain what you noticed."],
+          ["🧩", "Big problems can become small steps.", "Choose one everyday task and break it into three clear steps."],
+          ["🤖", "AI is a helper, not the thinker.", "If AI gives you an idea, ask: 'Does this make sense?'"],
+          ["🛑", "Good technology use includes stopping.", "Take a short screen break and do something with your hands."],
+          ["🤝", "Explain it to someone else.", "If you can teach your idea simply, you probably understand it."],
+          ["🔁", "If it doesn't work, debug it.", "Change one step, try again, and notice what changed."],
+          ["💡", "Curiosity makes thinkers stronger.", "Ask one question today that you did not know yesterday."],
+          ["⏳", "Time is a resource too.", "Use your learning time carefully: think, try, check, stop."]
+        ]
+      },
+      "5-6": {
+        label: "For Class 5–6",
+        messages: [
+          ["🌱", "Use resources thoughtfully.", "Before printing or using a new sheet, ask whether the information can be reused or shared."],
+          ["🧠", "A good solution has a reason.", "Don't just give an answer. Be ready to explain why it works."],
+          ["🔍", "Patterns help us predict.", "Spot a repeating pattern and describe the rule behind it."],
+          ["🤖", "AI can be wrong.", "Check important information instead of accepting an AI answer automatically."],
+          ["🧩", "Decompose before you solve.", "Break one difficult task into smaller questions."],
+          ["🔐", "Privacy is part of smart technology use.", "Think before sharing personal information online."],
+          ["🛠️", "Debugging is learning.", "When something fails, find the step that needs changing."],
+          ["🛑", "More screen time is not always more learning.", "Choose the right tool for the task, then step away when the task is done."]
+        ]
+      },
+      "7-8": {
+        label: "For Class 7–8",
+        messages: [
+          ["🌱", "Digital efficiency also means resource awareness.", "Before creating another copy, ask whether an existing version can be reused or shared."],
+          ["🧠", "Slow thinking can prevent fast mistakes.", "State your assumptions before you solve a difficult problem."],
+          ["🤖", "Use AI with verification.", "Separate an AI-generated suggestion from a fact you have independently checked."],
+          ["🔐", "Privacy is a design choice.", "Consider what information a tool actually needs before you share it."],
+          ["🔍", "Look for the rule beneath the pattern.", "A pattern is more useful when you can explain why it repeats."],
+          ["🛠️", "Debug the process, not the person.", "When an outcome is wrong, inspect the steps and evidence."],
+          ["⏳", "Use technology intentionally.", "Choose the tool that solves the problem with the least unnecessary effort."]
+        ]
+      }
+    };
+
+    let currentWonderBand = localStorage.getItem("wonderlogicWonderBand") || "3-4";
+
+    function getWonderDayIndex() {
+      const now = new Date();
+      const start = new Date(now.getFullYear(), 0, 0);
+      const diff = now - start;
+      return Math.floor(diff / 86400000);
+    }
+
+    function renderDailyWonder() {
+      const band = WONDER_BANDS[currentWonderBand] || WONDER_BANDS["3-4"];
+      const item = band.messages[getWonderDayIndex() % band.messages.length];
+      document.getElementById("daily-wonder-band-label").textContent = band.label;
+      document.getElementById("daily-wonder-emoji").textContent = item[0];
+      document.getElementById("daily-wonder-message").textContent = item[1];
+      document.getElementById("daily-wonder-action-text").textContent = item[2];
+      document.getElementById("daily-wonder-date").textContent = "One small thought for today • " + new Intl.DateTimeFormat(undefined, {dateStyle:"medium"}).format(new Date());
+      document.querySelectorAll(".wonder-age-btn").forEach(btn => btn.classList.toggle("active", btn.dataset.band === currentWonderBand));
+    }
+
+    function openDailyWonder(markSeen = true) {
+      renderDailyWonder();
+      document.getElementById("daily-wonder-overlay").classList.add("is-open");
+      document.body.style.overflow = "hidden";
+      if (markSeen) localStorage.setItem("wonderlogicWonderSeen", new Date().toISOString().slice(0,10));
+    }
+
+    function closeDailyWonder() {
+      document.getElementById("daily-wonder-overlay").classList.remove("is-open");
+      document.body.style.overflow = "";
+    }
+
+    function closeDailyWonderFromBackdrop(event) {
+      if (event.target === event.currentTarget) closeDailyWonder();
+    }
+
+    function setWonderBand(band) {
+      if (!WONDER_BANDS[band]) return;
+      currentWonderBand = band;
+      localStorage.setItem("wonderlogicWonderBand", band);
+      renderDailyWonder();
+    }
+
+    document.addEventListener("keydown", function(event) {
+      if (event.key === "Escape") closeDailyWonder();
+    });
+
+    // Show once per day on this browser. The user can always reopen it with the button.
+    document.addEventListener("DOMContentLoaded", function() {
+      renderDailyWonder();
+      const today = new Date().toISOString().slice(0,10);
+      if (localStorage.getItem("wonderlogicWonderSeen") !== today) {
+        setTimeout(function() { openDailyWonder(true); }, 900);
+      }
+    });
+
+
+    // PLATFORM ACCOUNT HUB — prototype UI for the three experiences
+    let accountRole = 'teacher';
+    let accountMode = 'signin';
+
+    function openAccount(role, mode) {
+      accountRole = role;
+      accountMode = mode;
+      document.getElementById('account-modal').classList.add('open');
+      renderAccount();
+    }
+
+    function closeAccount() {
+      document.getElementById('account-modal').classList.remove('open');
+      document.getElementById('teacher-dashboard').classList.remove('active');
+    }
+
+    function closeAccountOutside(event) {
+      if (event.target.id === 'account-modal') closeAccount();
+    }
+
+    function setAccountMode(mode) {
+      accountMode = mode;
+      document.getElementById('teacher-dashboard').classList.remove('active');
+      renderAccount();
+    }
+
+    function renderAccount() {
+      const title = document.getElementById('account-title');
+      const teacherForm = document.getElementById('teacher-account-form');
+      const genericForm = document.getElementById('generic-account-form');
+      const signTab = document.getElementById('signin-tab');
+      const regTab = document.getElementById('register-tab');
+      const teacherSign = document.getElementById('teacher-signin-fields');
+      const teacherReg = document.getElementById('teacher-register-fields');
+      const accountSubmit = document.getElementById('account-submit');
+      const genericLabel = document.getElementById('generic-id-label');
+      const genericNote = document.getElementById('generic-account-note');
+      const genericSubmit = document.getElementById('generic-submit');
+
+      const roleNames = {teacher:'Teacher', student:'Student', parent:'Parent / Home'};
+      title.textContent = roleNames[accountRole] + (accountMode === 'signin' ? ' Sign In' : ' Registration');
+      signTab.classList.toggle('active', accountMode === 'signin');
+      regTab.classList.toggle('active', accountMode === 'register');
+
+      if (accountRole === 'teacher') {
+        teacherForm.style.display = 'block'; genericForm.style.display = 'none';
+        teacherSign.style.display = accountMode === 'signin' ? 'grid' : 'none';
+        teacherReg.style.display = accountMode === 'register' ? 'grid' : 'none';
+        accountSubmit.textContent = accountMode === 'signin' ? 'Sign In & Open Dashboard' : 'Create Teacher Profile';
+      } else {
+        teacherForm.style.display = 'none'; genericForm.style.display = 'block';
+        genericLabel.textContent = accountRole === 'student' ? 'School / Student ID' : 'Parent ID';
+        genericNote.textContent = accountRole === 'student'
+          ? 'Children should use a school-managed ID or class PIN. Keep personal phone numbers and email out of the child login.'
+          : 'Parent view is designed to be simple: what was learned, how to encourage, and progress — not a heavy school dashboard.';
+        genericSubmit.textContent = accountMode === 'signin' ? 'Sign In' : 'Create Account';
+        document.getElementById('generic-id').placeholder = accountMode === 'signin' ? 'Enter your school-managed ID' : 'Create / enter your ID';
+      }
+    }
+
+    function submitAccount(event) {
+      event.preventDefault();
+      if (accountRole === 'teacher' && accountMode === 'signin') {
+        document.getElementById('teacher-account-form').style.display = 'none';
+        document.getElementById('teacher-dashboard').classList.add('active');
+        document.getElementById('account-title').textContent = 'Teacher Dashboard';
+        document.querySelector('.account-tabs').style.display = 'none';
+      } else {
+        alert(accountRole === 'teacher' ? 'Teacher profile created in this prototype. In production this will save securely to the school account system.' : 'Account created in this prototype.');
+        setAccountMode('signin');
+      }
+    }
+
+    function previewTeacherPhoto(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const src = e.target.result;
+        document.getElementById('profile-preview').innerHTML = '<img src="' + src + '" alt="Teacher profile preview">';
+        document.getElementById('dashboard-avatar').innerHTML = '<img src="' + src + '" alt="Teacher profile">';
+      };
+      reader.readAsDataURL(file);
     }
 
   </script>
