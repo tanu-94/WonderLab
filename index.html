@@ -9,6 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js" defer></script>
 
   <style>
     :root {
@@ -141,6 +143,7 @@
       align-items: center;
       justify-content: space-between;
       height: 76px;
+      position: relative;
     }
 
     .brand-logo {
@@ -161,11 +164,47 @@
     }
 
     .nav-links {
-      display: flex;
-      gap: 28px;
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 24px;
+      right: 24px;
+      z-index: 1001;
+      flex-direction: column;
+      gap: 0;
       list-style: none;
+      padding: 8px 14px;
+      background: #FFFFFF;
+      border: 2px solid var(--border-dark);
+      border-radius: 0 0 14px 14px;
+      box-shadow: 4px 5px 0 var(--border-dark);
       font-weight: 600;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
+    }
+
+    .nav-links.is-open {
+      display: flex;
+    }
+
+    .nav-links a {
+      display: block;
+      padding: 9px 8px;
+    }
+
+    .nav-links li + li {
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .nav-menu-toggle {
+      flex: 0 0 auto;
+      border: 2px solid var(--border-dark);
+      border-radius: 10px;
+      padding: 8px 12px;
+      background: #FFFFFF;
+      color: var(--text-main);
+      font: 700 0.88rem var(--font-body);
+      cursor: pointer;
+      box-shadow: 2px 3px 0 var(--border-dark);
     }
 
     .nav-links a:hover {
@@ -176,6 +215,11 @@
       display: flex;
       gap: 12px;
       align-items: center;
+    }
+
+    .brand-logo span,
+    .nav-cta .btn {
+      white-space: nowrap;
     }
 
     /* 2. HERO SECTION */
@@ -707,6 +751,63 @@
   aspect-ratio: 16 / 9;
 }
 
+.chapter1-language-panel {
+  margin-top: 16px;
+  padding: 16px;
+  border: 2px solid var(--border-subtle);
+  border-radius: 14px;
+  background: #F8FAFC;
+}
+
+.chapter1-language-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.chapter1-language-controls label {
+  font-weight: 800;
+}
+
+.chapter1-language-controls select {
+  min-height: 42px;
+  padding: 8px 12px;
+  border: 2px solid var(--border-dark);
+  border-radius: 9px;
+  background: #FFFFFF;
+  color: var(--text-main);
+  font: inherit;
+}
+
+.chapter1-translation-caption {
+  padding: 12px;
+  border-left: 4px solid var(--indigo-brand);
+  border-radius: 6px;
+  background: #FFFFFF;
+  line-height: 1.7;
+}
+
+.chapter1-translation-note,
+.chapter1-translation-status {
+  margin-top: 8px;
+  color: var(--text-muted);
+  font-size: .82rem;
+}
+
+.chapter1-translation-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.chapter1-translation-actions .btn {
+  padding: 8px 12px;
+  font-size: .84rem;
+}
+
 .chapter1-video-note {
   margin-top: 12px;
   color: var(--text-muted);
@@ -771,8 +872,121 @@
       gap: 12px;
     }
 
+/* ================================
+   KIDS AUDIO — CHAPTER 1
+   ================================ */
 
+.chapter1-audio-card {
+  background: #FFFFFF;
+  border: 3px solid var(--border-dark);
+  border-radius: 22px;
+  padding: 22px;
+  margin: 24px 0 30px;
+  box-shadow: 5px 6px 0 var(--border-dark);
+  text-align: center;
+}
 
+.chapter1-audio-title {
+  margin: 0 0 6px;
+  font-family: var(--font-display);
+  color: var(--indigo-brand);
+  font-size: 1.5rem;
+}
+
+.chapter1-audio-subtitle {
+  margin: 0 auto 18px;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* Big kid-friendly button */
+.chapter1-audio-button {
+  width: 100%;
+  max-width: 520px;
+  min-height: 72px;
+  border: 3px solid var(--border-dark);
+  border-radius: 18px;
+  background: #FFF7ED;
+  color: var(--text-main);
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 4px 5px 0 var(--border-dark);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 0 auto;
+}
+
+.chapter1-audio-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 4px 7px 0 var(--border-dark);
+}
+
+.chapter1-audio-button:active {
+  transform: translateY(3px);
+  box-shadow: 2px 2px 0 var(--border-dark);
+}
+
+.chapter1-audio-icon {
+  font-size: 1.8rem;
+}
+
+.chapter1-audio-status {
+  margin: 16px 0 0;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--indigo-brand);
+}
+
+/* Progress bar */
+.chapter1-audio-progress {
+  width: 100%;
+  max-width: 520px;
+  height: 10px;
+  margin: 18px auto 0;
+  background: #E2E8F0;
+  border-radius: 999px;
+  overflow: hidden;
+  border: 2px solid var(--border-dark);
+}
+
+.chapter1-audio-progress-bar {
+  width: 0%;
+  height: 100%;
+  background: var(--indigo-brand);
+  transition: width 0.2s linear;
+}
+
+.chapter1-audio-duration {
+  margin-top: 9px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* Hide the real browser audio player */
+.chapter1-hidden-audio {
+  display: none;
+}
+
+@media (max-width: 700px) {
+  .chapter1-audio-card {
+    padding: 16px;
+    border-radius: 18px;
+  }
+
+  .chapter1-audio-title {
+    font-size: 1.25rem;
+  }
+
+  .chapter1-audio-button {
+    min-height: 68px;
+    font-size: 1rem;
+  }
+}
 
     /* CHAPTER 1 TEACHER PREPARATION */
     .teacher-prep { margin: 0 0 28px; }
@@ -1052,7 +1266,32 @@
     }
 
   
-    /* CT & AI — keep both concept boxes side by side */
+    /* CT & AI definition cards */
+    .definition-section {
+      padding: 64px 0;
+      background: #F1F5F9;
+      border-top: 2px solid var(--border-subtle);
+      border-bottom: 2px solid var(--border-subtle);
+    }
+
+    .definition-section .section-title {
+      max-width: 900px;
+      margin: 0 auto 28px;
+      padding: 24px;
+      background: #FFFFFF;
+      border: 3px solid var(--border-dark);
+      border-radius: 18px;
+      box-shadow: 4px 5px 0 var(--border-dark);
+    }
+
+    .definition-section .section-title h2 {
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+    }
+
+    .definition-section .section-title p {
+      font-size: 1rem;
+    }
+
     .definition-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1062,30 +1301,80 @@
 
     .definition-grid .def-card {
       min-width: 0;
-      height: 100%;
-      box-sizing: border-box;
+      padding: 24px;
+      background: #FFFFFF;
+      border: 3px solid var(--border-dark);
+      border-radius: 18px;
+      box-shadow: 4px 5px 0 var(--border-dark);
     }
 
-    @media (max-width: 560px) {
+    .definition-grid .def-card h3 {
+      margin: 12px 0 10px;
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      line-height: 1.25;
+    }
+
+    .definition-grid .def-card .meaning {
+      margin-bottom: 16px;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    .definition-grid .def-card .use-box {
+      padding: 14px 16px;
+      background: #F8FAFC;
+      border: 2px solid var(--border-subtle);
+      border-radius: 12px;
+    }
+
+    .definition-grid .def-card .use-box ul {
+      display: grid;
+      gap: 8px;
+      margin: 10px 0 0;
+      padding-left: 20px;
+      color: var(--text-muted);
+    }
+
+    .why-unplugged-banner {
+      margin-top: 24px;
+      padding: 22px 24px;
+      background: #FEF3C7;
+      border: 3px solid var(--border-dark);
+      border-radius: 18px;
+      box-shadow: 4px 5px 0 var(--border-dark);
+    }
+
+    .why-unplugged-banner h4 {
+      margin-bottom: 8px;
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      color: #78350F;
+    }
+
+    .why-unplugged-banner p {
+      color: #713F12;
+      line-height: 1.65;
+    }
+
+    @media (max-width: 700px) {
       .definition-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 10px;
+        grid-template-columns: 1fr;
+        gap: 16px;
       }
 
+      .definition-section { padding: 42px 0; }
+
+      .definition-section .section-title,
       .definition-grid .def-card {
-        padding: 14px;
+        padding: 18px;
       }
 
       .definition-grid .def-card h3 {
-        font-size: 1rem;
-        line-height: 1.15;
+        font-size: 1.2rem;
       }
 
-      .definition-grid .def-card p,
-      .definition-grid .def-card li {
-        font-size: .78rem;
-        line-height: 1.4;
-      }
+      .why-unplugged-banner { padding: 18px; }
     }
 
 
@@ -1308,26 +1597,34 @@
         WonderLogic <span>Class 3 CT & AI</span>
       </a>
 
-      <ul class="nav-links">
-        <li><a href="#pedagogy">Why Unplugged?</a></li>
-        <li><a href="#teacher-prep">Teacher Guide</a></li>
-        <li><a href="#chapter1-guide">Chapter 1 Guide</a></li>
-        <li><a href="#sandbox">Chapter 1 Demo</a></li>
-        <li><a href="#teachers">Teacher Tools</a></li>
-        <li><a href="#curriculum">14-Chapter Syllabus</a></li>
-        <li><a href="javascript:void(0)" onclick="openDailyWonder()">🌱 Daily Wonder</a></li>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#pedagogy" onclick="toggleMainMenu(false)">Why Unplugged?</a></li>
+        <li><a href="#teacher-prep" onclick="toggleMainMenu(false)">Teacher Guide</a></li>
+        <li><a href="#chapter1-guide" onclick="toggleMainMenu(false)">Chapter 1 Guide</a></li>
+        <li><a href="#sandbox" onclick="toggleMainMenu(false)">Chapter 1 Demo</a></li>
+        <li><a href="#teachers" onclick="toggleMainMenu(false)">Teacher Tools</a></li>
+        <li><a href="#curriculum" onclick="toggleMainMenu(false)">14-Chapter Syllabus</a></li>
+        <li><a href="javascript:void(0)" onclick="toggleMainMenu(false); openDailyWonder()">🌱 Daily Wonder</a></li>
       </ul>
 
       <div class="nav-cta">
         <a href="#sandbox" class="btn btn-secondary" style="padding: 8px 16px; min-height: 42px;">Try Demo</a>
         <a href="#contact" class="btn btn-primary" style="padding: 8px 16px; min-height: 42px;">Book School Pilot</a>
       </div>
+
+      <button class="nav-menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" onclick="toggleMainMenu()">
+        ☰ Menu
+      </button>
     </div>
   </nav>
 
   <!-- DAILY WONDER: age-aware, one small message per day -->
   <button class="daily-wonder-launch" type="button" onclick="openDailyWonder()" aria-label="Open today's Daily Wonder">
     🌱 Daily Wonder
+  </button>
+
+  <button class="floating-ai-btn" type="button" onclick="toggleDrawer(true)" aria-label="Open Ask AI teacher support">
+    🤖 Ask AI
   </button>
 
   <div class="daily-wonder-overlay" id="daily-wonder-overlay" role="dialog" aria-modal="true" aria-labelledby="daily-wonder-title" onclick="closeDailyWonderFromBackdrop(event)">
@@ -1783,7 +2080,7 @@
 <div class="chapter1-video-card">
   <div class="chapter1-video-header">
     <h3>🎥 Watch Before You Begin</h3>
-    <span class="chapter1-video-duration">1:10 min</span>
+    <span class="chapter1-video-duration">1:18 min</span>
   </div>
 
   <video
@@ -1796,6 +2093,35 @@
     <source src="video/Caesar_Cipher.mp4" type="video/mp4">
     Your browser does not support the video player.
   </video>
+
+  <div class="chapter1-language-panel" id="chapter1-language-panel">
+    <div class="chapter1-language-controls">
+      <label for="chapter1-language">🌐 Lesson language</label>
+      <select id="chapter1-language" onchange="updateChapter1Translation()">
+        <option value="en-IN">English</option>
+        <option value="hi-IN">हिन्दी (Hindi)</option>
+        <option value="bn-IN">বাংলা (Bengali)</option>
+        <option value="ta-IN">தமிழ் (Tamil)</option>
+        <option value="te-IN">తెలుగు (Telugu)</option>
+        <option value="mr-IN">मराठी (Marathi)</option>
+        <option value="gu-IN">ગુજરાતી (Gujarati)</option>
+        <option value="kn-IN">ಕನ್ನಡ (Kannada)</option>
+        <option value="ml-IN">മലയാളം (Malayalam)</option>
+        <option value="pa-IN">ਪੰਜਾਬੀ (Punjabi)</option>
+      </select>
+    </div>
+    <p class="chapter1-translation-caption" id="chapter1-translation-caption" lang="en">
+      A Caesar cipher hides a message by moving every letter the same number of places. With key +2, C becomes E. Use the key to reveal the message, then check that the rule was followed.
+    </p>
+    <p class="chapter1-translation-note">
+      These are translated lesson captions and narration, not a word-for-word dub. The original video and mission audio remain in English.
+    </p>
+    <div class="chapter1-translation-actions">
+      <button class="btn btn-primary" type="button" onclick="speakChapter1Translation()">🔊 Listen in selected language</button>
+      <button class="btn btn-secondary" type="button" onclick="stopChapter1Translation()">⏹ Stop narration</button>
+    </div>
+    <p class="chapter1-translation-status" id="chapter1-translation-status" role="status" aria-live="polite"></p>
+  </div>
 
   <p class="chapter1-video-note">
     Watch the short explanation first. Then put the screen down and try the Caesar Cipher activity yourself.
@@ -1832,6 +2158,61 @@
 
         <div class="chapter1-flow">SEE the idea → SAY the rule → TRY the rule → REMEMBER the pattern</div>
       </div>
+
+      <!-- ==========================================
+     CHAPTER 1 — LISTEN & LEARN
+     ========================================== -->
+
+<div class="chapter1-audio-card">
+
+  <h3 class="chapter1-audio-title">
+    🎧 Listen & Learn
+  </h3>
+
+  <p class="chapter1-audio-subtitle">
+    Listen to your teacher's short secret-code mission before you begin.
+  </p>
+
+  <button
+    type="button"
+    class="chapter1-audio-button"
+    id="chapter1AudioButton"
+    onclick="toggleChapter1Audio()"
+  >
+    <span class="chapter1-audio-icon" id="chapter1AudioIcon">▶️</span>
+
+    <span id="chapter1AudioText">
+      Tap to Start the Secret Mission!
+    </span>
+  </button>
+
+  <audio
+    id="chapter1Audio"
+    class="chapter1-hidden-audio"
+    preload="metadata"
+  >
+    <source
+      src="audio/Caesar%20Cipher.mp3"
+      type="audio/mpeg"
+    >
+  </audio>
+
+  <div class="chapter1-audio-progress">
+    <div
+      class="chapter1-audio-progress-bar"
+      id="chapter1AudioProgress"
+    ></div>
+  </div>
+
+  <div class="chapter1-audio-duration" id="chapter1AudioTime">
+    🎧 3:30 Secret Mission
+  </div>
+
+  <p class="chapter1-audio-status" id="chapter1AudioStatus">
+    Ready? Tap the button and listen!
+  </p>
+
+</div>
 
       <div class="chapter1-card">
         <h3>1. 🌟 What is the Caesar Cipher?</h3>
@@ -2312,6 +2693,26 @@
 
   <!-- INTERACTIVE LOGIC SCRIPT -->
   <script>
+    function toggleMainMenu(forceOpen) {
+      const menu = document.getElementById("nav-links");
+      const toggle = document.querySelector(".nav-menu-toggle");
+      const shouldOpen = typeof forceOpen === "boolean"
+        ? forceOpen
+        : !menu.classList.contains("is-open");
+      menu.classList.toggle("is-open", shouldOpen);
+      toggle.setAttribute("aria-expanded", String(shouldOpen));
+    }
+
+    document.addEventListener("click", function (event) {
+      if (!event.target.closest(".navbar") && document.getElementById("nav-links").classList.contains("is-open")) {
+        toggleMainMenu(false);
+      }
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") toggleMainMenu(false);
+    });
+
     const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
     let currentShift = 2;
 
@@ -2653,6 +3054,285 @@
       };
       reader.readAsDataURL(file);
     }
+
+/* ==========================================
+   CHAPTER 1 — KIDS AUDIO PLAYER
+   ========================================== */
+
+const chapter1Audio = document.getElementById("chapter1Audio");
+const chapter1AudioButton = document.getElementById("chapter1AudioButton");
+const chapter1AudioIcon = document.getElementById("chapter1AudioIcon");
+const chapter1AudioText = document.getElementById("chapter1AudioText");
+const chapter1AudioStatus = document.getElementById("chapter1AudioStatus");
+const chapter1AudioProgress = document.getElementById("chapter1AudioProgress");
+const chapter1AudioTime = document.getElementById("chapter1AudioTime");
+
+const CHAPTER1_TRANSLATIONS = {
+  "en-IN": {
+    lang: "en",
+    text: "A Caesar cipher hides a message by moving every letter the same number of places. With key plus two, C becomes E. Use the key to reveal the message, then check that the rule was followed."
+  },
+  "hi-IN": {
+    lang: "hi-IN",
+    text: "सीज़र सिफर में, हर अक्षर को वर्णमाला में समान स्थान आगे बढ़ाकर संदेश छिपाया जाता है। कुंजी +2 हो, तो C से E बनता है। संदेश खोलने के लिए उसी कुंजी का उपयोग करें और नियम को जाँचें।"
+  },
+  "bn-IN": {
+    lang: "bn-IN",
+    text: "সিজার সাইফারে, প্রতিটি অক্ষরকে বর্ণমালায় একই সংখ্যক ঘর সামনে সরিয়ে বার্তা গোপন করা হয়। কী +2 হলে C থেকে E হয়। বার্তাটি পড়তে একই কী ব্যবহার করুন এবং নিয়মটি ঠিকভাবে মানা হয়েছে কি না দেখুন।"
+  },
+  "ta-IN": {
+    lang: "ta-IN",
+    text: "சீசர் சைஃபரில், ஒவ்வொரு எழுத்தையும் ஒரே எண்ணிக்கையிலான இடங்கள் முன்னே நகர்த்தி செய்தியை மறைக்கிறோம். விசை +2 என்றால் C, E ஆக மாறும். செய்தியை மீண்டும் படிக்க அதே விசையைப் பயன்படுத்தி, விதியைச் சரிபார்க்கவும்."
+  },
+  "te-IN": {
+    lang: "te-IN",
+    text: "సీజర్ సైఫర్‌లో, ప్రతి అక్షరాన్ని అక్షరమాలలో ఒకే సంఖ్యలో స్థానాలు ముందుకు జరిపి సందేశాన్ని దాచుతాం. కీ +2 అయితే C, Eగా మారుతుంది. సందేశాన్ని చదవడానికి అదే కీని ఉపయోగించి, నియమాన్ని సరిచూసుకోండి."
+  },
+  "mr-IN": {
+    lang: "mr-IN",
+    text: "सीझर सायफरमध्ये, प्रत्येक अक्षर वर्णमालेत तेवढ्याच जागा पुढे सरकवून संदेश लपवला जातो. किल्ली +2 असल्यास C चे E होते. संदेश उलगडण्यासाठी तीच किल्ली वापरा आणि नियम तपासा."
+  },
+  "gu-IN": {
+    lang: "gu-IN",
+    text: "સીઝર સાઇફરમાં, દરેક અક્ષરને મૂળાક્ષરમાં સરખી સંખ્યામાં આગળ ખસેડીને સંદેશ છુપાવીએ છીએ. કી +2 હોય તો C, E બને છે. સંદેશ ઉકેલવા એ જ કી વાપરો અને નિયમ બરાબર છે કે નહીં તે તપાસો."
+  },
+  "kn-IN": {
+    lang: "kn-IN",
+    text: "ಸೀಸರ್ ಸೈಫರ್‌ನಲ್ಲಿ, ಪ್ರತಿಯೊಂದು ಅಕ್ಷರವನ್ನು ವರ್ಣಮಾಲೆಯಲ್ಲಿ ಒಂದೇ ಸಂಖ್ಯೆಯ ಸ್ಥಾನಗಳಷ್ಟು ಮುಂದೆ ಸರಿಸಿ ಸಂದೇಶವನ್ನು ಮರೆಮಾಡುತ್ತೇವೆ. ಕೀ +2 ಆದರೆ C, E ಆಗುತ್ತದೆ. ಸಂದೇಶವನ್ನು ಓದಲು ಅದೇ ಕೀ ಬಳಸಿ, ನಿಯಮವನ್ನು ಪರಿಶೀಲಿಸಿ."
+  },
+  "ml-IN": {
+    lang: "ml-IN",
+    text: "സീസർ സൈഫറിൽ, ഓരോ അക്ഷരവും അക്ഷരമാലയിൽ ഒരേ എണ്ണത്തിലുള്ള സ്ഥാനങ്ങൾ മുന്നോട്ട് നീക്കി സന്ദേശം മറയ്ക്കുന്നു. കീ +2 ആണെങ്കിൽ C, E ആയി മാറും. സന്ദേശം വായിക്കാൻ അതേ കീ ഉപയോഗിച്ച് നിയമം ശരിയാണോ എന്ന് പരിശോധിക്കുക."
+  },
+  "pa-IN": {
+    lang: "pa-IN",
+    text: "ਸੀਜ਼ਰ ਸਾਈਫਰ ਵਿੱਚ, ਹਰ ਅੱਖਰ ਨੂੰ ਵਰਣਮਾਲਾ ਵਿੱਚ ਇੱਕੋ ਜਿੰਨੀਆਂ ਥਾਵਾਂ ਅੱਗੇ ਕਰਕੇ ਸੁਨੇਹਾ ਲੁਕਾਇਆ ਜਾਂਦਾ ਹੈ। ਕੁੰਜੀ +2 ਹੋਵੇ ਤਾਂ C, E ਬਣਦਾ ਹੈ। ਸੁਨੇਹਾ ਪੜ੍ਹਨ ਲਈ ਉਹੀ ਕੁੰਜੀ ਵਰਤੋ ਅਤੇ ਨਿਯਮ ਦੀ ਜਾਂਚ ਕਰੋ।"
+  }
+};
+
+function updateChapter1Translation() {
+  const languageSelect = document.getElementById("chapter1-language");
+  const caption = document.getElementById("chapter1-translation-caption");
+  const status = document.getElementById("chapter1-translation-status");
+  const translation = CHAPTER1_TRANSLATIONS[languageSelect.value];
+  if (!translation) {
+    status.textContent = "The selected lesson language is not available.";
+    return;
+  }
+
+  stopChapter1Translation();
+  caption.textContent = translation.text;
+  caption.lang = translation.lang;
+  status.textContent = "";
+}
+
+function speakChapter1Translation() {
+  const languageSelect = document.getElementById("chapter1-language");
+  const status = document.getElementById("chapter1-translation-status");
+  const translation = CHAPTER1_TRANSLATIONS[languageSelect.value];
+  if (!translation) {
+    status.textContent = "The selected lesson language is not available.";
+    return;
+  }
+
+  if (!window.speechSynthesis || !window.SpeechSynthesisUtterance) {
+    status.textContent = "Speech narration is not supported in this browser. The translated captions are still available above.";
+    return;
+  }
+
+  const languageCode = translation.lang.split("-")[0].toLowerCase();
+  const voice = window.speechSynthesis.getVoices().find(function (candidate) {
+    return candidate.lang.toLowerCase().startsWith(languageCode);
+  });
+  if (!voice) {
+    status.textContent = "No " + languageSelect.options[languageSelect.selectedIndex].text +
+      " speech voice is available on this device. Install or enable a matching system voice to hear the narration; captions remain available.";
+    return;
+  }
+
+  stopChapter1Translation();
+  const utterance = new SpeechSynthesisUtterance(translation.text);
+  utterance.lang = translation.lang;
+  utterance.voice = voice;
+  utterance.onend = function () {
+    status.textContent = "Translated narration finished.";
+  };
+  utterance.onerror = function (event) {
+    status.textContent = "Speech narration could not play (" + event.error + "). Captions remain available.";
+  };
+
+  status.textContent = "Playing translated lesson narration.";
+  window.speechSynthesis.speak(utterance);
+}
+
+function stopChapter1Translation() {
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  const status = document.getElementById("chapter1-translation-status");
+  if (status) status.textContent = "Narration stopped.";
+}
+
+function toggleChapter1Audio() {
+
+  if (chapter1Audio.paused) {
+
+    chapter1Audio.play()
+      .then(function () {
+
+        chapter1AudioIcon.textContent = "⏸️";
+        chapter1AudioText.textContent = "Pause the Secret Mission";
+        chapter1AudioStatus.textContent =
+          "🎧 Listen carefully... your secret mission is playing!";
+
+      })
+      .catch(function () {
+
+        chapter1AudioStatus.textContent =
+          "Please tap the button again to start the audio.";
+
+      });
+
+  } else {
+
+    chapter1Audio.pause();
+
+    chapter1AudioIcon.textContent = "▶️";
+    chapter1AudioText.textContent =
+      "Continue the Secret Mission";
+
+    chapter1AudioStatus.textContent =
+      "⏸️ Mission paused. Tap to continue.";
+
+  }
+}
+
+
+/* Update progress */
+
+chapter1Audio.addEventListener("timeupdate", function () {
+
+  if (!chapter1Audio.duration) return;
+
+  const percentage =
+    (chapter1Audio.currentTime / chapter1Audio.duration) * 100;
+
+  chapter1AudioProgress.style.width =
+    percentage + "%";
+
+  const currentMinutes =
+    Math.floor(chapter1Audio.currentTime / 60);
+
+  const currentSeconds =
+    Math.floor(chapter1Audio.currentTime % 60)
+      .toString()
+      .padStart(2, "0");
+
+  chapter1AudioTime.textContent =
+    "🎧 " +
+    currentMinutes +
+    ":" +
+    currentSeconds +
+    " / 3:30";
+
+});
+
+/* GSAP page motion */
+document.addEventListener("DOMContentLoaded", function () {
+  if (!window.gsap || !window.ScrollTrigger) return;
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const motion = gsap.matchMedia();
+  motion.add("(prefers-reduced-motion: no-preference)", function () {
+    gsap.from(".platform-hub .platform-kicker, .platform-hub h2, .platform-hub .hub-intro", {
+      autoAlpha: 0,
+      y: 18,
+      duration: 0.6,
+      stagger: 0.1,
+      ease: "power2.out"
+    });
+
+    gsap.from(".hero-content, .hero-preview-card", {
+      autoAlpha: 0,
+      y: 26,
+      duration: 0.7,
+      stagger: 0.15,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: ".hero",
+        start: "top 80%",
+        once: true
+      }
+    });
+
+    gsap.utils.toArray(".section-head, .trust-bar .container, .definition-section .container, .sandbox-card, .cta-banner .container").forEach(function (element) {
+      gsap.from(element, {
+        autoAlpha: 0,
+        y: 22,
+        duration: 0.65,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: element,
+          start: "top 88%",
+          once: true
+        }
+      });
+    });
+
+    ScrollTrigger.batch(".door-card, .pillar-card, .support-card, .chapter-pill", {
+      start: "top 90%",
+      once: true,
+      onEnter: function (elements) {
+        gsap.fromTo(elements, {
+          autoAlpha: 0,
+          y: 20
+        }, {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.55,
+          stagger: 0.09,
+          ease: "power2.out",
+          overwrite: "auto"
+        });
+      }
+    });
+  });
+});
+
+
+/* Audio finished */
+
+chapter1Audio.addEventListener("ended", function () {
+
+  chapter1AudioIcon.textContent = "🔁";
+
+  chapter1AudioText.textContent =
+    "Listen to the Mission Again";
+
+  chapter1AudioStatus.textContent =
+    "🎉 Secret Mission complete! Now it's your turn.";
+
+  chapter1AudioProgress.style.width = "100%";
+
+});
+
+
+/* Reset button when audio is played again */
+
+chapter1Audio.addEventListener("play", function () {
+
+  if (chapter1Audio.currentTime < 1) {
+
+    chapter1AudioIcon.textContent = "⏸️";
+
+    chapter1AudioText.textContent =
+      "Pause the Secret Mission";
+
+    chapter1AudioStatus.textContent =
+      "🎧 Listen carefully... your secret mission is playing!";
+
+  }
+
+});
 
   </script>
 </body>
